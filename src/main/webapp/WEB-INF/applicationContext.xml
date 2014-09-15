@@ -51,7 +51,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan">
 			<list>
-				<value>forward.chuwa.jq_cc.model</value>
+				<value>forward.chuwa.hfjy.model</value>
 			</list>
 		</property>
 	</bean>

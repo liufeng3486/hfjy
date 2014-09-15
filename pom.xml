@@ -168,7 +168,7 @@
     </dependencies>
 
     <build>
-        <finalName>jq_cc</finalName>
+        <finalName>hfjy</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
