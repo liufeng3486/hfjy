@@ -7,7 +7,7 @@
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 <script>
 	$(function(){
-		$("#register,#login,#shadow,.nav_popup").hide();	
+		$(".popup,#shadow,.nav_popup").hide();	
 		$("#btn_login").click(function(){
 			$("#shadow,#login").show();
 		})
@@ -32,22 +32,29 @@
 <body>
 <div class="header clearfix">
   <div class="contain">
-    <div class="right"><a href="javascript:void(0);" id="btn_login">登录</a><a href="javascript:void(0);">注册</a></div>
-    <div class="left"><a href="index.html"><img src="images/logo.png" alt="录取啦" title="录取啦" /></a><span class="location"><span>地区：</span><a href="javascript:void(0);" class="red">乌鲁木齐<em class="icon sarrow_down"></em></a><span>年级：</span><a href="javascript:void(0);">高三<em class="icon sarrow_down"></em></a></span>
-      <div class="popup_location"> <em class="icon iarrow"></em>
+    <div class="right"><a class="name" href="javascript:void(0);"><img src="images/icon/avator_small.png">阿凯</a><a href="javascript:void(0);">退出</a></div>
+    <div class="left"><a href="index.html"><img src="images/logo.png" alt="录取啦" title="录取啦" /></a><span class="location"><span>地区：</span><a href="javascript:void(0);" class="red">乌鲁木齐<em class="icon sarrow_down"></em></a><span>年级：</span><a href="javascript:void(0);">高三<em class="icon sarrow_down"></em></a></span> 
+    <div class="popup_location">
+        <em class="icon iarrow"></em>
         <div class="padding">
-          <div class="box"><a href="javascript:void(0);">华东</a><a href="javascript:void(0);" class="active">华南</a><a href="javascript:void(0);">华北</a><a href="javascript:void(0);">西北</a><a href="javascript:void(0);">东北</a><a href="javascript:void(0);">港澳台</a><a href="javascript:void(0);">华北</a><a href="javascript:void(0);">西北</a><a href="javascript:void(0);">东北</a><a href="javascript:void(0);">港澳台</a></div>
-          <div class="align_center"><a href="javascript:void(0);"><em class="icon iarrow_down"></em></a></div>
-          <div class="box"><a href="javascript:void(0);" class="active">上海</a><a href="javascript:void(0);">北京</a><a href="javascript:void(0);">杭州</a><a href="javascript:void(0);">天津</a><a href="javascript:void(0);">苏州</a><a href="javascript:void(0);">浙江</a></div>
+        <div class="box"><a href="javascript:void(0);">华东</a><a href="javascript:void(0);" class="active">华南</a><a href="javascript:void(0);">华北</a><a href="javascript:void(0);">西北</a><a href="javascript:void(0);">东北</a><a href="javascript:void(0);">港澳台</a><a href="javascript:void(0);">华北</a><a href="javascript:void(0);">西北</a><a href="javascript:void(0);">东北</a><a href="javascript:void(0);">港澳台</a></div>
+        <div class="align_center"><a href="javascript:void(0);"><em class="icon iarrow_down"></em></a></div>
+        <div class="box"><a href="javascript:void(0);" class="active">上海</a><a href="javascript:void(0);">北京</a><a href="javascript:void(0);">杭州</a><a href="javascript:void(0);">天津</a><a href="javascript:void(0);">苏州</a><a href="javascript:void(0);">浙江</a></div>
+        
         </div>
-      </div>
-      <div class="popup_senior"> <em class="icon iarrow"></em>
+    </div>
+    <div class="popup_senior">
+        <em class="icon iarrow"></em>
         <div class="padding">
-          <div class=""><a href="javascript:void(0);">高一</a><a href="javascript:void(0);" class="active">高二</a><a href="javascript:void(0);">高三</a></div>
+        <div class=""><a href="javascript:void(0);">高一</a><a href="javascript:void(0);" class="active">高二</a><a href="javascript:void(0);">高三</a></div>
+        
         </div>
-      </div>
+    </div>
+    
+    
     </div>
     <div class="clear">&nbsp;</div>
+    
   </div>
 </div>
 <div class="nav">
@@ -57,17 +64,16 @@
         <input type="text" placeholder="学校、专业、地区" />
       </div>
     </div>
-    <div class="left"><a href="javascript:void(0);" id="first" class="first active"><span>高校</span>
-      <div class="bg"></div>
-      </a><a href="javascript:void(0);" >专业</a><a href="javascript:void(0);">高中</a><a href="javascript:void(0);">学习</a><a href="javascript:void(0);">面试</a><a href="javascript:void(0);">政策</a>
-      <div class="nav_popup">
+    <div class="left"><a href="javascript:void(0);" id="first" class="first active"><span>高校</span><div class="bg"></div></a><a href="javascript:void(0);" >专业</a><a href="javascript:void(0);">高中</a><a href="javascript:void(0);">学习</a><a href="javascript:void(0);">面试</a><a href="javascript:void(0);">政策</a>
+    	<div class="nav_popup">
         <h1 class="red">热门高校</h1>
         <div class="content"><a href="javascript:void(0);">复旦大学</a><a href="javascript:void(0);">复旦大学</a><a href="javascript:void(0);">复旦大学</a><a href="javascript:void(0);">复旦大学</a><a href="javascript:void(0);">复旦大学</a><a href="javascript:void(0);">复旦大学</a></div>
         <div class="btn_group"><a href="javascript:void(0);">显示全部</a></div>
       </div>
-    </div>
+  	</div>
     <div class="clear">&nbsp;</div>
   </div>
+  
 </div>
 <div class="container">
   <div class="contain">
@@ -79,43 +85,43 @@
           <h1>话题</h1>
           <span class="dotted"><a href="javascript:void(0);" class="active"></a><a href="javascript:void(0);" class=""></a><a href="javascript:void(0);" class=""></a></span></div>
         <div class="content">
-          <div class="layer">
-            <dl>
-              <dt><a href="javascript:void(0);" class="btn btn_white right">已关注</a>
-                <h2>复旦大学</h2>
-              </dt>
-              <dd>
-                <p>简介假字简介假字简介假字简介假字简介假字简介假字简介假字简介假字。</p>
-              </dd>
-            </dl>
-            <a href="javascript:void(0);" class="left"><img src="images/icon/fudan_logo.png" alt="复旦大学" title="复旦大学" /></a>
-            <div class="clear">&nbsp;</div>
+            <div class="layer">
+              <dl>
+                <dt><a href="javascript:void(0);" class="btn btn_white right">已关注</a>
+                  <h2>复旦大学</h2>
+                </dt>
+                <dd>
+                  <p>简介假字简介假字简介假字简介假字简介假字简介假字简介假字简介假字。</p>
+                </dd>
+              </dl>
+              <a href="javascript:void(0);" class="left"><img src="images/icon/fudan_logo.png" alt="复旦大学" title="复旦大学" /></a>
+              <div class="clear">&nbsp;</div>
+            </div>
+            <div class="layer">
+              <dl>
+                <dt><a href="javascript:void(0);" class="btn btn_white right">已关注</a>
+                  <h2>同济大学</h2>
+                </dt>
+                <dd>
+                  <p>简介假字简介假字简介假字简介假字简介假字简介假字简介假字简介假字。</p>
+                </dd>
+              </dl>
+              <a href="javascript:void(0);" class="left"><img src="images/icon/tongji_logo.png" alt="同济大学" title="同济大学" /></a>
+              <div class="clear">&nbsp;</div>
+            </div>
+            <div class="layer last">
+              <dl>
+                <dt><a href="javascript:void(0);" class="btn btn_white right"><span class="red">&plus;</span>&nbsp;关注</a>
+                  <h2>高考</h2>
+                </dt>
+                <dd>
+                  <p>简介假字简介假字简介假字简介假字简介假字简介假字简介假字简介假字。</p>
+                </dd>
+              </dl>
+              <a href="javascript:void(0);" class="left"><img src="images/icon/gaokao_logo.png" alt="高考" title="高考" /></a>
+              <div class="clear">&nbsp;</div>
+            </div>
           </div>
-          <div class="layer">
-            <dl>
-              <dt><a href="javascript:void(0);" class="btn btn_white right">已关注</a>
-                <h2>同济大学</h2>
-              </dt>
-              <dd>
-                <p>简介假字简介假字简介假字简介假字简介假字简介假字简介假字简介假字。</p>
-              </dd>
-            </dl>
-            <a href="javascript:void(0);" class="left"><img src="images/icon/tongji_logo.png" alt="同济大学" title="同济大学" /></a>
-            <div class="clear">&nbsp;</div>
-          </div>
-          <div class="layer last">
-            <dl>
-              <dt><a href="javascript:void(0);" class="btn btn_white right"><span class="red">&plus;</span>&nbsp;关注</a>
-                <h2>高考</h2>
-              </dt>
-              <dd>
-                <p>简介假字简介假字简介假字简介假字简介假字简介假字简介假字简介假字。</p>
-              </dd>
-            </dl>
-            <a href="javascript:void(0);" class="left"><img src="images/icon/gaokao_logo.png" alt="高考" title="高考" /></a>
-            <div class="clear">&nbsp;</div>
-          </div>
-        </div>
       </div>
       <!--话题 end--> 
       <!--大家都在看 start-->
@@ -124,21 +130,23 @@
           <h1>大家都在看</h1>
         </div>
         <div class="content">
-          <div class="newer"><a href="javascript:void(0);"><em class="icon idotted"></em><span>是去大公司呢还是继续呆在小公司</span>
-            <div class="clear">&nbsp;</div>
-            </a></div>
-          <div class="newer"><a href="javascript:void(0);"><em class="icon idotted"></em><span>最牛的商业模式：4个人公司年净赚七千万</span>
-            <div class="clear">&nbsp;</div>
-            </a> </div>
-          <div class="newer"><a href="javascript:void(0);"><em class="icon idotted"></em><span>是去大公司呢还是继续呆在小公司</span>
-            <div class="clear">&nbsp;</div>
-            </a> </div>
-          <div class="newer"><a href="javascript:void(0);"><em class="icon idotted"></em><span>最牛的商业模式：4个人公司年净赚七千万</span>
-            <div class="clear">&nbsp;</div>
-            </a></div>
-          <div class="newer last"><a href="javascript:void(0);"><em class="icon idotted"></em><span>是去大公司呢还是继续呆在小公司</span>
-            <div class="clear">&nbsp;</div>
-            </a> </div>
+
+            <div class="newer"><a href="javascript:void(0);"><em class="icon idotted"></em><span>是去大公司呢还是继续呆在小公司</span>
+              <div class="clear">&nbsp;</div>
+              </a></div>
+            <div class="newer"><a href="javascript:void(0);"><em class="icon idotted"></em><span>最牛的商业模式：4个人公司年净赚七千万</span>
+              <div class="clear">&nbsp;</div>
+              </a> </div>
+            <div class="newer"><a href="javascript:void(0);"><em class="icon idotted"></em><span>是去大公司呢还是继续呆在小公司</span>
+              <div class="clear">&nbsp;</div>
+              </a> </div>
+            <div class="newer"><a href="javascript:void(0);"><em class="icon idotted"></em><span>最牛的商业模式：4个人公司年净赚七千万</span>
+              <div class="clear">&nbsp;</div>
+              </a></div>
+            <div class="newer last"><a href="javascript:void(0);"><em class="icon idotted"></em><span>是去大公司呢还是继续呆在小公司</span>
+              <div class="clear">&nbsp;</div>
+              </a> </div>
+        
         </div>
       </div>
       <!--大家都在看 end--> 
@@ -166,11 +174,8 @@
         </div>
       </div>
       <!--banner end-->
-      <div class="title tab"><a href="javascript:void(0);" class="active"><em class="icon il"></em>
-        <h1>最新</h1>
-        </a><a href="javascript:void(0);"><em class="icon ih"></em>
-        <h1>最热</h1>
-        </a></div>
+      <div class="title"><em class="icon is"></em><h1>我的订阅</h1>
+      	<span class="small_tab"><a href="javascript:void(0);" class="active"><h1>最新</h1></a><a href="javascript:void(0);"><h1>最热</h1></a></span></div>
       <div class="tab_content">
         <div class="layer">
           <div class="padding">
@@ -179,19 +184,21 @@
                 <dt><a href="javascript:void(0);">复旦大学2015年将增加招生500人，清华、浙大等表示不会跟风</a></dt>
                 <dd>
                   <div class="tag"><a href="javascript:void(0);" class="btn btn_white  active">复旦大学</a><a href="javascript:void(0);" class="btn btn_white">同济大学</a><a href="javascript:void(0);" class="btn btn_white">招生</a>
-                    <div class="popup_tag"> <em class="icon iarrow"></em>
-                      <div class="padding">
-                        <dl>
-                          <dt><a class="btn btn_white fr" href="javascript:void(0);">已关注</a>
-                            <h2>复旦大学</h2>
-                          </dt>
-                          <dd>
-                            <p>简介假字简介假字简介假字简介假字简介假字简介假字简介假字简介假字。</p>
-                          </dd>
-                        </dl>
-                        <a class="left" href="javascript:void(0);"><img title="复旦大学" alt="复旦大学" src="images/icon/fudan_logo.png"></a>
-                        <div class="clear">&nbsp;</div>
-                      </div>
+                  
+                  <div class="popup_tag">
+                    <em class="icon iarrow"></em>
+                    <div class="padding">
+                          <dl>
+                            <dt><a class="btn btn_white fr" href="javascript:void(0);">已关注</a>
+                              <h2>复旦大学</h2>
+                            </dt>
+                            <dd>
+                              <p>简介假字简介假字简介假字简介假字简介假字简介假字简介假字简介假字。</p>
+                            </dd>
+                          </dl>
+                          <a class="left" href="javascript:void(0);"><img title="复旦大学" alt="复旦大学" src="images/icon/fudan_logo.png"></a>
+                          <div class="clear">&nbsp;</div>
+                        </div>
                     </div>
                   </div>
                 </dd>
@@ -276,19 +283,19 @@
 <!--popup start-->
 <div class="shadow" id="shadow">&nbsp;</div>
 <div class="popup w_h_m2" id="welcome">
-  <div class="welcome">
-    <h2 class="red2">欢迎来到 <img src="images/b_logo.png" /></h2>
-    <p>通过选择省份和年级，</p>
-    <p>我们可以为你<b>提供更优质的服务</b></p>
-    <div class="p_tab"> <a href="javascript:void(0);"  class="active">省份</a><a href="javascript:void(0);">年级</a>
-      <div class="p_tab_content"> <em class="icon iarrow"></em> <a href="javascript:void(0);" class="active">华东</a><a href="javascript:void(0);">华北</a><a href="javascript:void(0);">华南</a><a href="javascript:void(0);">东北</a><a href="javascript:void(0);">西北</a><a href="javascript:void(0);">东北</a><a href="javascript:void(0);">西北</a>
-        <hr/>
-        <a href="javascript:void(0);" class="active">华东</a><a href="javascript:void(0);">华北</a><a href="javascript:void(0);">华南</a><a href="javascript:void(0);">东北</a><a href="javascript:void(0);">西北</a> </div>
-      <div class="p_tab_content p_senior"> <em class="icon iarrow"></em> <a href="javascript:void(0);" class="active">高三</a><a href="javascript:void(0);">高二</a><a href="javascript:void(0);">高一</a> </div>
-    </div>
+	<div class="welcome">
+      <h2 class="red">欢迎来到 <img src="images/logo2.png" /></h2>
+      <p>通过选择<b>省份</b>和<b>年级</b>，</p>
+      <p>我们可以为你提供更优质的服务</p>
+      <div class="p_tab"> <a href="javascript:void(0);">省份</a><a href="javascript:void(0);">年级</a> </div>
+      <div class="p_tab_content">
+    <a href="javascript:void(0);" class="active">华东</a><a href="javascript:void(0);">华北</a><a href="javascript:void(0);">华南</a><a href="javascript:void(0);">东北</a><a href="javascript:void(0);">西北</a>
+    <hr/>
+    <a href="javascript:void(0);" class="active">华东</a><a href="javascript:void(0);">华北</a><a href="javascript:void(0);">华南</a><a href="javascript:void(0);">东北</a><a href="javascript:void(0);">西北</a>
+      </div>
   </div>
 </div>
-</div>
+
 <div id="login" class="popup w_h_m">
   <form>
     <div class="login">
@@ -313,9 +320,14 @@
         </dl>
         <div class="clear">&nbsp;</div>
         <div class="align_center"><a href="javascript:void(0);" class="btn btn_red">登录</a></div>
+     
         <div class="group">
-          <div class="link"><a href="javascript:void(0);">注册</a><a href="javascript:void(0);">忘记密码？</a></div>
-          <div class="rand"> <img src="images/rand.png" /> <span class="gray">微信登录</span> </div>
+        	<div class="link"><a href="javascript:void(0);">注册</a><a href="javascript:void(0);">忘记密码？</a></div>
+          <div class="rand">
+          	<img src="images/rand.png" />
+            <span class="gray">微信登录</span>
+          </div>
+          
           <div class="clear">&nbsp;</div>
         </div>
         <div class="clear">&nbsp;</div>
@@ -323,6 +335,7 @@
     </div>
   </form>
 </div>
+
 <div id="register" class="popup w_h_m3" style="display:block;">
   <form>
     <div class="login regsiter" >
@@ -335,7 +348,7 @@
             </div>
           </dd>
         </dl>
-        <div class="clear">&nbsp;</div>
+        <div class="clear">&nbsp;</div>      
         <dl class="input  blue_border">
           <dt><em class="icon suser active"></em></dt>
           <dd>
@@ -358,16 +371,18 @@
         <dl class="input">
           <dt><em class="icon slocation"></em></dt>
           <dd>
-            <div class="padding"> <span class="fill"><b>上海</b></span><a href="javascript:void(0);"><em class="icon sedit"></em></a>
-              <div class="popup_location"> <em class="icon iarrow"></em>
-                <div class="padding">
-                  <div class="box"><a href="javascript:void(0);">华东</a><a href="javascript:void(0);" class="active">华南</a><a href="javascript:void(0);">华北</a><a href="javascript:void(0);">西北</a><a href="javascript:void(0);">东北</a><a href="javascript:void(0);">港澳台</a><a href="javascript:void(0);">华北</a><a href="javascript:void(0);">西北</a><a href="javascript:void(0);">东北</a><a href="javascript:void(0);">港澳台</a></div>
-                  <div class="align_center"><a href="javascript:void(0);"><em class="icon iarrow_down"></em></a></div>
-                  <div class="box"><a href="javascript:void(0);" class="active">上海</a><a href="javascript:void(0);">北京</a><a href="javascript:void(0);">杭州</a><a href="javascript:void(0);">天津</a><a href="javascript:void(0);">苏州</a><a href="javascript:void(0);">浙江</a></div>
-                  <div class="align_center"><a href="javascript:void(0);"><em class="icon iarrow_down"></em></a></div>
-                  <div class="box"><a href="javascript:void(0);" class="active">上海</a></div>
+            <div class="padding">
+             	<span class="fill"><b>上海</b></span><a href="javascript:void(0);"><em class="icon sedit"></em></a>
+                <div class="popup_location">
+                	<em class="icon iarrow"></em>
+                	<div class="padding">
+                	<div class="box"><a href="javascript:void(0);">华东</a><a href="javascript:void(0);" class="active">华南</a><a href="javascript:void(0);">华北</a><a href="javascript:void(0);">西北</a><a href="javascript:void(0);">东北</a><a href="javascript:void(0);">港澳台</a><a href="javascript:void(0);">华北</a><a href="javascript:void(0);">西北</a><a href="javascript:void(0);">东北</a><a href="javascript:void(0);">港澳台</a></div>
+                    <div class="align_center"><a href="javascript:void(0);"><em class="icon iarrow_down"></em></a></div>
+                    <div class="box"><a href="javascript:void(0);" class="active">上海</a><a href="javascript:void(0);">北京</a><a href="javascript:void(0);">杭州</a><a href="javascript:void(0);">天津</a><a href="javascript:void(0);">苏州</a><a href="javascript:void(0);">浙江</a></div>
+                    <div class="align_center"><a href="javascript:void(0);"><em class="icon iarrow_down"></em></a></div>
+                    <div class="box"><a href="javascript:void(0);" class="active">上海</a></div>
+                    </div>
                 </div>
-              </div>
             </div>
           </dd>
         </dl>
@@ -375,18 +390,14 @@
         <dl class="input">
           <dt><em class="icon sdate"></em></dt>
           <dd>
-            <div class="padding"> <span class="fill">高中毕业于<b class="margin">2014</b>年</span><a href="javascript:void(0);"><em class="icon sedit"></em></a>
-              <div class="popup_year"> <em class="icon iarrow"></em>
-                <div class="scroll" style="height:270px">
-                  <div class="padding"> <a class="active" href="javascript:void(0);">2014</a> <a href="javascript:void(0);">2013</a> <a href="javascript:void(0);">2012</a> <a href="javascript:void(0);">2011</a> <a href="javascript:void(0);">2010</a> </div>
-                </div>
-              </div>
+            <div class="padding">
+             	<span class="fill">高中毕业于<b class="margin">2014</b>年</span><a href="javascript:void(0);"><em class="icon sedit"></em></a>
             </div>
           </dd>
         </dl>
         <div class="clear">&nbsp;</div>
         <div class="btn_group_login align_center"><a href="javascript:void(0);" class="btn btn_red">注册</a><a href="javascript:void(0);" >登录</a></div>
-        <p class="gray align_center">点击“注册”表示您同意《“录取啦”用户使用协议》</p>
+		<p class="gray align_center">点击“注册”表示您同意《“录取啦”用户使用协议》</p>
       </div>
     </div>
   </form>

@@ -92,7 +92,7 @@ hr {
 	top: 0px;
 	width: 100%;
 	height: 100%;
-	z-index: 10;
+	z-index: 9998;
 	opacity: 0.3; /* 透明度 */
 	-moz-opacity: 0.3;/*火狐*/
 	filter: alpha(opacity=30); /*IE*/
@@ -144,10 +144,11 @@ p.indent {
 .gray {
 	color: #999999;
 }
-.red {
-	color: #fa737e;
+.red,.header .location a.red {
+	color: #f94151;
 }
-.red2 {
+
+.red2,.red2 a {
 	color: #d63e3e;
 }
 .black {
@@ -216,6 +217,9 @@ pre {
 }
 .icon.iu{
 	background-image: url(../images/icon/u_icon.png);
+}
+.icon.in{
+	background-image: url(../images/icon/n_icon.png);
 }
 .icon.isearch{
 	background-image: url(../images/icon/search_icon.png);
@@ -292,14 +296,29 @@ a:hover .icon.ibsearch{
 a:hover .icon.iarrow_down{
 	background-image: url(../images/icon/arrow_down_hover_icon.png);	
 }
+.icon.ibarrow_down{
+	background-image: url(../images/icon/b_arrow_down_icon.png);	
+}
+a:hover .icon.ibarrow_down{
+	background-image: url(../images/icon/b_arrow_down_hover_icon.png);	
+}
+.icon.sarrow_down{
+	background-image: url(../images/icon/arrow_down_small_icon.png);	
+}
+a:hover .icon.sarrow_down{
+	background-image: url(../images/icon/arrow_down_small_hover_icon.png);	
+}
 .weixin{
 	background-image: url(../images/icon/weixin.png);	
 }
 .sweixin{
 	background-image: url(../images/icon/weixin_small.png);	
 }
-.disabled .sweixin{
-	background-image: url(../images/icon/weixin_small_disabled.png);	
+a:hover .sweixin{
+	background-image: url(../images/icon/weixin_small_hover.png);	
+}
+a:active .sweixin{
+	background-image: url(../images/icon/weixin_small_active.png);	
 }
 .weibo{
 	background-image: url(../images/icon/weibo.png);	
@@ -307,18 +326,23 @@ a:hover .icon.iarrow_down{
 .sweibo{
 	background-image: url(../images/icon/weibo_small.png);	
 }
-.disabled .sweibo{
-	background-image: url(../images/icon/weibo_small_disabled.png);	
+a:hover .sweibo{
+	background-image: url(../images/icon/weibo_small_hover.png);	
+}
+a:active .sweibo{
+	background-image: url(../images/icon/weibo_small_active.png);	
 }
 .renren{
 	background-image: url(../images/icon/renren.png);	
 }
-
 .srenren{
 	background-image: url(../images/icon/renren_small.png);	
 }
-.disabled .srenren{
-	background-image: url(../images/icon/renren_small_disabled.png);	
+a:hover .srenren{
+	background-image: url(../images/icon/renren_small_hover.png);	
+}
+a:active .srenren{
+	background-image: url(../images/icon/renren_small_active.png);	
 }
 .qzone{
 	background-image: url(../images/icon/qzone.png);	
@@ -326,8 +350,29 @@ a:hover .icon.iarrow_down{
 .sqzone{
 	background-image: url(../images/icon/qzone_small.png);	
 }
-.disabled .sqzone{
-	background-image: url(../images/icon/qzone_small_disabled.png);	
+a:hover .sqzone{
+	background-image: url(../images/icon/qzone_small_hover.png);	
+}
+a:active .sqzone{
+	background-image: url(../images/icon/qzone_small_active.png);	
+}
+.sqq{
+	background-image: url(../images/icon/qq_small.png);	
+}
+a:hover .sqq{
+	background-image: url(../images/icon/qq_small_hover.png);	
+}
+a:active .sqq{
+	background-image: url(../images/icon/qq_small_active.png);	
+}
+.icon.ifavorite{
+	background-image: url(../images/icon/favorite.png);	
+}
+a:hover .ifavorite{
+	background-image: url(../images/icon/favorite_hover.png);	
+}
+a:active .ifavorite,.active .ifavorite{
+	background-image: url(../images/icon/favorite_active.png);	
 }
 /*btn*/
 .btn {
@@ -352,9 +397,11 @@ a:hover .icon.iarrow_down{
 .btn_red:hover {
 	background: #fa5a67;
 	color: #fff;
+	border:1px solid #f94151;
 }
 .btn_red:active{
-	background:#f94151;	
+	background:#fa737e;
+	border:1px solid #fa2839;	
 }
 .btn_gray {
 	color: #fff;
@@ -389,11 +436,7 @@ a:hover .icon.iarrow_down{
 	border:1px solid #cccccc;
 }
 
-.btn_white.active{
-	color: #fa737e;
-	border:1px solid #fa5a67;
-}
-.btn_white:hover{
+.btn_white:hover,.tab_content .layer:hover .btn_white:hover{
 	color:#fff;	
 	border:1px solid #fa5a67;
     -webkit-box-shadow: 0 0 1px 0 rgba(255,255,255,.5);
@@ -404,9 +447,10 @@ a:hover .icon.iarrow_down{
 .btn_white:hover span.red,.btn_white:active span.red{
 	color:#fff;	
 }
-.btn_white:active{
+.btn_white.active,.btn_white:active,.tab_content .layer:hover .btn_white:active,.tab_content .layer:hover .btn_white.active{
 	background:#fa5a67;
 	border:1px solid #fa4150;
+	color:#fff;
 }
 
 
