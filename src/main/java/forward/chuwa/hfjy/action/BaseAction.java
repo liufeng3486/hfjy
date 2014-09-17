@@ -36,7 +36,7 @@ public abstract class BaseAction extends ActionSupport implements
 
 	public static final String FAIL = "fail";
 
-	public static final int PAGE_SIZE = 10;
+	public static final int PAGE_SIZE = 20;
 
 	public static final String KEY_USER_INFO = "user_info";
 

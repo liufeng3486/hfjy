@@ -9,14 +9,20 @@
 <link href="style/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" >
-
+	$(function(){
+		var baseUrl = "admin", content = $("#content");
+		
+		$(document).on("click", "a[data-url]", function() {
+			content.load(baseUrl + "/" + $(this).attr("data-url"));
+		});
+	});
 </script>
 </head>
 <body>
 <div id="nav">
 	<a href="javascript:void(0)"  data-url="">用户管理</a>
-	<a href="javascript:void(0)"  data-url="admin/listWebTopic">话题管理</a>
-	<a href="javascript:void(0)"  data-url="admin/listWebArticle">文章管理</a>
+	<a href="javascript:void(0)"  data-url="listWebTopic">话题管理</a>
+	<a href="javascript:void(0)"  data-url="listWebArticle">文章管理</a>
 </div>
 <div id="content">
 

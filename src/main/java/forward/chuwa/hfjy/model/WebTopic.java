@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Formula;
+
 import java.util.Date;
 import java.util.List;
 
@@ -48,6 +50,10 @@ public class WebTopic implements Serializable {
 		joinColumns = {@JoinColumn(name = "topicid", referencedColumnName = "id")},
 		inverseJoinColumns = {@JoinColumn(name = "articleid", referencedColumnName ="id")})
 	private List<WebArticle> webArticles;
+	
+	
+	@Formula("(select t.typename from sys_topictype t where t.id = topictypeid)")
+	private String topictypeName;
 	
 	public Long getId() {
 		return id;
@@ -156,6 +162,18 @@ public class WebTopic implements Serializable {
 	}
 	public void setUpdateid(Long updateid) {
 		this.updateid = updateid;
+	}
+	public List<WebArticle> getWebArticles() {
+		return webArticles;
+	}
+	public void setWebArticles(List<WebArticle> webArticles) {
+		this.webArticles = webArticles;
+	}
+	public String getTopictypeName() {
+		return topictypeName;
+	}
+	public void setTopictypeName(String topictypeName) {
+		this.topictypeName = topictypeName;
 	}
 	
 	
