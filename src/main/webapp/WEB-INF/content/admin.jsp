@@ -8,13 +8,46 @@
 <title>录取啦</title>
 <link href="style/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script type="text/javascript" >
-	$(function(){
-		var baseUrl = "admin", content = $("#content");
-		
-		$(document).on("click", "a[data-url]", function() {
-			content.load(baseUrl + "/" + $(this).attr("data-url"));
+	var baseUrl = "admin", content;
+	function pageLoad(url){
+		content.load(baseUrl + "/" + url);
+	}
+
+	function uploadFile(obj) {
+		var file = $("#file");	
+		file.off("change");
+		file.on("change", function() {
+			file.off("change");
+			$.ajaxFileUpload({
+				url : 'upload',
+				secureuri : false,
+				fileElementId : "file",
+				dataType : 'json',
+				success : function(data, status) {
+					obj.next().attr("src","download?c="+data)
+						.next().val(data);
+				},
+				error : function(data, status, e) { 
+					
+				}
+			});
 		});
+
+		file.click();
+	}
+
+	$(function(){
+		content  = $("#content");
+		$(document).on("click", "a[data-url]", function() {
+			pageLoad($(this).attr("data-url"));
+		});
+
+		$(document).on("click", "a[data-role=upload]", function() {
+			uploadFile($(this));
+		});
+		
 	});
 </script>
 </head>

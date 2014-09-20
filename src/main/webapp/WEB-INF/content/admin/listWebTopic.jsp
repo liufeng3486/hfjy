@@ -37,8 +37,8 @@
 			${item.parentname }
 		</td>
 		<td>
-			<a id="editTopic" href="javascript:void(0)"  data-id="${item.id }">编辑</a>
-			<a id="deleteTopic" href="javascript:void(0)" data-id="${item.id }">删除</a>
+			<a href="javascript:void(0)"  data-url="editWebTopic?id=${item.id}">编辑</a>
+			<a href="javascript:void(0)" data-url="editWebTopic?id=${item.id}">删除</a>
 		</td>
 	</tr>
 	</s:iterator>

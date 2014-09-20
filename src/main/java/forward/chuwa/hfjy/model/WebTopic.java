@@ -32,7 +32,8 @@ public class WebTopic implements Serializable {
 	private String parentname;
 	private String unitype;
 	private String unilevel;
-	private String prosubject;
+	private String subjecttype;
+	private String protype;
 	private String topicimg;
 	private String topicphoto;
 	private String description;
@@ -109,11 +110,18 @@ public class WebTopic implements Serializable {
 	public void setUnilevel(String unilevel) {
 		this.unilevel = unilevel;
 	}
-	public String getProsubject() {
-		return prosubject;
+	
+	public String getSubjecttype() {
+		return subjecttype;
 	}
-	public void setProsubject(String prosubject) {
-		this.prosubject = prosubject;
+	public void setSubjecttype(String subjecttype) {
+		this.subjecttype = subjecttype;
+	}
+	public String getProtype() {
+		return protype;
+	}
+	public void setProtype(String protype) {
+		this.protype = protype;
 	}
 	public String getTopicimg() {
 		return topicimg;

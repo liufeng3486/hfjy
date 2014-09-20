@@ -179,5 +179,8 @@ public abstract class BaseAction extends ActionSupport implements
 		return userInfo;
 	}
 
+	public String getRealPath(String path) {
+		return servletContext.getRealPath(path);
+	}
 	
 }

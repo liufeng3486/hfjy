@@ -23,7 +23,7 @@ public class TopicServiceImpl implements TopicService {
 	@Transactional(propagation = Propagation.REQUIRED)
 	public WebTopic createWebTopic(String name, Long topictypeid,
 			Long provinceid, String pinyin, Long parentid, String unitype,
-			String unilevel, String prosubject, String topicimg,
+			String unilevel,String subjecttype,String protype, String topicimg,
 			String topicphoto, String description) {
 		Date now = new Date();
 		WebTopic webTopic = new WebTopic();
@@ -32,12 +32,13 @@ public class TopicServiceImpl implements TopicService {
 		webTopic.setProvinceid(provinceid);
 		webTopic.setPinyin(pinyin);
 		webTopic.setParentid(parentid);
-		if(parentid > 0){
+		if(parentid != null && parentid > 0){
 			webTopic.setParentname(webTopicDao.load(parentid).getName());
 		}
 		webTopic.setUnitype(unitype);
 		webTopic.setUnilevel(unilevel);
-		webTopic.setProsubject(prosubject);
+		webTopic.setSubjecttype(subjecttype);
+		webTopic.setProtype(protype);
 		webTopic.setTopicimg(topicimg);
 		webTopic.setTopicphoto(topicphoto);
 		webTopic.setDescription(description);
@@ -52,7 +53,7 @@ public class TopicServiceImpl implements TopicService {
 	@Transactional(propagation = Propagation.REQUIRED)
 	public WebTopic updateWebTopic(Long id, String name, Long topictypeid,
 			Long provinceid, String pinyin, Long parentid, String unitype,
-			String unilevel, String prosubject, String topicimg,
+			String unilevel,String subjecttype,String protype, String topicimg,
 			String topicphoto, String description) {
 		WebTopic webTopic = webTopicDao.load(id);
 		Date now = new Date();
@@ -62,14 +63,15 @@ public class TopicServiceImpl implements TopicService {
 		webTopic.setProvinceid(provinceid);
 		webTopic.setPinyin(pinyin);
 		webTopic.setParentid(parentid);
-		if (parentid > 0) {
+		if (parentid != null && parentid > 0) {
 			webTopic.setParentname(webTopicDao.load(parentid).getName());
 		}else{
 			webTopic.setParentname(null);
 		}
 		webTopic.setUnitype(unitype);
 		webTopic.setUnilevel(unilevel);
-		webTopic.setProsubject(prosubject);
+		webTopic.setSubjecttype(subjecttype);
+		webTopic.setProtype(protype);
 		webTopic.setTopicimg(topicimg);
 		webTopic.setTopicphoto(topicphoto);
 		webTopic.setDescription(description);

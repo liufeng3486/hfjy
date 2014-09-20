@@ -6,11 +6,13 @@ import org.apache.struts2.convention.annotation.Action;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import forward.chuwa.hfjy.action.BaseAction;
+import forward.chuwa.hfjy.model.SysDictionary;
 import forward.chuwa.hfjy.model.SysProvince;
 import forward.chuwa.hfjy.model.SysTopictype;
 import forward.chuwa.hfjy.model.WebTopic;
 import forward.chuwa.hfjy.service.SystemService;
 import forward.chuwa.hfjy.service.TopicService;
+import forward.chuwa.hfjy.utility.DictionaryUtil;
 
 @Action("editWebTopic")
 public class EditWebTopic extends BaseAction {
@@ -22,8 +24,14 @@ public class EditWebTopic extends BaseAction {
 	@Autowired
 	private SystemService systemService;
 	
-	private List<SysTopictype> listSysTopictypes;
-	private List<SysProvince> listSysProvinces;
+	private List<SysTopictype> listSysTopictypes;//话题分类
+	private List<SysProvince> listSysProvinces;//省份
+	private List<SysDictionary> listUnitypes;//高校类型
+	private List<SysDictionary> listUnilevels;	//高校层次
+	private List<SysDictionary> listSubjecttypes;//学科
+	private List<SysDictionary> listProtypes;//专业类别
+	
+	private List<WebTopic> listParentWebTopics;//父话题
 	
 	private Long id;
 	
@@ -31,13 +39,107 @@ public class EditWebTopic extends BaseAction {
 	private Long topictypeid;
 	private Long provinceid;
 	private String pinyin;
+	private String unitype;
+	private String unilevel;
+	private String subjecttype;
+	private String protype;
 	private Long parentid;
+	private String description;
+	private String topicimg;
+	private String topicphoto;
 	
 	
 	public String execute() {
 		listSysTopictypes = systemService.findSysTopictypes(" order by t.orderid");
 		listSysProvinces = systemService.findSysProvinces(" and t.parentid != 0 ");
+		listUnitypes = systemService.findSysDictionaryByType(DictionaryUtil.DICTIONARY_TYPE1);
+		listUnilevels = systemService.findSysDictionaryByType(DictionaryUtil.DICTIONARY_TYPE2);
+		listSubjecttypes = systemService.findSysDictionaryByType(DictionaryUtil.DICTIONARY_TYPE3);
+		listProtypes = systemService.findSysDictionaryByType(DictionaryUtil.DICTIONARY_TYPE4);
+		StringBuilder sb = new StringBuilder();
+		sb.append(" and ( t.parentid = 0 or t.parentid is null ) ");
+		
+		if(id!=null && id >0){
+			WebTopic webTopic = topicService.loadWebTopic(id);
+			name = webTopic.getName();
+			topictypeid = webTopic.getTopictypeid();
+			provinceid = webTopic.getProvinceid();
+			pinyin = webTopic.getPinyin();
+			unitype = webTopic.getUnitype();
+			unilevel = webTopic.getUnilevel();
+			subjecttype = webTopic.getSubjecttype();
+			protype = webTopic.getProtype();
+			parentid = webTopic.getParentid();
+			description = webTopic.getDescription();
+			topicimg =  webTopic.getTopicimg();
+			topicphoto = webTopic.getTopicphoto();
+			sb.append(" and t.id != " + id);
+		}
+		
+		listParentWebTopics = topicService.findWebTopics(sb.toString());
 		return INPUT;
+	}
+	
+	public void save(){
+		if (id != null && id > 0) {
+			topicService.updateWebTopic(id, name, topictypeid, provinceid,
+					pinyin, parentid, unitype, unilevel, subjecttype, protype,
+					topicimg, topicphoto, description);
+		} else {
+			topicService.createWebTopic(name, topictypeid, provinceid, pinyin,
+					parentid, unitype, unilevel, subjecttype, protype, topicimg, topicphoto,
+					description);
+		}
+	}
+
+
+	public List<SysDictionary> getListUnitypes() {
+		return listUnitypes;
+	}
+
+
+	public void setListUnitypes(List<SysDictionary> listUnitypes) {
+		this.listUnitypes = listUnitypes;
+	}
+
+
+	public List<SysDictionary> getListUnilevels() {
+		return listUnilevels;
+	}
+
+
+	public void setListUnilevels(List<SysDictionary> listUnilevels) {
+		this.listUnilevels = listUnilevels;
+	}
+
+
+	public List<SysDictionary> getListSubjecttypes() {
+		return listSubjecttypes;
+	}
+
+
+	public void setListSubjecttypes(List<SysDictionary> listSubjecttypes) {
+		this.listSubjecttypes = listSubjecttypes;
+	}
+
+
+	public List<SysDictionary> getListProtypes() {
+		return listProtypes;
+	}
+
+
+	public void setListProtypes(List<SysDictionary> listProtypes) {
+		this.listProtypes = listProtypes;
+	}
+
+
+	public List<WebTopic> getListParentWebTopics() {
+		return listParentWebTopics;
+	}
+
+
+	public void setListParentWebTopics(List<WebTopic> listParentWebTopics) {
+		this.listParentWebTopics = listParentWebTopics;
 	}
 
 
@@ -141,6 +243,66 @@ public class EditWebTopic extends BaseAction {
 	}
 
 
-	
-	
+	public String getUnitype() {
+		return unitype;
+	}
+
+
+	public void setUnitype(String unitype) {
+		this.unitype = unitype;
+	}
+
+
+	public String getUnilevel() {
+		return unilevel;
+	}
+
+
+	public void setUnilevel(String unilevel) {
+		this.unilevel = unilevel;
+	}
+
+
+	public String getSubjecttype() {
+		return subjecttype;
+	}
+
+
+	public void setSubjecttype(String subjecttype) {
+		this.subjecttype = subjecttype;
+	}
+
+
+	public String getProtype() {
+		return protype;
+	}
+
+
+	public void setProtype(String protype) {
+		this.protype = protype;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getTopicimg() {
+		return topicimg;
+	}
+
+	public void setTopicimg(String topicimg) {
+		this.topicimg = topicimg;
+	}
+
+	public String getTopicphoto() {
+		return topicphoto;
+	}
+
+	public void setTopicphoto(String topicphoto) {
+		this.topicphoto = topicphoto;
+	}
 }
