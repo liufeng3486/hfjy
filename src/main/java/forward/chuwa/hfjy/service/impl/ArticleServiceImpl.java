@@ -81,11 +81,13 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<WebArticle> findWebArticles(String condition) {
-		return webArticleDao.find(condition);
+		return webArticleDao.find(condition + " and t.deleteflag = '"
+				+ DictionaryUtil.DELETE_FLAG0 + "'");
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<WebArticle> findWebArticles(String condition, int start, int length) {
-		return webArticleDao.find(condition, start, length);
+		return webArticleDao.find(condition + " and t.deleteflag = '"
+				+ DictionaryUtil.DELETE_FLAG0 + "'", start, length);
 	}
 }

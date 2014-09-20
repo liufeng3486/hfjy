@@ -6,8 +6,12 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>录取啦</title>
+
+<link href="css/flick/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 <link href="style/style.css" rel="stylesheet" type="text/css" />
+
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script type="text/javascript" >
 	var baseUrl = "admin", content;

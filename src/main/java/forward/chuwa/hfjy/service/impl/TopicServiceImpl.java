@@ -94,11 +94,13 @@ public class TopicServiceImpl implements TopicService {
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<WebTopic> findWebTopics(String condition) {
-		return webTopicDao.find(condition);
+		return webTopicDao.find(condition + " and t.deleteflag = '"
+				+ DictionaryUtil.DELETE_FLAG0 + "'");
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<WebTopic> findWebTopics(String condition, int start, int length) {
-		return webTopicDao.find(condition, start, length);
+		return webTopicDao.find(condition + " and t.deleteflag = '"
+				+ DictionaryUtil.DELETE_FLAG0 + "'", start, length);
 	}
 }

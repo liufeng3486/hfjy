@@ -21,7 +21,7 @@ public class SysGrade implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String gradenam;
+	private String gradename;
 	private String gradetype;
 	private int orderid;
 	public Long getId() {
@@ -30,11 +30,11 @@ public class SysGrade implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getGradenam() {
-		return gradenam;
+	public String getGradename() {
+		return gradename;
 	}
-	public void setGradenam(String gradenam) {
-		this.gradenam = gradenam;
+	public void setGradename(String gradename) {
+		this.gradename = gradename;
 	}
 	public String getGradetype() {
 		return gradetype;
