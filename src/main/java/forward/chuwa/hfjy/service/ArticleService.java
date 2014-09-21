@@ -10,12 +10,12 @@ public interface ArticleService {
 	public WebArticle createWebArticle(String title, String description,
 			String articleimg, String articlecontent, Long provinceid,
 			Long gradeid, Date publishdate, String author, String seo,
-			String relevantarticle);
+			String relevantarticle,String selectedTopics);
 
 	public WebArticle updateWebArticle(Long id, String title, String description,
 			String articleimg, String articlecontent, Long provinceid,
 			Long gradeid, Date publishdate, String author, String seo,
-			String relevantarticle);
+			String relevantarticle,String selectedTopics);
 
 	public void deleteWebArticle(Long id);
 

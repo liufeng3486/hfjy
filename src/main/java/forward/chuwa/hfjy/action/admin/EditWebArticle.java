@@ -3,6 +3,7 @@ package forward.chuwa.hfjy.action.admin;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.convention.annotation.Action;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,6 +15,7 @@ import forward.chuwa.hfjy.model.WebTopic;
 import forward.chuwa.hfjy.service.ArticleService;
 import forward.chuwa.hfjy.service.SystemService;
 import forward.chuwa.hfjy.service.TopicService;
+import freemarker.template.utility.StringUtil;
 
 @Action("editWebArticle")
 public class EditWebArticle extends BaseAction {
@@ -31,7 +33,7 @@ public class EditWebArticle extends BaseAction {
 	private List<WebTopic> listWebTopics;// 话题
 	private List<SysProvince> listSysProvinces;// 省份
 	private List<SysGrade> listSysGrades;// 年级
-	private List<WebArticle> listWebArticles;//相关文章
+	private List<WebArticle> listWebArticles;// 相关文章
 
 	private Long id;
 
@@ -46,6 +48,8 @@ public class EditWebArticle extends BaseAction {
 	private String seo;
 	private String relevantarticle;
 
+	private String selectedTopics;
+
 	public String execute() {
 		listSysProvinces = systemService
 				.findSysProvinces(" and t.parentid != 0 ");
@@ -53,7 +57,7 @@ public class EditWebArticle extends BaseAction {
 		listWebTopics = topicService.findWebTopics("");
 
 		StringBuilder sb = new StringBuilder();
-		
+
 		if (id != null && id > 0) {
 			WebArticle webArticle = articleService.loadWebArticle(id);
 			title = webArticle.getTitle();
@@ -67,9 +71,19 @@ public class EditWebArticle extends BaseAction {
 			seo = webArticle.getSeo();
 			relevantarticle = webArticle.getRelevantarticle();
 			sb.append(" and t.id != " + id);
+
+			if (webArticle.getWebTopics() != null) {
+				for (WebTopic webTopic : webArticle.getWebTopics()) {
+					if (StringUtils.isEmpty(selectedTopics)) {
+						selectedTopics = "" + webTopic.getId();
+					} else {
+						selectedTopics += "," + webTopic.getId();
+					}
+				}
+			}
 		}
 		listWebArticles = articleService.findWebArticles(sb.toString());
-		
+
 		return INPUT;
 	}
 
@@ -77,11 +91,11 @@ public class EditWebArticle extends BaseAction {
 		if (id != null && id > 0) {
 			articleService.updateWebArticle(id, title, description, articleimg,
 					articlecontent, provinceid, gradeid, publishdate, author,
-					seo, relevantarticle);
+					seo, relevantarticle,selectedTopics);
 		} else {
 			articleService.createWebArticle(title, description, articleimg,
 					articlecontent, provinceid, gradeid, publishdate, author,
-					seo, relevantarticle);
+					seo, relevantarticle,selectedTopics);
 		}
 	}
 
@@ -203,6 +217,14 @@ public class EditWebArticle extends BaseAction {
 
 	public void setListWebArticles(List<WebArticle> listWebArticles) {
 		this.listWebArticles = listWebArticles;
+	}
+
+	public String getSelectedTopics() {
+		return selectedTopics;
+	}
+
+	public void setSelectedTopics(String selectedTopics) {
+		this.selectedTopics = selectedTopics;
 	}
 
 }

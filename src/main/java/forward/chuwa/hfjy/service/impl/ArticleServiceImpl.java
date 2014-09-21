@@ -1,15 +1,19 @@
 package forward.chuwa.hfjy.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import forward.chuwa.hfjy.dao.WebArticleDao;
+import forward.chuwa.hfjy.dao.WebTopicDao;
 import forward.chuwa.hfjy.model.WebArticle;
+import forward.chuwa.hfjy.model.WebTopic;
 import forward.chuwa.hfjy.service.ArticleService;
 import forward.chuwa.hfjy.utility.DictionaryUtil;
 
@@ -18,13 +22,15 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Autowired
 	private WebArticleDao webArticleDao;
+	@Autowired
+	private WebTopicDao webTopicDao;
 	
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public WebArticle createWebArticle(String title, String description,
 			String articleimg, String articlecontent, Long provinceid,
 			Long gradeid, Date publishdate, String author, String seo,
-			String relevantarticle) {
+			String relevantarticle,String selectedTopics) {
 		Date now = new Date();
 		WebArticle webArticle = new WebArticle();
 		webArticle.setTitle(title);
@@ -42,6 +48,13 @@ public class ArticleServiceImpl implements ArticleService {
 		webArticle.setUpdatedate(now);
 		webArticle.setCreateid(1L);
 		webArticle.setUpdateid(1L);
+		
+		if(!StringUtils.isEmpty(selectedTopics)){
+			webArticle.setWebTopics(webTopicDao.find(" and t.id in ("+selectedTopics+") "));
+		}else{
+			webArticle.setWebTopics(new ArrayList<WebTopic>());
+		}
+		
 		return webArticleDao.save(webArticle);
 	}
 
@@ -49,7 +62,7 @@ public class ArticleServiceImpl implements ArticleService {
 	public WebArticle updateWebArticle(Long id, String title, String description,
 			String articleimg, String articlecontent, Long provinceid,
 			Long gradeid, Date publishdate, String author, String seo,
-			String relevantarticle) {
+			String relevantarticle,String selectedTopics) {
 		WebArticle webArticle = webArticleDao.load(id);
 		Date now = new Date();
 		webArticle.setTitle(title);
@@ -64,6 +77,13 @@ public class ArticleServiceImpl implements ArticleService {
 		webArticle.setRelevantarticle(relevantarticle);
 		webArticle.setUpdatedate(now);
 		webArticle.setUpdateid(1L);
+		
+		if(!StringUtils.isEmpty(selectedTopics)){
+			webArticle.setWebTopics(webTopicDao.find(" and t.id in ("+selectedTopics+") "));
+		}else{
+			webArticle.setWebTopics(new ArrayList<WebTopic>());
+		}
+		
 		return webArticleDao.update(webArticle);
 	}
 

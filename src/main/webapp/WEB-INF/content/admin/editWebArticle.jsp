@@ -74,7 +74,15 @@
 		</tr>
 		<tr>
 			<td>所属话题</td>
-			<td><input type="hidden"  /></td>
+			<td>
+				<input id="selectedTopics" type="hidden" name="selectedTopics" value="${selectedTopics }" />
+				<s:iterator value="listWebTopics" var="item" status="s">
+					<div style="width:300px;float:left;padding:10px;marin-right:10px;" >
+						<input class="selectedTopics" type="checkbox" value="${item.id}" />${item.name}
+					</div>
+				</s:iterator>
+				<div style="clear:both;"></div>
+			</td>
 		</tr>
 		<tr>
 			<td>相关文章</td>
@@ -102,6 +110,14 @@
 			});
 
 			$("#relevantarticle").val(relevantarticle.join(","));
+
+			var selectedTopics = [];
+			$(".selectedTopics:checked").each(function(){
+				selectedTopics.push($(this).val());
+			});
+
+			$("#selectedTopics").val(selectedTopics.join(","));
+			
 			$.post(baseUrl + "/editWebArticle!save", $('#editForm').serialize(), function() {
 				pageLoad("listWebArticle");
 			});
@@ -116,6 +132,12 @@
 	if('${relevantarticle}'){
 		$('${relevantarticle}'.split(",")).map(function(){
 			$(".relevantarticle[value="+this+"]").prop("checked",true);
+		});
+	}
+
+	if('${selectedTopics}'){
+		$('${selectedTopics}'.split(",")).map(function(){
+			$(".selectedTopics[value="+this+"]").prop("checked",true);
 		});
 	}
 

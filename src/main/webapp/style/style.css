@@ -28,7 +28,7 @@
 	height:64px;
 	vertical-align:top;
 	line-height:64px;
-	width:300px;
+	width:310px;
 }
 .header .location a{
 	color:#4c4c4c;
@@ -108,12 +108,11 @@
 	width:100px;
 	text-align:center;
 	display:inline-block;
+	border: 1px solid #ffffff;
 }
 .nav .left a:hover,.nav .left a.active{
 	background:#ededed;
-	width:98px;	
 	border:1px solid #dedede;
-	height:42px;
 	position:relative;
 	bottom:0px;
 	border-bottom:0px;
@@ -791,6 +790,7 @@ a.count:hover span.red{
 
 .block .layer,.popup_tag .padding{
 	padding:18px 12px;
+	border:1px solid #ffffff;
 	border-bottom:1px solid #f4f4f4;	
 }
 .tag .popup_tag a{
