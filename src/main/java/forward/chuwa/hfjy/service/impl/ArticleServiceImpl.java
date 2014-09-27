@@ -11,8 +11,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import forward.chuwa.hfjy.dao.WebArticleDao;
+import forward.chuwa.hfjy.dao.WebArticleRecordDao;
 import forward.chuwa.hfjy.dao.WebTopicDao;
 import forward.chuwa.hfjy.model.WebArticle;
+import forward.chuwa.hfjy.model.WebArticleRecord;
 import forward.chuwa.hfjy.model.WebTopic;
 import forward.chuwa.hfjy.service.ArticleService;
 import forward.chuwa.hfjy.utility.DictionaryUtil;
@@ -24,6 +26,8 @@ public class ArticleServiceImpl implements ArticleService {
 	private WebArticleDao webArticleDao;
 	@Autowired
 	private WebTopicDao webTopicDao;
+	@Autowired
+	private WebArticleRecordDao webArticleRecordDao;
 	
 
 	@Transactional(propagation = Propagation.REQUIRED)
@@ -101,13 +105,28 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<WebArticle> findWebArticles(String condition) {
-		return webArticleDao.find(condition + " and t.deleteflag = '"
-				+ DictionaryUtil.DELETE_FLAG0 + "'");
+		return webArticleDao.find(" and t.deleteflag = '"
+				+ DictionaryUtil.DELETE_FLAG0 + "'" + condition);
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<WebArticle> findWebArticles(String condition, int start, int length) {
-		return webArticleDao.find(condition + " and t.deleteflag = '"
-				+ DictionaryUtil.DELETE_FLAG0 + "'", start, length);
+		return webArticleDao.find(" and t.deleteflag = '"
+				+ DictionaryUtil.DELETE_FLAG0 + "'" + condition, start, length);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public Long countWebArticles(String condition){
+		return webArticleDao.count(" and t.deleteflag = '"
+				+ DictionaryUtil.DELETE_FLAG0 + "'" + condition);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public WebArticleRecord createWebArticleRecord(Long articleid,Long createid){
+		WebArticleRecord	webArticleRecord = new WebArticleRecord();
+		webArticleRecord.setArticleid(articleid);
+		webArticleRecord.setCreateid(createid);
+		webArticleRecord.setCreatedate(new Date());
+		return webArticleRecordDao.save(webArticleRecord);
 	}
 }

@@ -11,6 +11,9 @@ public class FixedMySQLInnoDBDialect extends MySQLInnoDBDialect {
 		super.registerVarcharTypes();
 		registerColumnType(Types.CHAR, 255, "char($l)");
 		registerHibernateType(Types.CHAR, StandardBasicTypes.STRING.getName());
+		
+		registerFunction("getArticleRecord", new StandardSQLFunction("getArticleRecord",
+				StandardBasicTypes.LONG));
 	}
 
 	@Override

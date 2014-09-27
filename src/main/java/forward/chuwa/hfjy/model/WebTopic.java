@@ -36,6 +36,7 @@ public class WebTopic implements Serializable {
 	private String protype;
 	private String topicimg;
 	private String topicphoto;
+	private String introduction;
 	private String description;
 	private String deleteflag;
 	
@@ -182,6 +183,12 @@ public class WebTopic implements Serializable {
 	}
 	public void setTopictypeName(String topictypeName) {
 		this.topictypeName = topictypeName;
+	}
+	public String getIntroduction() {
+		return introduction;
+	}
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
 	}
 	
 	

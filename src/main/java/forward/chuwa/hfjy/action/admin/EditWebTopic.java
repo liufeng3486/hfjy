@@ -44,6 +44,7 @@ public class EditWebTopic extends BaseAction {
 	private String subjecttype;
 	private String protype;
 	private Long parentid;
+	private String introduction;
 	private String description;
 	private String topicimg;
 	private String topicphoto;
@@ -70,6 +71,7 @@ public class EditWebTopic extends BaseAction {
 			subjecttype = webTopic.getSubjecttype();
 			protype = webTopic.getProtype();
 			parentid = webTopic.getParentid();
+			introduction = webTopic.getIntroduction();
 			description = webTopic.getDescription();
 			topicimg =  webTopic.getTopicimg();
 			topicphoto = webTopic.getTopicphoto();
@@ -84,11 +86,11 @@ public class EditWebTopic extends BaseAction {
 		if (id != null && id > 0) {
 			topicService.updateWebTopic(id, name, topictypeid, provinceid,
 					pinyin, parentid, unitype, unilevel, subjecttype, protype,
-					topicimg, topicphoto, description);
+					topicimg, topicphoto,introduction,description);
 		} else {
 			topicService.createWebTopic(name, topictypeid, provinceid, pinyin,
 					parentid, unitype, unilevel, subjecttype, protype, topicimg, topicphoto,
-					description);
+					introduction,description);
 		}
 	}
 
@@ -305,4 +307,14 @@ public class EditWebTopic extends BaseAction {
 	public void setTopicphoto(String topicphoto) {
 		this.topicphoto = topicphoto;
 	}
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+	
+	
 }

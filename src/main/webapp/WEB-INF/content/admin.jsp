@@ -8,16 +8,13 @@
 <title>录取啦</title>
 
 <link href="css/flick/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-<link href="style/style.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/pager.js"></script>
+<script type="text/javascript" src="js/default.js"></script>
 <script type="text/javascript" src="js/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script type="text/javascript" >
-	var baseUrl = "admin", content;
-	function pageLoad(url){
-		content.load(baseUrl + "/" + url);
-	}
 
 	function uploadFile(obj) {
 		var file = $("#file");	
@@ -43,15 +40,12 @@
 	}
 
 	$(function(){
+		baseUrl = "admin";
 		content  = $("#content");
-		$(document).on("click", "a[data-url]", function() {
-			pageLoad($(this).attr("data-url"));
-		});
-
+		
 		$(document).on("click", "a[data-role=upload]", function() {
 			uploadFile($(this));
 		});
-		
 	});
 </script>
 </head>

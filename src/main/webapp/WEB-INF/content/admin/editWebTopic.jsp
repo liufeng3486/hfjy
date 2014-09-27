@@ -27,7 +27,7 @@
 			</select></td>
 		</tr>
 		<tr>
-			<td>拼音首字母</td>
+			<td>拼音首字母 ( 大写 )</td>
 			<td><input name="pinyin" value="${pinyin }" /></td>
 		</tr>
 		<tr>
@@ -46,6 +46,14 @@
 				<input id="topicphoto" name="topicphoto" type="hidden" value="${topicphoto}" />
 			</td>
 		</tr>
+		
+		<tr>
+			<td>简介</td>
+			<td>
+				<textarea name="introduction" id="introduction" rows="10" cols="80">${introduction }</textarea>
+			</td>
+		</tr>
+		
 		<tr>
 			<td>介绍</td>
 			<td>
@@ -172,12 +180,14 @@
 	$("#save").click(function() {
 		if (confirm("确认提交？")) {
 			$("#description").val(CKEDITOR.instances.description.getData());
+			$("#introduction").val(CKEDITOR.instances.introduction.getData());
 			$.post(baseUrl + "/editWebTopic!save", $('#editForm').serialize(), function() {
 				pageLoad("listWebTopic");
 			});
 		}
 	});
 	
+	CKEDITOR.replace('introduction');
 	CKEDITOR.replace('description');
 	if('${topicimg}'){
 		$("#topicimg").prev().attr("src","download?c=${topicimg}");

@@ -24,7 +24,7 @@ public class TopicServiceImpl implements TopicService {
 	public WebTopic createWebTopic(String name, Long topictypeid,
 			Long provinceid, String pinyin, Long parentid, String unitype,
 			String unilevel,String subjecttype,String protype, String topicimg,
-			String topicphoto, String description) {
+			String topicphoto,String introduction, String description) {
 		Date now = new Date();
 		WebTopic webTopic = new WebTopic();
 		webTopic.setName(name);
@@ -41,6 +41,7 @@ public class TopicServiceImpl implements TopicService {
 		webTopic.setProtype(protype);
 		webTopic.setTopicimg(topicimg);
 		webTopic.setTopicphoto(topicphoto);
+		webTopic.setIntroduction(introduction);
 		webTopic.setDescription(description);
 		webTopic.setDeleteflag(DictionaryUtil.DELETE_FLAG0);
 		webTopic.setCreatedate(now);
@@ -54,7 +55,7 @@ public class TopicServiceImpl implements TopicService {
 	public WebTopic updateWebTopic(Long id, String name, Long topictypeid,
 			Long provinceid, String pinyin, Long parentid, String unitype,
 			String unilevel,String subjecttype,String protype, String topicimg,
-			String topicphoto, String description) {
+			String topicphoto,String introduction, String description) {
 		WebTopic webTopic = webTopicDao.load(id);
 		Date now = new Date();
 		
@@ -74,6 +75,7 @@ public class TopicServiceImpl implements TopicService {
 		webTopic.setProtype(protype);
 		webTopic.setTopicimg(topicimg);
 		webTopic.setTopicphoto(topicphoto);
+		webTopic.setIntroduction(introduction);
 		webTopic.setDescription(description);
 		webTopic.setUpdatedate(now);
 		webTopic.setUpdateid(1L);
@@ -102,5 +104,10 @@ public class TopicServiceImpl implements TopicService {
 	public List<WebTopic> findWebTopics(String condition, int start, int length) {
 		return webTopicDao.find(condition + " and t.deleteflag = '"
 				+ DictionaryUtil.DELETE_FLAG0 + "'", start, length);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public Long countWebTopics(String condition){
+		return webTopicDao.count(condition);
 	}
 }

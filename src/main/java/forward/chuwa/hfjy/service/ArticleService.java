@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import forward.chuwa.hfjy.model.WebArticle;
+import forward.chuwa.hfjy.model.WebArticleRecord;
 
 public interface ArticleService {
 
@@ -25,4 +26,14 @@ public interface ArticleService {
 
 	public List<WebArticle> findWebArticles(String condition, int start,
 			int length);
+	
+	public Long countWebArticles(String condition);
+	
+	/**
+	 * 增加文章点击纪录
+	 * @param 文章id
+	 * @param 用户id
+	 * @return
+	 */
+	public WebArticleRecord createWebArticleRecord(Long articleid,Long createid);
 }

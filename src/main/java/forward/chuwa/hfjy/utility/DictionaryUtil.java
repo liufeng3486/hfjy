@@ -15,4 +15,10 @@ public class DictionaryUtil {
 	public static final String DICTIONARY_TYPE3 = "3";//学科
 	public static final String DICTIONARY_TYPE4 = "4";//专业类别
 	/*******字典类型********/
+	
+	
+	/******关联类型********/
+	public static final String RELATION_TYPE1 = "1"; // 话题
+	public static final String RELATION_TYPE2 = "2"; // 文章
+	/*******关联类型*********/
 }

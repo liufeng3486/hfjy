@@ -1,5 +1,6 @@
 package forward.chuwa.hfjy.action;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -25,8 +26,12 @@ public class Download extends BaseAction {
 	private String c;
 
 	public String execute() throws FileNotFoundException {
+		stream = new FileInputStream(getRealPath("images/img/tag1.png"));
 		if (!StringUtils.isEmpty(c)) {
-			stream = new FileInputStream(getRealPath("files/" + c));
+			File flie = new File(getRealPath("files/" + c));
+			if(flie.exists()){
+				stream = new FileInputStream(getRealPath("files/" + c));
+			}
 		}
 		return INPUT;
 	}

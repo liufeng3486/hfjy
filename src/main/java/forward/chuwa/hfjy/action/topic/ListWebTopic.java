@@ -1,4 +1,4 @@
-package forward.chuwa.hfjy.action.admin;
+package forward.chuwa.hfjy.action.topic;
 
 import java.util.List;
 
@@ -6,9 +6,10 @@ import org.apache.struts2.convention.annotation.Action;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import forward.chuwa.hfjy.action.BaseAction;
+import forward.chuwa.hfjy.model.WebArticle;
 import forward.chuwa.hfjy.model.WebTopic;
+import forward.chuwa.hfjy.service.ArticleService;
 import forward.chuwa.hfjy.service.TopicService;
-
 @Action("listWebTopic")
 public class ListWebTopic extends BaseAction {
 	private static final long serialVersionUID = 7546855866601189738L;
@@ -16,13 +17,24 @@ public class ListWebTopic extends BaseAction {
 	@Autowired
 	private TopicService topicService;
 	
+	private Long typeid; 
 	
 	private List<WebTopic> listWebTopics;
 	
 	public String execute() {
-		listWebTopics = topicService.findWebTopics("", getStartIndex(), PAGE_SIZE);
-		setCount(topicService.countWebTopics(""));
+		if (typeid != null && typeid > 0) {
+			listWebTopics = topicService.findWebTopics(" and t.topictypeid = "
+					+ typeid, getStartIndex(), PAGE_SIZE);
+		}
 		return INPUT;
+	}
+
+	public Long getTypeid() {
+		return typeid;
+	}
+
+	public void setTypeid(Long typeid) {
+		this.typeid = typeid;
 	}
 
 	public List<WebTopic> getListWebTopics() {
@@ -32,6 +44,7 @@ public class ListWebTopic extends BaseAction {
 	public void setListWebTopics(List<WebTopic> listWebTopics) {
 		this.listWebTopics = listWebTopics;
 	}
+
 	
 	
 }

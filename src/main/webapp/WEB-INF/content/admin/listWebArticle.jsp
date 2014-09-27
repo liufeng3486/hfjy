@@ -31,7 +31,7 @@
 	<s:iterator value="listWebArticles" var="item" status="s">
 	<tr>
 		<td>
-			${s.index + startIndex }
+			${s.index + startIndex + 1 }
 		</td>
 		<td>
 			${item.title }
@@ -55,3 +55,8 @@
 	</tr>
 	</s:iterator>
 </table>
+<div id="pager"></div>
+
+<script type="text/javascript">
+$("#pager").pager("listWebArticle","content",${startIndex},${pageSize},${count},0);
+</script>

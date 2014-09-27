@@ -42,11 +42,11 @@ public abstract class BaseAction extends ActionSupport implements
 
 	public static final String NEW_PROJECT = "new_project";
 
-	protected int startIndex = 1;
+	protected int startIndex = 0;
 
 	private boolean reset = false;
 
-	private int count = 0;
+	private Long count = 0L;
 
 	public String back() {
 		return BACK;
@@ -60,11 +60,11 @@ public abstract class BaseAction extends ActionSupport implements
 		this.reset = reset;
 	}
 
-	public int getCount() {
+	public Long getCount() {
 		return count;
 	}
 
-	public void setCount(int count) {
+	public void setCount(Long count) {
 		this.count = count;
 	}
 
@@ -125,7 +125,7 @@ public abstract class BaseAction extends ActionSupport implements
 
 		if (!StringUtils.isEmpty(pageOffset)) {
 			try {
-				startIndex = Math.max(1, Integer.parseInt(pageOffset) + 1);
+				startIndex = Math.max(0, Integer.parseInt(pageOffset));
 			} catch (NumberFormatException ex) {
 
 			}

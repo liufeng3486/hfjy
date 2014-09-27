@@ -1,4 +1,4 @@
-package forward.chuwa.hfjy.action.admin;
+package forward.chuwa.hfjy.action.article;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import forward.chuwa.hfjy.action.BaseAction;
 import forward.chuwa.hfjy.model.WebArticle;
 import forward.chuwa.hfjy.service.ArticleService;
-@Action("listWebArticle")
-public class ListWebArticle extends BaseAction {
+@Action("listHotArticle")
+public class ListHotArticle extends BaseAction {
 	private static final long serialVersionUID = 7546855866601189738L;
 	
 	@Autowired
@@ -19,7 +19,7 @@ public class ListWebArticle extends BaseAction {
 	private List<WebArticle> listWebArticles;
 	
 	public String execute() {
-		listWebArticles = articleService.findWebArticles("", getStartIndex(), PAGE_SIZE);
+		listWebArticles = articleService.findWebArticles(" order by getArticleRecord(t.id) desc ",getStartIndex(),PAGE_SIZE);
 		setCount(articleService.countWebArticles(""));
 		return INPUT;
 	}
