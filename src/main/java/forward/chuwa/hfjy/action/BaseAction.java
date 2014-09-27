@@ -182,5 +182,4 @@ public abstract class BaseAction extends ActionSupport implements
 	public String getRealPath(String path) {
 		return servletContext.getRealPath(path);
 	}
-	
 }

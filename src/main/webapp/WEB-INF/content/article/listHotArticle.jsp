@@ -8,7 +8,7 @@
 			<div class="right">
 				<dl>
 					<dt>
-						<a href="index?l=article/detailWebArticle?id=${item.id}">${item.title}</a>
+						<a href="index?m=article/detailWebArticle?id=${item.id}">${item.title}</a>
 					</dt>
 					<dd>
 						<div class="tag">
@@ -46,7 +46,7 @@
 				</dl>
 			</div>
 			<div class="left">
-				<a href="index?l=article/detailWebArticle?id=${item.id}">
+				<a href="index?m=article/detailWebArticle?id=${item.id}">
 					<img width="200" src="download?c=${item.articleimg}" />
 				</a>
 			</div>

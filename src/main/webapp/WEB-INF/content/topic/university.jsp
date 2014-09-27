@@ -46,77 +46,42 @@
     <!--leftcontent start-->
     <div class="leftcontent"> 
       <div class="title"><em class="icon iu"></em><h1>学校</h1></div>
-      <div class="university">
-        <div class="layer">
+      <div id="university" class="university">
+        <s:iterator value="listWebTopics" var="item" status="s">
+          <div class="layer" data-id="${item.id}">
             <div class="gray_title">
-                <h1 class="red2">复旦大学</h1><div class="describe"><p class="red2"><a href="javascript:void(0);">始建于1905年，初名复旦公学，创始人为近代知名教育家马相伯。</a></p></div>
+              <h1 class="red2">${item.name}</h1>
+              <div class="describe">
+                <p class="red2">
+                  <a href="javascript:void(0);">${item.introduction}</a>
+                </p>
+              </div>
             </div>
             <div class="padding">
-                <div class="right">
-                    <div class="describe"><h2>最新文章</h2><p><a href="javascript:void(0);">复旦大学大一新生军训顺利结束。</a></p></div>
-                    <hr />
-                    <div class="describe"><h2>重点资讯</h2><p><a href="javascript:void(0);">2014年复旦大学高考分数线。</a></p></div>
+              <div class="right">
+                <div class="describe">
+                  <h2>最新文章</h2>
+                  <p>
+                    <a href="javascript:void(0);" data-role="lastArticle"></a>
+                  </p>
                 </div>
-                <div class="left"><a href="javascript:void(0);"><img src="images/icon/deep_gray_fudan_logo.png" /></a></div>
-                <div class="clear">&nbsp;</div>
-            </div>
-        </div>      
-        <div class="layer">
-            <div class="gray_title">
-                <h1 class="red2">复旦大学</h1><div class="describe"><p class="red2"><a href="javascript:void(0);">始建于1905年，初名复旦公学，创始人为近代知名教育家马相伯。</a></p></div>
-            </div>
-            <div class="padding">
-                <div class="right">
-                    <div class="describe"><h2>最新文章</h2><p><a href="javascript:void(0);">复旦大学大一新生军训顺利结束。</a></p></div>
-                    <hr />
-                    <div class="describe"><h2>重点资讯</h2><p><a href="javascript:void(0);">2014年复旦大学高考分数线。</a></p></div>
+                <hr />        
+                <div class="describe">
+                  <h2>重点资讯</h2>
+                  <p>
+                    <a href="javascript:void(0);" data-role="hotArticle"></a>
+                  </p>
                 </div>
-                <div class="left"><a href="javascript:void(0);"><img src="images/icon/deep_gray_fudan_logo.png" /></a></div>
-                <div class="clear">&nbsp;</div>
+              </div>
+              <div class="left">
+                <a href="javascript:void(0);">
+                  <img width="80" src="download?c=${item.topicphoto}" />        
+                </a>
+              </div>
+              <div class="clear">&nbsp;</div>
             </div>
-        </div>
-        <div class="layer">
-            <div class="gray_title">
-                <h1 class="red2">复旦大学</h1><div class="describe"><p class="red2"><a href="javascript:void(0);">始建于1905年，初名复旦公学，创始人为近代知名教育家马相伯。</a></p></div>
-            </div>
-            <div class="padding">
-                <div class="right">
-                    <div class="describe"><h2>最新文章</h2><p><a href="javascript:void(0);">复旦大学大一新生军训顺利结束。</a></p></div>
-                    <hr />
-                    <div class="describe"><h2>重点资讯</h2><p><a href="javascript:void(0);">2014年复旦大学高考分数线。</a></p></div>
-                </div>
-                <div class="left"><a href="javascript:void(0);"><img src="images/icon/deep_gray_fudan_logo.png" /></a></div>
-                <div class="clear">&nbsp;</div>
-            </div>
-        </div>
-        <div class="layer">
-            <div class="gray_title">
-                <h1 class="red2">复旦大学</h1><div class="describe"><p class="red2"><a href="javascript:void(0);">始建于1905年，初名复旦公学，创始人为近代知名教育家马相伯。</a></p></div>
-            </div>
-            <div class="padding">
-                <div class="right">
-                    <div class="describe"><h2>最新文章</h2><p><a href="javascript:void(0);">复旦大学大一新生军训顺利结束。</a></p></div>
-                    <hr />
-                    <div class="describe"><h2>重点资讯</h2><p><a href="javascript:void(0);">2014年复旦大学高考分数线。</a></p></div>
-                </div>
-                <div class="left"><a href="javascript:void(0);"><img src="images/icon/deep_gray_fudan_logo.png" /></a></div>
-                <div class="clear">&nbsp;</div>
-            </div>
-        </div>
-        <div class="layer">
-            <div class="gray_title">
-                <h1 class="red2">复旦大学</h1><div class="describe"><p class="red2"><a href="javascript:void(0);">始建于1905年，初名复旦公学，创始人为近代知名教育家马相伯。</a></p></div>
-            </div>
-            <div class="padding">
-                <div class="right">
-                    <div class="describe"><h2>最新文章</h2><p><a href="javascript:void(0);">复旦大学大一新生军训顺利结束。</a></p></div>
-                    <hr />
-                    <div class="describe"><h2>重点资讯</h2><p><a href="javascript:void(0);">2014年复旦大学高考分数线。</a></p></div>
-                </div>
-                <div class="left"><a href="javascript:void(0);"><img src="images/icon/deep_gray_fudan_logo.png" /></a></div>
-                <div class="clear">&nbsp;</div>
-            </div>
-        </div>
+          </div>
+        </s:iterator>
       </div>
       <!--pavigation start-->
       <div class="pavigation">
@@ -131,3 +96,17 @@
     <div class="clear">&nbsp;</div>
   </div>
 </div>
+
+<script type="text/javascript">
+$("#university .layer").each(function(index,element){
+  $.get("ajaxTopicDetail?id="+$(element).attr("data-id"), function(data) {
+    data = eval("(" + data + ")");
+    if(data.last){
+      $(element).find("a[data-role=lastArticle]").html(data.last.title).attr("href","index?m=article/detailWebArticle?id="+data.last.id);
+    }
+    if(data.hot){
+      $(element).find("a[data-role=hotArticle]").html(data.hot.title).attr("href","index?m=article/detailWebArticle?id="+data.hot.id);
+    }
+  });
+});
+</script>

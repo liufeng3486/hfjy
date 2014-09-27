@@ -76,7 +76,7 @@
 	<div id="everybody" class="content">
 		<s:iterator value="listWebArticles" var="item" status="s">
 			<div class="newer">
-				<a href="index?l=article/detailWebArticle?id=${item.id}"> <em class="icon idotted"></em>
+				<a href="index?m=article/detailWebArticle?id=${item.id}"> <em class="icon idotted"></em>
 					<span>${item.title}</span>
 					<div class="clear">&nbsp;</div>
 				</a>

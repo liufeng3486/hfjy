@@ -15,9 +15,7 @@
 $(function(){
     $("#header").load("header");
     $("#footer").load("footer");
-    $("#right").load("right");
-
-    $("#left").load("${l}");
+    $("#main").load("${m}");
 });
 
 </script>
@@ -27,15 +25,8 @@ $(function(){
 
 </div>
 
-<div class="container">
-  <div class="contain">
-    <div id="right" class="rightsidebar"></div>
-
-    <!--leftcontent start-->
-    <div id="left" class="leftcontent"></div>
-    <!--leftcontent end-->
-    <div class="clear">&nbsp;</div>
-  </div>
+<div id="main">
+  
 </div>
 
 <!--footer start-->

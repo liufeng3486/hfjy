@@ -9,7 +9,7 @@
     </div>
 
     <div class="left">
-      <a href="index.html">
+      <a href="index">
         <img src="images/logo.png" alt="录取啦" title="录取啦" />      
       </a>
       <span class="location">
@@ -66,8 +66,12 @@ function renderTopicTypeList(){
 
     $(sysTopicTypes).map(function() {
         var link = $("<a></a>").attr({
-            "href": "index?l=topic/listWebTopic?typeid="+this.id
+            "href": this.icon ? "index?m=topic/"+this.icon:"index"
         }).html(this.typename).appendTo(obj);
+
+        if (this.icon && location.search.indexOf(this.icon) > -1) {
+          link.addClass("active");
+        }
     });
 }
 </script>

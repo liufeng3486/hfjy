@@ -23,6 +23,12 @@ public class SysTopictype implements Serializable {
 	
 	private String typename;
 	private int orderid;
+	
+	
+	private String icon;
+	private String isShow;
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -41,6 +47,18 @@ public class SysTopictype implements Serializable {
 	}
 	public void setOrderid(int orderid) {
 		this.orderid = orderid;
+	}
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+	public String getIsShow() {
+		return isShow;
+	}
+	public void setIsShow(String isShow) {
+		this.isShow = isShow;
 	} 
 	
 	

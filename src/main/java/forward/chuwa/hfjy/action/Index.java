@@ -10,7 +10,7 @@ public class Index extends BaseAction {
 	private static final long serialVersionUID = 7546855866601189738L;
 	
 	private Long id;
-	private String l = "left";
+	private String m = "main";
 	public String execute() {
 		return INPUT;
 	}
@@ -22,13 +22,12 @@ public class Index extends BaseAction {
 		this.id = id;
 	}
 
-	public String getL() {
-		return l;
+	public String getM() {
+		return m;
 	}
 
-	public void setL(String l) {
-		this.l = l;
+	public void setM(String m) {
+		this.m = m;
 	}
-	
 
 }
