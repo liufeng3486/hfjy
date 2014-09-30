@@ -16,55 +16,24 @@
 			<a href="javascript:void(0);" class=""></a>
 		</span>
 	</div>
-	<div class="content">
-		<div class="layer">
-			<dl>
-				<dt>
-					<a href="javascript:void(0);" class="btn btn_white right">已关注</a>
-					<h2>复旦大学</h2>
-				</dt>
-				<dd>
-					<p>简介假字简介假字简介假字简介假字简介假字简介假字简介假字简介假字。</p>
-				</dd>
-			</dl>
-			<a href="javascript:void(0);" class="left">
-				<img src="images/icon/fudan_logo.png" alt="复旦大学" title="复旦大学" />
-			</a>
-			<div class="clear">&nbsp;</div>
-		</div>
-		<div class="layer">
-			<dl>
-				<dt>
-					<a href="javascript:void(0);" class="btn btn_white right">已关注</a>
-					<h2>同济大学</h2>
-				</dt>
-				<dd>
-					<p>简介假字简介假字简介假字简介假字简介假字简介假字简介假字简介假字。</p>
-				</dd>
-			</dl>
-			<a href="javascript:void(0);" class="left">
-				<img src="images/icon/tongji_logo.png" alt="同济大学" title="同济大学" />
-			</a>
-			<div class="clear">&nbsp;</div>
-		</div>
-		<div class="layer last">
-			<dl>
-				<dt>
-					<a href="javascript:void(0);" class="btn btn_white right">
-						<span class="red">&plus;</span>
-						&nbsp;关注
-					</a>
-					<h2>高考</h2>
-				</dt>
-				<dd>
-					<p>简介假字简介假字简介假字简介假字简介假字简介假字简介假字简介假字。</p>
-				</dd>
-			</dl>
-			<a href="javascript:void(0);" class="left">
-				<img src="images/icon/gaokao_logo.png" alt="高考" title="高考" />
-			</a>
-			<div class="clear">&nbsp;</div>
-		</div>
+	<div id="listHotTopic" class="content">
+		<s:iterator value="listHotTopics" var="item" status="s">
+			<div class="layer" onclick="location.href='index?m=topic/detailWebTopic?id=${item.id}'">
+				<dl>
+					<dt>
+						<a href="javascript:void(0);" class="btn btn_white right">已关注</a>
+						<h2>${item.name}</h2>
+					</dt>
+					<dd>
+						<p>${item.introduction}</p>
+					</dd>
+				</dl>
+				<a href="javascript:void(0);" class="left">
+					<img width="60" src="download?c=${item.topicphoto}" alt="${item.name}" title="${item.name}" />
+				</a>
+				<div class="clear">&nbsp;</div>
+			</div>
+		</s:iterator>
 	</div>
 </div>
 <!--话题 end-->
@@ -88,4 +57,5 @@
 
 <script type="text/javascript">
 $("#everybody>div").last().addClass("last");
+$("#listHotTopic>div").last().addClass("last");
 </script>

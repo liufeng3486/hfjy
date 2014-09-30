@@ -10,8 +10,8 @@
         <div class="leftcontent">
             <!--banner start-->
             <div class="banner">
-                <div class="img">
-                    <div class="right">
+                <div id="listTop" class="img">
+                    <!-- <div class="right">
                         <a href="javascript:void(0);" class="layer">
                             <img src="images/img/banner1_small.png" />
                             <div class="shadow"></div>
@@ -38,7 +38,7 @@
                             </p>
                         </a>
                     </div>
-                    <div class="clear">&nbsp;</div>
+                    <div class="clear">&nbsp;</div> -->
                 </div>
             </div>
             <!--banner end-->
@@ -67,4 +67,27 @@ $("#right").load("right");
   $("#banner a").click(function(){
     $(this).addClass("active").siblings().removeClass("active");
   });
+
+  var listTop;
+  $.get("ajaxListTop", function(data) {
+      listTop = eval("(" + data + ")");
+      if (listTop.length > 0) {
+        renderListTop(0);
+      }
+  });
+
+  function renderListTop(_i){
+    $("#listTop").empty();
+    var left = $('<div class="left"></div>');
+    var right = $('<div class="right"></div>');
+    $(listTop).each(function(index, element) {
+        if (index == _i) {
+            left.append('<a href="index?m=article/detailWebArticle?id='+element.id+'"><img width="450" height="319" src="download?c=' + element.articlephoto + '" /><p>' + element.description + '</p></a>');
+        } else {
+            right.append('<a href="index?m=article/detailWebArticle?id='+element.id+'" class="layer"><img width="200" height="105" src="download?c=' + element.articlephoto + '" /><div class="shadow"></div><p>' + element.description + '</p></a>');
+        }
+    });
+
+    $("#listTop").append(left).append(right).append('<div class="clear">&nbsp;</div>');
+  }
 </script>

@@ -51,6 +51,12 @@
 		<td>
 			<a href="javascript:void(0)"  data-url="editWebArticle?id=${item.id}">编辑</a>
 			<a href="javascript:void(0)" data-url="editWebArticle?id=${item.id}">删除</a>
+			<s:if test="#item.seo==1">
+				<a href="javascript:void(0)" onclick="removeTop(${item.id})">取消头图设置</a>
+			</s:if>
+			<s:else>
+				<a href="javascript:void(0)" onclick="setTop(${item.id})">设置为头图</a>
+			</s:else>
 		</td>
 	</tr>
 	</s:iterator>
@@ -59,4 +65,25 @@
 
 <script type="text/javascript">
 $("#pager").pager("listWebArticle","content",${startIndex},${pageSize},${count},0);
+function setTop(_id) {
+	$.post("ajaxSetTop", {
+		id: _id
+	}, function(data) {
+		console.log(data);
+		if (data == "1") {
+			content.load(content.data("data-url"));
+		}
+	});
+}
+
+function removeTop(_id) {
+	$.post("ajaxRemoveTop", {
+		id: _id
+	}, function(data) {
+		console.log(data);
+		if (data == "1") {
+			content.load(content.data("data-url"));
+		}
+	});
+}
 </script>

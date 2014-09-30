@@ -1,14 +1,18 @@
 package forward.chuwa.hfjy.action;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.convention.annotation.Action;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import forward.chuwa.hfjy.model.SysTopictype;
 import forward.chuwa.hfjy.model.WebArticle;
+import forward.chuwa.hfjy.model.WebHot;
 import forward.chuwa.hfjy.service.ArticleService;
 import forward.chuwa.hfjy.service.SystemService;
 import forward.chuwa.hfjy.utility.DictionaryUtil;
@@ -37,6 +41,9 @@ public class Ajax extends BaseAction {
 		writeJson(list);
 	}
 	
+	/**
+	 * 话题的最新和最热文章
+	 */
 	@Action(value = "ajaxTopicDetail")
 	public void topicDetail() {
 		Map<String,Object> result = new HashMap<String,Object>();
@@ -62,6 +69,75 @@ public class Ajax extends BaseAction {
 			}
 		}
 		writeJson(result);
+	}
+	
+	/**
+	 * 设置首页海报
+	 */
+	@Action(value = "ajaxSetTop")
+	public void setTop() {
+		int result = 0;
+		if (id != null && id > 0) {
+			systemService.createWebHot(DictionaryUtil.HOT_TYPE1,
+					DictionaryUtil.RELATION_TYPE2, id);
+			result = 1;
+		}
+		writeJson(result);
+	}
+
+	/**
+	 * 取消设置首页海报
+	 */
+	@Action(value = "ajaxRemoveTop")
+	public void removeTop() {
+		int result = 0;
+		if (id != null && id > 0) {
+			systemService.deleteWebHot(DictionaryUtil.HOT_TYPE1,
+					DictionaryUtil.RELATION_TYPE2, id);
+			result = 1;
+		}
+		writeJson(result);
+	}
+	
+	/**
+	 * 设置推荐话题
+	 */
+	@Action(value = "ajaxSetHotTopic")
+	public void setHotTopic() {
+		int result = 0;
+		if (id != null && id > 0) {
+			systemService.createWebHot(DictionaryUtil.HOT_TYPE2,
+					DictionaryUtil.RELATION_TYPE1, id);
+			result = 1;
+		}
+		writeJson(result);
+	}
+
+	/**
+	 * 取消设置推荐话题
+	 */
+	@Action(value = "ajaxRemoveHotTopic")
+	public void removeHotTopic() {
+		int result = 0;
+		if (id != null && id > 0) {
+			systemService.deleteWebHot(DictionaryUtil.HOT_TYPE2,
+					DictionaryUtil.RELATION_TYPE1, id);
+			result = 1;
+		}
+		writeJson(result);
+	}
+	
+	@Action(value = "ajaxListTop")
+	public void listTop(){
+		List<WebArticle> listTop = new ArrayList<WebArticle>();
+		for (WebHot webHot : systemService.findWebHots(" and t.hottype = '"
+				+ DictionaryUtil.HOT_TYPE1 + "' and t.relationtype = '"
+				+ DictionaryUtil.RELATION_TYPE2 + "' ", 0, 4)) {
+			WebArticle webArticle = articleService.loadWebArticle(webHot
+					.getRelationid());
+			listTop.add(webArticle);
+		}
+		writeJson(listTop);
 	}
 
 	public Long getId() {
