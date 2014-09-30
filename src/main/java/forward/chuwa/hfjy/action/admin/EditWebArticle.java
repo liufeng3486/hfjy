@@ -39,6 +39,7 @@ public class EditWebArticle extends BaseAction {
 
 	private String title;
 	private String description;
+	private String articlephoto;
 	private String articleimg;
 	private String articlecontent;
 	private Long provinceid;
@@ -62,6 +63,7 @@ public class EditWebArticle extends BaseAction {
 			WebArticle webArticle = articleService.loadWebArticle(id);
 			title = webArticle.getTitle();
 			description = webArticle.getDescription();
+			articlephoto = webArticle.getArticlephoto();
 			articleimg = webArticle.getArticleimg();
 			articlecontent = webArticle.getArticlecontent();
 			provinceid = webArticle.getProvinceid();
@@ -89,13 +91,14 @@ public class EditWebArticle extends BaseAction {
 
 	public void save() {
 		if (id != null && id > 0) {
-			articleService.updateWebArticle(id, title, description, articleimg,
-					articlecontent, provinceid, gradeid, publishdate, author,
-					seo, relevantarticle,selectedTopics);
+			articleService.updateWebArticle(id, title, description,
+					articlephoto, articleimg, articlecontent, provinceid,
+					gradeid, publishdate, author, seo, relevantarticle,
+					selectedTopics);
 		} else {
-			articleService.createWebArticle(title, description, articleimg,
-					articlecontent, provinceid, gradeid, publishdate, author,
-					seo, relevantarticle,selectedTopics);
+			articleService.createWebArticle(title, description, articlephoto,
+					articleimg, articlecontent, provinceid, gradeid,
+					publishdate, author, seo, relevantarticle, selectedTopics);
 		}
 	}
 

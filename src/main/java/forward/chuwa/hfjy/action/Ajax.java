@@ -11,6 +11,7 @@ import forward.chuwa.hfjy.model.SysTopictype;
 import forward.chuwa.hfjy.model.WebArticle;
 import forward.chuwa.hfjy.service.ArticleService;
 import forward.chuwa.hfjy.service.SystemService;
+import forward.chuwa.hfjy.utility.DictionaryUtil;
 
 
 public class Ajax extends BaseAction {
@@ -30,7 +31,9 @@ public class Ajax extends BaseAction {
 	 */
 	@Action(value = "ajaxTopicType")
 	public void topicType() {
-		List<SysTopictype> list = systemService.findSysTopictypes(" order by orderid ");
+		List<SysTopictype> list = systemService
+				.findSysTopictypes(" and t.isShow = '"
+						+ DictionaryUtil.DELETE_FLAG1 + "' order by orderid ");
 		writeJson(list);
 	}
 	

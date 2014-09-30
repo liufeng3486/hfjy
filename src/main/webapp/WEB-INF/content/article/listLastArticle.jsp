@@ -47,7 +47,7 @@
 			</div>
 			<div class="left">
 				<a href="index?m=article/detailWebArticle?id=${item.id}">
-					<img width="200" src="download?c=${item.articleimg}" />
+					<img width="200" src="download?c=${item.articlephoto}" />
 				</a>
 			</div>
 			<div class="clear">&nbsp;</div>

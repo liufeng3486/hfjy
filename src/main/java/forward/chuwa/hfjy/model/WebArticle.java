@@ -26,6 +26,7 @@ public class WebArticle implements Serializable {
 	
 	private String title;
 	private String description;
+	private String articlephoto;
 	private String articleimg;
 	private String articlecontent;
 	private Long provinceid;
@@ -169,6 +170,12 @@ public class WebArticle implements Serializable {
 	}
 	public void setGradeName(String gradeName) {
 		this.gradeName = gradeName;
+	}
+	public String getArticlephoto() {
+		return articlephoto;
+	}
+	public void setArticlephoto(String articlephoto) {
+		this.articlephoto = articlephoto;
 	}
 
 	

@@ -87,7 +87,7 @@
             <s:iterator value="listWebArticles" var="item" status="s">
               <a href="javascript:void(0);">
                 <div>
-                  <img width="180" src="download?c=${item.articleimg}" />
+                  <img width="180" src="download?c=${item.articlephoto}" />
                 </div>
                 <div>${item.title}</div>
               </a>
