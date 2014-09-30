@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.convention.annotation.Action;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
@@ -29,6 +30,8 @@ public class Ajax extends BaseAction {
 	private ArticleService articleService;
 	
 	private Long id;
+	
+	private String searchContent;
 	
 	/**
 	 * 首页导航分类
@@ -139,6 +142,17 @@ public class Ajax extends BaseAction {
 		}
 		writeJson(listTop);
 	}
+	
+	@Action(value = "ajaxSearchArticle")
+	public void searchArticle() {
+		List<WebArticle> list = new ArrayList<WebArticle>();
+		if (!StringUtils.isEmpty(searchContent)) {
+			list = articleService.findWebArticles(" and t.title like '%"
+					+ searchContent
+					+ "%' order by getArticleRecord(t.id) desc ", 0, 2);
+		}
+		writeJson(list);
+	}
 
 	public Long getId() {
 		return id;
@@ -146,6 +160,14 @@ public class Ajax extends BaseAction {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getSearchContent() {
+		return searchContent;
+	}
+
+	public void setSearchContent(String searchContent) {
+		this.searchContent = searchContent;
 	}
 	
 	

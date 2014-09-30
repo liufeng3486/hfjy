@@ -32,6 +32,8 @@ $(function(){
 <!--footer start-->
 <div id="footer" class="footer"></div>
 <!--footer end--> 
+
+<div id="shadow" style="width:100%;height:100%;position:absolute;z-index:999;background-color:#000;opacity:.3;top:0;left:0;display:none;">&nbsp;</div>
 </body>
 </html>
 

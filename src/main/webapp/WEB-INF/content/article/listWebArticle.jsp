@@ -8,7 +8,7 @@
         <div class="right">
           <dl>
             <dt>
-              <a href="index?m=article/detailWebArticle?id=${item.id}">${item.title}</a>
+              <a href="index?m=article/detailWebArticle?id=${item.id}" data-role="title">${item.title}</a>
             </dt>
             <dd>
               <div class="tag">
@@ -43,4 +43,8 @@
 
 <script type="text/javascript">
 $("#pager").pager($("#listArticle").data("url"),"listArticle",${startIndex},${pageSize},${count},1);
+var searchContent = '${searchContent}';
+if(searchContent != ""){
+  $("[data-role=title]").html($("[data-role=title]").html().replace(searchContent,'<span class="red">'+searchContent+'</span>'));
+}
 </script>

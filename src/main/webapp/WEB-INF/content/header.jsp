@@ -44,7 +44,25 @@
   <div class="contain">
     <div class="right">
       <div class="search blue_border"><a href="javascript:void(0);" ><em class="icon isearch"></em></a>
-        <input type="text" placeholder="学校、专业、地区" />
+        <input id="searchInput" type="text" placeholder="学校、专业、地区" />
+        <div class="popup_search" id="searchPopup" style="display:none;"> <em class="icon iarrow"></em>
+          <div class="padding">
+            <div class="top" id="searchTopic" style="cursor:pointer;" >
+              搜<span class="red"></span>相关话题
+            </div>
+            <hr />            
+            <div class="content">
+              <div id="searchArticle" style="cursor:pointer;" >
+                搜<span class="red"></span>相关文章
+              </div>
+              <div class="related">
+                <ul id="searchArticleResult">
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div id="topicTypeList" class="left">
@@ -74,4 +92,31 @@ function renderTopicTypeList(){
         }
     });
 }
+
+$("#searchInput").keyup(function() {
+  if ($(this).val().replace(" ", "") != "") {
+    $("#searchTopic .red,#searchArticle .red").html($(this).val());
+    $("#searchArticleResult").empty();
+    var searchContent = $(this).val();
+    $.get("ajaxSearchArticle?searchContent=" + searchContent, function(data) {
+      data = eval("(" + data + ")");
+      $(data).map(function() {
+        $("#searchArticleResult").append('<li style="cursor:pointer;" onclick="location.href=\'index?m=article/detailWebArticle?id='+this.id+'\'">' + this.title.replace(searchContent, '<span class="red">' + searchContent + '</span>') + '</li>');
+      });
+    });
+    $("#searchPopup").show();
+  } else {
+    $("#searchPopup").hide();
+  }
+});
+$("#searchInput").blur(function(){
+  setTimeout(function(){
+    $(this).val("");
+    $("#searchPopup").hide();
+  },500);
+});
+
+$("#searchArticle").click(function(){
+  location.href = "index?m=article/search?searchContent="+$("#searchInput").val();
+});
 </script>

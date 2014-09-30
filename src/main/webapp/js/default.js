@@ -29,3 +29,13 @@ function getParam(url){
 $(document).on("click", "[data-url]", function() {
 	pageLoad($(this).attr("data-url"), $(this).attr("data-target"));
 });
+
+$(document).ajaxStart(function(){
+	//$("#shadow").height(Math.max($(window).height(),$(document).height()));
+	//$("#shadow").show();
+});
+
+$(document).ajaxStop(function(){
+	//$("#shadow").hide();
+	//$("#shadow").height($(window).height());
+});
