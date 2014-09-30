@@ -13,7 +13,7 @@
 					<dd>
 						<div class="tag">
 							<s:iterator value="#item.webTopics" var="item1" status="s">
-								<a href="javascript:void(0);" class="btn btn_white" data-role="webTopic">${item1.name}</a>
+								<a href="javascript:void(0);" class="btn btn_white" data-role="webTopic" data-introduction="${item1.introduction}" data-topicphoto="${item1.topicphoto}">${item1.name}</a>
 							</s:iterator>
 							
 							<div class="popup_tag" style="width: 310px;display:none"> <em class="icon iarrow"></em>
@@ -21,14 +21,14 @@
 									<dl>
 										<dt>
 											<a class="btn btn_white fr" href="javascript:void(0);">已关注</a>
-											<h2>复旦大学</h2>
+											<h2 data-role="name"></h2>
 										</dt>
 										<dd>
-											<p>简介假字简介假字简介假字简介假字简介假字简介假字简介假字简介假字。</p>
+											<p data-role="introduction"></p>
 										</dd>
 									</dl>
 									<a class="left" href="javascript:void(0);">
-										<img title="复旦大学" alt="复旦大学" src="images/icon/fudan_logo.png"></a>
+										<img width="60" data-role="topicphoto" /></a>
 									<div class="clear">&nbsp;</div>
 								</div>
 							</div>
@@ -68,7 +68,15 @@ $("a[data-role=webTopic]").click(function() {
 		$("a[data-role=webTopic]").removeClass("active");
 		$(".popup_tag").hide();
 		$(this).addClass("active");
-		$(this).siblings(".popup_tag").css("left", $(this).offset().left + $(this).width() / 2 - 805).show();
+		var obj = $(this).siblings(".popup_tag");
+		obj.find("[data-role=name]").html($(this).html());
+		obj.find("[data-role=introduction]").html($(this).attr("data-introduction"));
+		obj.find("[data-role=topicphoto]").attr({
+			"src":"download?c="+$(this).attr("data-topicphoto"),
+			"title":$(this).html(),
+			"alt":$(this).html()
+		});
+		obj.css("left", $(this).offset().left + $(this).width() / 2 - 805).show();
 	}
 });
 
