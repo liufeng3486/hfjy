@@ -58,7 +58,7 @@
 var sysTopicTypes;
 $.get("ajaxTopicType",function(data){
     sysTopicTypes = eval("(" + data + ")");
-    renderTopicTypeList()
+    renderTopicTypeList();
 });
 
 function renderTopicTypeList(){

@@ -37,8 +37,7 @@ public class ListWebTopic extends BaseAction {
 	public String getCondition(){
 		StringBuilder sb= new StringBuilder();
 		if (typeid != null && typeid > 0) {
-		sb.append(" and t.topictypeid = "
-					+ typeid);
+			sb.append(" and t.topictypeid = " + typeid);
 		}
 		
 		if (!StringUtils.isEmpty(province)) {
