@@ -24,7 +24,9 @@
 							<option value="${item.id }">${item.typename }</option>
 						</s:else>
 					</s:iterator>
-			</select></td>
+			</select>
+			<span id="hasparent" style="display:none;">是否为二级专业类别<input type="checkbox" /></span>
+		</td>
 		</tr>
 		<tr>
 			<td>拼音首字母 ( 大写 )</td>
@@ -117,7 +119,7 @@
 					</s:iterator>
 			</select></td>
 		</tr>
-		<tr id="protype_tr">
+		<tr id="protype_tr" style="display:none;">
 			<td>专业类别</td>
 			<td><select name="protype">
 					<option value="">请选择</option>
@@ -166,15 +168,34 @@
 		}
 
 		if ($(this).val() == "2") {
-			$("#subjecttype_tr").show().find("select").prop("disabled", false);
-			$("#protype_tr").show().find("select").prop("disabled", false);
-			$("#parentid_tr").show().find("select").prop("disabled", false);
+			$("#hasparent").show();
+			if($("#parentid_tr").find("select").val() == ""){
+				$("#hasparent input").prop("checked",true);
+			}else{
+				$("#hasparent input").prop("checked",false);
+			}
+			$("#hasparent input").change();
 		} else {
+			$("#hasparent").hide();
+			$("#hasparent input").change();
+		}
+	});
+
+	$("#hasparent input").change(function(){
+		if ($("#topictypeid").val() == "2") {
+			if ($(this).prop("checked")) {
+				$("#subjecttype_tr").show().find("select").prop("disabled", false);
+				$("#parentid_tr").hide().find("select").prop("disabled", true);
+			} else {
+				$("#subjecttype_tr").hide().find("select").prop("disabled", true);
+				$("#parentid_tr").show().find("select").prop("disabled", false);
+			}
+		}else{
 			$("#subjecttype_tr").hide().find("select").prop("disabled", true);
-			$("#protype_tr").hide().find("select").prop("disabled", true);
 			$("#parentid_tr").hide().find("select").prop("disabled", true);
 		}
 	});
+
 	$("#topictypeid").change();
 
 	$("#save").click(function() {

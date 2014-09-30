@@ -58,7 +58,7 @@ public class EditWebTopic extends BaseAction {
 		listSubjecttypes = systemService.findSysDictionaryByType(DictionaryUtil.DICTIONARY_TYPE3);
 		listProtypes = systemService.findSysDictionaryByType(DictionaryUtil.DICTIONARY_TYPE4);
 		StringBuilder sb = new StringBuilder();
-		sb.append(" and ( t.parentid = 0 or t.parentid is null ) ");
+		sb.append(" and t.topictypeid = 2 and t.subjecttype is not null and t.parentid is null ");
 		
 		if(id!=null && id >0){
 			WebTopic webTopic = topicService.loadWebTopic(id);

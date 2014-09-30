@@ -42,14 +42,14 @@
 
 
 <!--pavigation start-->
-  <div id="pager"></div>
+  <div id="majorPager"></div>
 <!--pavigation end-->
 
  <script type="text/javascript">
 
-$("#pager").pager($("#listTopic").data("url"),"listTopic",${startIndex},${pageSize},${count},1);
+$("#majorPager").pager($("#listMajor").data("url"),"listMajor",${startIndex},${pageSize},${count},1);
 
-$("#listTopic .layer").each(function(index,element){
+$("#listMajor .layer").each(function(index,element){
   $.get("ajaxTopicDetail?id="+$(element).attr("data-id"), function(data) {
     data = eval("(" + data + ")");
     if(data.last){

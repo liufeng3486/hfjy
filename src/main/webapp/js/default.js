@@ -26,6 +26,6 @@ function getParam(url){
 	return result;
 }
 
-$(document).on("click", "a[data-url]", function() {
+$(document).on("click", "[data-url]", function() {
 	pageLoad($(this).attr("data-url"), $(this).attr("data-target"));
 });
