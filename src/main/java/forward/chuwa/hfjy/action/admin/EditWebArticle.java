@@ -40,6 +40,14 @@ public class EditWebArticle extends BaseAction {
 	private String title;
 	private String description;
 	private String articlephoto;
+	public String getArticlephoto() {
+		return articlephoto;
+	}
+
+	public void setArticlephoto(String articlephoto) {
+		this.articlephoto = articlephoto;
+	}
+
 	private String articleimg;
 	private String articlecontent;
 	private Long provinceid;

@@ -45,7 +45,14 @@
 					</s:iterator>
 			</select></td>
 		</tr>
-		
+		<tr>
+			<td>缩略图</td>
+			<td>
+				<a href="javascript:void(0)" data-role="upload">上传</a>
+				<img style="max-width:500px;" />
+				<input id="articlephoto" name="articlephoto" type="hidden" value="${articlephoto}" />
+			</td>
+		</tr>
 		<tr>
 			<td>头图</td>
 			<td>
@@ -127,6 +134,10 @@
 	CKEDITOR.replace('articlecontent');
 	if('${articleimg}'){
 		$("#articleimg").prev().attr("src","download?c=${articleimg}");
+	}
+
+	if('${articlephoto}'){
+		$("#articlephoto").prev().attr("src","download?c=${articlephoto}");
 	}
 
 	if('${relevantarticle}'){
