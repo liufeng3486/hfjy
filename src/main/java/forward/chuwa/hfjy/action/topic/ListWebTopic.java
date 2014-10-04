@@ -28,6 +28,8 @@ public class ListWebTopic extends BaseAction {
 	
 	private String searchContent;
 	
+	private String subjecttype;
+	
 	public String execute() {
 		listWebTopics = topicService.findWebTopics(getCondition(),
 				getStartIndex(), PAGE_SIZE);
@@ -43,6 +45,10 @@ public class ListWebTopic extends BaseAction {
 		
 		if(typeid != null && typeid == 2L){
 			sb.append(" and t.subjecttype is null and t.parentid is not null ");
+		}
+		
+		if (!StringUtils.isEmpty(subjecttype)) {
+			sb.append(" and t.subjecttype in (" + subjecttype + ") ");
 		}
 		
 		if (!StringUtils.isEmpty(parentid)) {
@@ -133,6 +139,14 @@ public class ListWebTopic extends BaseAction {
 
 	public void setSearchContent(String searchContent) {
 		this.searchContent = searchContent;
+	}
+
+	public String getSubjecttype() {
+		return subjecttype;
+	}
+
+	public void setSubjecttype(String subjecttype) {
+		this.subjecttype = subjecttype;
 	}
 
 	

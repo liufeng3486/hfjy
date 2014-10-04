@@ -25,7 +25,7 @@
         <div class="content">
           <div class="link link4">
             <s:iterator value="listParentTopics" var="item" status="s">
-              <a href="javascript:void(0);" data-id="${item.id}" data-role="parentid">${item.name}</a>
+              <a style="display:none" href="javascript:void(0);" data-id="${item.id}" data-role="parentid" data-type="${subjecttype}">${item.name}</a>
             </s:iterator>
           </div>
         </div>
@@ -45,7 +45,43 @@
     <!--leftcontent start-->
     <div class="leftcontent"> 
       <div class="title"><em class="icon ic"></em><h1>专业类别</h1></div>
-      <div id="listMajor"></div> 
+      <div id="showMajor">
+         <div class="university">
+           <div class="layer" style="display:none;">
+             <div class="gray_title">
+               <h1 class="red2" data-role="name"></h1>
+               <div class="describe">
+                 <p class="red2">
+                   <a href="javascript:void(0);" data-role="introduction"></a>
+                 </p>
+               </div>
+             </div>
+             <div class="padding">
+               <div class="right">
+                 <div class="describe">
+                   <h2>最新文章</h2>
+                   <p>
+                     <a href="javascript:void(0);" data-role="lastArticle"></a>
+                   </p>
+                 </div>
+                 <hr />         
+                 <div class="describe">
+                   <h2>重点资讯</h2>
+                   <p>
+                     <a href="javascript:void(0);" data-role="hotArticle"></a>
+                   </p>
+                 </div>
+               </div>
+               <div class="left">
+                 <a href="javascript:void(0);">
+                   <img width="80" data-role="topicphoto" src="" />         
+                 </a>
+               </div>
+               <div class="clear">&nbsp;</div>
+             </div>
+           </div>
+         </div>
+      </div> 
       <div class="btn_choice align_center"><a href="javascript:void(0);"><em class="icon ibarrow_down"></em></a></div>
       <div class="title"><em class="icon in"></em><h1>专业名称</h1></div> 
       <div id="listTopic"></div>
@@ -66,18 +102,19 @@ for (var i = 0; i < 26; i++) {
 $("a[data-role=pinyin]").click(function(){
   $(this).toggleClass("active");
   searchTopic();
-  searchMajor();
-});
-
-$("a[data-role=subjecttype]").click(function(){
-  $(this).toggleClass("active");
-  searchMajor();
 });
 
 $("a[data-role=parentid]").click(function(){
-  $(this).toggleClass("active");
+  $(this).addClass("active").siblings().removeClass("active");
+  showMajor();
   searchTopic();
 });
+
+$("a[data-role=subjecttype]").click(function(){
+  $(this).addClass("active").siblings().removeClass("active");
+  $("a[data-role=parentid]").removeClass("active").hide();
+  $("a[data-role=parentid][data-type='"+$(this).attr("data-id")+"']").show().eq(0).click();
+}).eq(0).click();
 
 function searchTopic() {
   var pinyin = $("a[data-role=pinyin].active").map(function() {
@@ -96,20 +133,26 @@ function searchTopic() {
   $("#listTopic").data("url", url).load(url);
 }
 
-function searchMajor() {
-  var pinyin = $("a[data-role=pinyin].active").map(function() {
-    return "'" + $(this).html() + "'";
-  }).get().join(",");
-  var subjecttype = $("a[data-role=subjecttype].active").map(function() {
-    return $(this).attr("data-id");
-  }).get().join(",");
-  var url = "topic/listMajor?typeid=2";
-  if (pinyin) {
-    url += "&pinyin=" + pinyin;
-  }
-  if (subjecttype) {
-    url += "&subjecttype=" + subjecttype;
-  }
-  $("#listMajor").data("url", url).load(url);
+function showMajor(){
+  var obj = $("#showMajor .layer").hide().attr("data-id",$("a[data-role=parentid].active").attr("data-id"));
+
+  $.get("ajaxTopicDetail?id="+$(obj).attr("data-id"), function(data) {
+    data = eval("(" + data + ")");
+    $(obj).unbind("click").bind("click",function(){
+      location.href='index?m=topic/detailWebTopic?id='+$(obj).attr("data-id");
+    });
+    $(obj).find("[data-role=name]").html(data.item.name);
+    $(obj).find("[data-role=introduction]").html(data.item.introduction);
+    $(obj).find("[data-role=topicphoto]").attr("src","download?c="+data.item.topicphoto);
+
+    if(data.last){
+      $(obj).find("a[data-role=lastArticle]").html(data.last.title).attr("href","index?m=article/detailWebArticle?id="+data.last.id);
+    }
+    if(data.hot){
+      $(obj).find("a[data-role=hotArticle]").html(data.hot.title).attr("href","index?m=article/detailWebArticle?id="+data.hot.id);
+    }
+
+    $(obj).show();
+  });
 }
 </script> 

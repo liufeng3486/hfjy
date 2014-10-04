@@ -14,8 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 import forward.chuwa.hfjy.model.SysTopictype;
 import forward.chuwa.hfjy.model.WebArticle;
 import forward.chuwa.hfjy.model.WebHot;
+import forward.chuwa.hfjy.model.WebTopic;
 import forward.chuwa.hfjy.service.ArticleService;
 import forward.chuwa.hfjy.service.SystemService;
+import forward.chuwa.hfjy.service.TopicService;
 import forward.chuwa.hfjy.utility.DictionaryUtil;
 
 
@@ -28,6 +30,9 @@ public class Ajax extends BaseAction {
 	
 	@Autowired
 	private ArticleService articleService;
+	
+	@Autowired
+	private TopicService topicService;
 	
 	private Long id;
 	
@@ -51,6 +56,14 @@ public class Ajax extends BaseAction {
 	public void topicDetail() {
 		Map<String,Object> result = new HashMap<String,Object>();
 		if(id !=null && id>0){
+			WebTopic webTopic =topicService.loadWebTopic(id);
+			Map<String,Object> item = new HashMap<String,Object>();
+			item.put("id", webTopic.getId());
+			item.put("name", webTopic.getName());
+			item.put("introduction", webTopic.getIntroduction());
+			item.put("topicphoto", webTopic.getTopicphoto());
+			result.put("item", item);
+			
 			List<WebArticle> list = articleService.findWebArticles(
 					" and exists (from t.webTopics t1 where t1.id = " + id
 							+ " ) order by t.publishdate desc ", 0, 1);

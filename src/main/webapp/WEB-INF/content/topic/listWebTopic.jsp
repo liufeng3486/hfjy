@@ -60,5 +60,4 @@ $("#listTopic .layer").each(function(index,element){
     }
   });
 });
-
  </script>
