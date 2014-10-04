@@ -14,24 +14,32 @@
       </a>
       <span class="location">
         <span>地区：</span>
-        <a href="javascript:void(0);" class="red">
-          乌鲁木齐 <em class="icon sarrow_down"></em>
+        <a href="javascript:void(0);" id="showHeaderProvince">
+          <span id="headerProvince">请选择</span><em class="icon sarrow_down"></em>
         </a>
         <span>年级：</span>
-        <a href="javascript:void(0);">
-          高三 <em class="icon sarrow_down"></em>
+        <a href="javascript:void(0);" id="showHeaderGrade">
+          <span id="headerGrade">请选择</span><em class="icon sarrow_down"></em>
         </a>
       </span>
-      <div class="popup_location" style="display:none;"> <em class="icon iarrow"></em>
+      <div id="headerProvinceList" class="popup_location" style="display:none;"> <em class="icon iarrow"></em>
         <div class="padding">
-          <div class="box"><a href="javascript:void(0);">华东</a><a href="javascript:void(0);" class="active">华南</a><a href="javascript:void(0);">华北</a><a href="javascript:void(0);">西北</a><a href="javascript:void(0);">东北</a><a href="javascript:void(0);">港澳台</a><a href="javascript:void(0);">华北</a><a href="javascript:void(0);">西北</a><a href="javascript:void(0);">东北</a><a href="javascript:void(0);">港澳台</a></div>
-          <div class="align_center"><a href="javascript:void(0);"><em class="icon iarrow_down"></em></a></div>
-          <div class="box"><a href="javascript:void(0);" class="active">上海</a><a href="javascript:void(0);">北京</a><a href="javascript:void(0);">杭州</a><a href="javascript:void(0);">天津</a><a href="javascript:void(0);">苏州</a><a href="javascript:void(0);">浙江</a></div>
+          <div class="box">
+            
+          </div>
+          <div class="align_center">
+            <a href="javascript:void(0);"> <em class="icon iarrow_down"></em>
+            </a>
+          </div>
+          <div class="box">
+            
+          </div>
         </div>
       </div>
-      <div class="popup_senior" style="display:none;"> <em class="icon iarrow"></em>
+      <div id="headerGradeList" class="popup_senior" style="display:none;"> <em class="icon iarrow"></em>
         <div class="padding">
-          <div class=""><a href="javascript:void(0);">高一</a><a href="javascript:void(0);" class="active">高二</a><a href="javascript:void(0);">高三</a></div>
+          <div class="box">
+          </div>
         </div>
       </div>
     </div>
@@ -77,6 +85,73 @@ var sysTopicTypes;
 $.get("ajaxTopicType",function(data){
     sysTopicTypes = eval("(" + data + ")");
     renderTopicTypeList();
+});
+
+$(provinceArray).map(function(){
+  if (this.parentid == 0) {
+    $("#headerProvinceList .box:eq(0)").append('<a href="javascript:void(0);" data-id="' + this.id + '" data-parentid="' + this.parentid + '">' + this.name + '</a>');
+  } else {
+    $("#headerProvinceList .box:eq(1)").append('<a href="javascript:void(0);" data-id="' + this.id + '" data-parentid="' + this.parentid + '" style="display:none;">' + this.name + '</a>');
+  }
+  
+  if(this.id == userInfo.province){
+    $("#headerProvince").html(this.name);
+  }
+});
+
+$(gradeArray).map(function() {
+  $("#headerGradeList .box:eq(0)").append('<a href="javascript:void(0);" data-id="' + this.id + '" >' + this.name + '</a>');
+
+  if (this.id == userInfo.grade) {
+    $("#headerGrade").html(this.name);
+  }
+});
+
+$("#showHeaderProvince").click(function(){
+  $("#showHeaderGrade").removeClass("red");
+  $("#headerGradeList").hide();
+  $(this).addClass("red");
+
+  var p = $("#headerProvinceList .box a[data-id="+userInfo.province+"]").addClass("active").attr("data-parentid");
+  $("#headerProvinceList .box a[data-id="+p+"]").addClass("active").click();
+
+  $("#headerProvinceList").show();
+});
+
+$("#showHeaderGrade").click(function(){
+  $("#showHeaderProvince").removeClass("red");
+  $("#headerProvinceList").hide();
+  $(this).addClass("red");
+
+  $("#headerGradeList .box a[data-id="+userInfo.grade+"]").addClass("active");
+
+  $("#headerGradeList").show();
+});
+
+$("#headerProvinceList a").click(function(){
+  if($(this).attr("data-parentid") == 0){
+      $(this).addClass("active").siblings().removeClass("active");
+      $("#headerProvinceList .box a[data-parentid!=0]").hide();
+      $("#headerProvinceList .box a[data-parentid="+$(this).attr("data-id")+"]").show();
+  }else{
+      userInfo.province = $(this).attr("data-id");
+      setCookie();
+  }
+});
+
+$("#headerGradeList a").click(function(){
+  userInfo.grade = $(this).attr("data-id");
+  setCookie();
+});
+
+$("#headerProvinceList").mouseleave(function(){
+  $(this).hide();
+  $("#showHeaderProvince").removeClass("red");
+});
+
+$("#headerGradeList").mouseleave(function(){
+  $(this).hide();
+  $("#showHeaderGrade").removeClass("red");
 });
 
 function renderTopicTypeList(){

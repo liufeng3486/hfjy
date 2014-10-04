@@ -1023,13 +1023,13 @@ a.count:hover span.red{
 	font-size:24px;
 
 	display:inline-block;
-	width:50%;
+	width:49%;
 	text-align:center;
 	font-weight:normal;
 }
 .popup .welcome .p_tab_content a{
 	display:inline-block;
-	width:25%;
+	width:30%;
 	text-align:center;	
 	height:30px;
 	margin-top:10px;

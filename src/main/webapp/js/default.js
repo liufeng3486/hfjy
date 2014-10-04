@@ -42,13 +42,11 @@ $(document).on("click", "[data-url]", function() {
 });
 
 function showShadow(){
-	$("#shadow").height(Math.max($(window).height(),$(document).height()));
 	$("#shadow").show();
 }
 
 function hideShadow(){
 	$("#shadow").hide();
-	$("#shadow").height($(window).height());
 }
 
 $(document).ajaxStart(function(){
@@ -58,3 +56,7 @@ $(document).ajaxStart(function(){
 $(document).ajaxStop(function(){
 	//hideShadow();
 });
+
+var resizeShadow = setInterval(function(){
+	$("#shadow").height(Math.max($(window).height(),$(document).height()));
+}, 200);

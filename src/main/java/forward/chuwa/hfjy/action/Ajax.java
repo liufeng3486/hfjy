@@ -8,9 +8,9 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.convention.annotation.Action;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
+import forward.chuwa.hfjy.model.SysGrade;
+import forward.chuwa.hfjy.model.SysProvince;
 import forward.chuwa.hfjy.model.SysTopictype;
 import forward.chuwa.hfjy.model.WebArticle;
 import forward.chuwa.hfjy.model.WebHot;
@@ -38,6 +38,8 @@ public class Ajax extends BaseAction {
 	
 	private String searchContent;
 	
+	private Long parentid;
+	
 	/**
 	 * 首页导航分类
 	 */
@@ -46,6 +48,31 @@ public class Ajax extends BaseAction {
 		List<SysTopictype> list = systemService
 				.findSysTopictypes(" and t.isShow = '"
 						+ DictionaryUtil.DELETE_FLAG1 + "' order by orderid ");
+		writeJson(list);
+	}
+	
+	/**
+	 * 省份列表
+	 */
+	@Action(value = "ajaxProvince")
+	public void province() {
+		StringBuilder sb = new StringBuilder();
+		if(parentid != null){
+			sb.append(" and t.parentid = "+parentid);
+		}
+		sb.append(" order by orderid ");
+		List<SysProvince> list = systemService.findSysProvinces(sb.toString());
+		writeJson(list);
+	}
+	
+	/**
+	 * 年级列表
+	 */
+	@Action(value = "ajaxGrade")
+	public void grade() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(" order by orderid ");
+		List<SysGrade> list = systemService.findSysGrades(sb.toString());
 		writeJson(list);
 	}
 	
@@ -181,6 +208,14 @@ public class Ajax extends BaseAction {
 
 	public void setSearchContent(String searchContent) {
 		this.searchContent = searchContent;
+	}
+
+	public Long getParentid() {
+		return parentid;
+	}
+
+	public void setParentid(Long parentid) {
+		this.parentid = parentid;
 	}
 	
 	
