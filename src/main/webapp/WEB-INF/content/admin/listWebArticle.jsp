@@ -40,10 +40,10 @@
 			${item.description }
 		</td>
 		<td>
-			${item.provinceName }
+			${item.gradeName }
 		</td>
 		<td>
-			${item.gradeName }
+			${item.provinceName }
 		</td>
 		<td>
 			<s:date name="#item.publishdate" format="yyyy-MM-dd"/>

@@ -7,10 +7,21 @@ function pageLoad(url, target) {
 	if(!content){
 		content = $("body");
 	}
+	if(baseUrl == "admin"){
+		showShadow();
+	}
 	if (target && $("#" + target).size() > 0) {
-		$("#" + target).load(url).data("data-url", url);
+		$("#" + target).load(url,function(){
+			if(baseUrl == "admin"){
+				hideShadow();
+			}
+		}).data("data-url", url);
 	} else {
-		content.load(url).data("data-url", url);
+		content.load(url,function(){
+			if(baseUrl == "admin"){
+				hideShadow();
+			}
+		}).data("data-url", url);
 	}
 }
 
@@ -30,12 +41,20 @@ $(document).on("click", "[data-url]", function() {
 	pageLoad($(this).attr("data-url"), $(this).attr("data-target"));
 });
 
+function showShadow(){
+	$("#shadow").height(Math.max($(window).height(),$(document).height()));
+	$("#shadow").show();
+}
+
+function hideShadow(){
+	$("#shadow").hide();
+	$("#shadow").height($(window).height());
+}
+
 $(document).ajaxStart(function(){
-	//$("#shadow").height(Math.max($(window).height(),$(document).height()));
-	//$("#shadow").show();
+	//showShadow();
 });
 
 $(document).ajaxStop(function(){
-	//$("#shadow").hide();
-	//$("#shadow").height($(window).height());
+	//hideShadow();
 });
