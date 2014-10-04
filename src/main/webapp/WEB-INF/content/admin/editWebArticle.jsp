@@ -19,31 +19,33 @@
 		</tr>
 		<tr>
 			<td>所属省份</td>
-			<td><select name="provinceid">
-					<option value="">全部</option>
-					<s:iterator value="listSysProvinces" var="item">
-						<s:if test="#item.id==provinceid">
-							<option value="${item.id }" selected>${item.name }</option>
-						</s:if>
-						<s:else>
-							<option value="${item.id }">${item.name }</option>
-						</s:else>
-					</s:iterator>
-			</select></td>
+			<td>
+				<input id="provinceid" type="hidden" name="provinceid" value="${provinceid}" />
+				<div style="width:300px;padding:10px;marin-right:10px;" >
+					<input type="checkbox" id="selectAllProvince"  />全部
+				</div>
+				<s:iterator value="listSysProvinces" var="item">
+					<div style="width:300px;float:left;padding:10px;marin-right:10px;" >
+						<input class="provinceid" type="checkbox" value="${item.id}" />${item.name}
+					</div>
+				</s:iterator>
+				<div style="clear:both;"></div>
+			</td>
 		</tr>
 		<tr>
 			<td>所属年级</td>
-			<td><select name="gradeid">
-					<option value="">全部</option>
-					<s:iterator value="listSysGrades" var="item">
-						<s:if test="#item.id==gradeid">
-							<option value="${item.id }" selected>${item.gradename }</option>
-						</s:if>
-						<s:else>
-							<option value="${item.id }">${item.gradename }</option>
-						</s:else>
-					</s:iterator>
-			</select></td>
+			<td>
+				<input id="gradeid" type="hidden" name="gradeid" value="${gradeid}" />
+				<div style="width:300px;padding:10px;marin-right:10px;" >
+					<input type="checkbox" id="selectAllGrade"  />全部
+				</div>
+				<s:iterator value="listSysGrades" var="item">
+					<div style="width:300px;float:left;padding:10px;marin-right:10px;" >
+						<input class="gradeid" type="checkbox" value="${item.id}" />${item.gradename}
+					</div>
+				</s:iterator>
+				<div style="clear:both;"></div>
+			</td>
 		</tr>
 		<tr>
 			<td>缩略图</td>
@@ -124,10 +126,40 @@
 			});
 
 			$("#selectedTopics").val(selectedTopics.join(","));
+
+			var provinceid = [];
+			$(".provinceid:checked").each(function(){
+				provinceid.push($(this).val());
+			});
+
+			$("#provinceid").val(provinceid.join(","));
+
+			var gradeid = [];
+			$(".gradeid:checked").each(function(){
+				gradeid.push($(this).val());
+			});
+
+			$("#gradeid").val(gradeid.join(","));
 			
 			$.post(baseUrl + "/editWebArticle!save", $('#editForm').serialize(), function() {
 				pageLoad("listWebArticle");
 			});
+		}
+	});
+
+	$("#selectAllProvince").change(function(){
+		if($(this).prop("checked")){
+			$(".provinceid").prop("checked",true);
+		}else{
+			$(".provinceid").prop("checked",false);
+		}
+	});
+
+	$("#selectAllGrade").change(function(){
+		if($(this).prop("checked")){
+			$(".gradeid").prop("checked",true);
+		}else{
+			$(".gradeid").prop("checked",false);
 		}
 	});
 	
@@ -143,6 +175,18 @@
 	if('${relevantarticle}'){
 		$('${relevantarticle}'.split(",")).map(function(){
 			$(".relevantarticle[value="+this+"]").prop("checked",true);
+		});
+	}
+
+	if('${provinceid}'){
+		$('${provinceid}'.split(",")).map(function(){
+			$(".provinceid[value="+this+"]").prop("checked",true);
+		});
+	}
+
+	if('${gradeid}'){
+		$('${gradeid}'.split(",")).map(function(){
+			$(".gradeid[value="+this+"]").prop("checked",true);
 		});
 	}
 

@@ -33,7 +33,7 @@ public class ArticleServiceImpl implements ArticleService {
 	@Transactional(propagation = Propagation.REQUIRED)
 	public WebArticle createWebArticle(String title, String description,
 			String articlephoto, String articleimg, String articlecontent,
-			Long provinceid, Long gradeid, Date publishdate, String author,
+			String provinceid, String gradeid, Date publishdate, String author,
 			String seo, String relevantarticle, String selectedTopics) {
 		Date now = new Date();
 		WebArticle webArticle = new WebArticle();
@@ -66,7 +66,7 @@ public class ArticleServiceImpl implements ArticleService {
 	@Transactional(propagation = Propagation.REQUIRED)
 	public WebArticle updateWebArticle(Long id, String title, String description,
 			String articlephoto, String articleimg, String articlecontent,
-			Long provinceid, Long gradeid, Date publishdate, String author,
+			String provinceid, String gradeid, Date publishdate, String author,
 			String seo, String relevantarticle, String selectedTopics) {
 		WebArticle webArticle = webArticleDao.load(id);
 		Date now = new Date();

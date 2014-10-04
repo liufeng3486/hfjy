@@ -29,8 +29,8 @@ public class WebArticle implements Serializable {
 	private String articlephoto;
 	private String articleimg;
 	private String articlecontent;
-	private Long provinceid;
-	private Long gradeid;
+	private String provinceid;
+	private String gradeid;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date publishdate;
 	private String author;
@@ -51,10 +51,10 @@ public class WebArticle implements Serializable {
 		inverseJoinColumns = {@JoinColumn(name = "topicid", referencedColumnName ="id")})
 	private List<WebTopic> webTopics;
 	
-	@Formula("(select t.name from sys_province t where t.id = provinceid)")
+	@Formula("(select group_concat(t.name) from sys_province t where CONCAT(',',IFNULL(provinceid,''),',') like CONCAT('%,',t.id,',%') )")
 	private String provinceName;
 	
-	@Formula("(select t.gradename from sys_grade t where t.id = gradeid)")
+	@Formula("(select group_concat(t.gradename) from sys_grade t where CONCAT(',',IFNULL(gradeid,''),',') like CONCAT('%,',t.id,',%') )")
 	private String gradeName;
 	
 	public Long getId() {
@@ -87,16 +87,16 @@ public class WebArticle implements Serializable {
 	public void setArticlecontent(String articlecontent) {
 		this.articlecontent = articlecontent;
 	}
-	public Long getProvinceid() {
+	public String getProvinceid() {
 		return provinceid;
 	}
-	public void setProvinceid(Long provinceid) {
+	public void setProvinceid(String provinceid) {
 		this.provinceid = provinceid;
 	}
-	public Long getGradeid() {
+	public String getGradeid() {
 		return gradeid;
 	}
-	public void setGradeid(Long gradeid) {
+	public void setGradeid(String gradeid) {
 		this.gradeid = gradeid;
 	}
 	public Date getPublishdate() {

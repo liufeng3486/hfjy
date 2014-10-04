@@ -15,7 +15,6 @@ import forward.chuwa.hfjy.model.WebTopic;
 import forward.chuwa.hfjy.service.ArticleService;
 import forward.chuwa.hfjy.service.SystemService;
 import forward.chuwa.hfjy.service.TopicService;
-import freemarker.template.utility.StringUtil;
 
 @Action("editWebArticle")
 public class EditWebArticle extends BaseAction {
@@ -50,8 +49,8 @@ public class EditWebArticle extends BaseAction {
 
 	private String articleimg;
 	private String articlecontent;
-	private Long provinceid;
-	private Long gradeid;
+	private String provinceid;
+	private String gradeid;
 	private Date publishdate;
 	private String author;
 	private String seo;
@@ -173,20 +172,20 @@ public class EditWebArticle extends BaseAction {
 	public void setArticlecontent(String articlecontent) {
 		this.articlecontent = articlecontent;
 	}
-
-	public Long getProvinceid() {
+	
+	public String getProvinceid() {
 		return provinceid;
 	}
 
-	public void setProvinceid(Long provinceid) {
+	public void setProvinceid(String provinceid) {
 		this.provinceid = provinceid;
 	}
 
-	public Long getGradeid() {
+	public String getGradeid() {
 		return gradeid;
 	}
 
-	public void setGradeid(Long gradeid) {
+	public void setGradeid(String gradeid) {
 		this.gradeid = gradeid;
 	}
 
