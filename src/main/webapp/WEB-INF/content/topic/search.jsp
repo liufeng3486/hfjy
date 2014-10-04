@@ -13,10 +13,10 @@
             </div>
             <div class="bsearch_result">
                 你搜索的<span class="red">${searchContent}</span>，共有
-                <span class="red">${count}</span>篇相关文章：
+                <span class="red">${count}</span>个相关话题：
             </div>
 
-            <div id="listArticle"></div>
+            <div id="listTopic"></div>
         </div>
 
          <div class="clear">&nbsp;</div>
@@ -25,10 +25,10 @@
 
 <script type="text/javascript">
 $("#right").load("right");
-var url = "article/listWebArticle?searchContent=${searchContent}";
-$("#listArticle").load(url).data("url",url);
+var url = "topic/listWebTopic?searchContent=${searchContent}";
+$("#listTopic").load(url).data("url",url);
 
 $("#searchButton").click(function(){
-    location.href = "index?m=article/search?searchContent="+$("#searchContent").val();
+    location.href = "index?m=topic/search?searchContent="+$("#searchContent").val();
 });
 </script>

@@ -119,4 +119,8 @@ $("#searchInput").blur(function(){
 $("#searchArticle").click(function(){
   location.href = "index?m=article/search?searchContent="+$("#searchInput").val();
 });
+
+$("#searchTopic").click(function(){
+  location.href = "index?m=topic/search?searchContent="+$("#searchInput").val();
+});
 </script>

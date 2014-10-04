@@ -26,6 +26,8 @@ public class ListWebTopic extends BaseAction {
 	private String pinyin;
 	private String parentid;
 	
+	private String searchContent;
+	
 	public String execute() {
 		listWebTopics = topicService.findWebTopics(getCondition(),
 				getStartIndex(), PAGE_SIZE);
@@ -39,7 +41,7 @@ public class ListWebTopic extends BaseAction {
 			sb.append(" and t.topictypeid = " + typeid);
 		}
 		
-		if(typeid == 2L){
+		if(typeid != null && typeid == 2L){
 			sb.append(" and t.subjecttype is null and t.parentid is not null ");
 		}
 		
@@ -61,6 +63,10 @@ public class ListWebTopic extends BaseAction {
 		
 		if (!StringUtils.isEmpty(pinyin)) {
 			sb.append(" and t.pinyin in ( " + pinyin + ") ");
+		}
+		
+		if (!StringUtils.isEmpty(searchContent)) {
+			sb.append(" and t.name like '%" + searchContent + "%' ");
 		}
 		return sb.toString();
 	}
@@ -119,6 +125,14 @@ public class ListWebTopic extends BaseAction {
 
 	public void setParentid(String parentid) {
 		this.parentid = parentid;
+	}
+
+	public String getSearchContent() {
+		return searchContent;
+	}
+
+	public void setSearchContent(String searchContent) {
+		this.searchContent = searchContent;
 	}
 
 	
