@@ -1,5 +1,6 @@
 package forward.chuwa.hfjy.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,8 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import forward.chuwa.hfjy.dao.SysGradeDao;
 import forward.chuwa.hfjy.dao.SysProvinceDao;
+import forward.chuwa.hfjy.dao.WebArticleDao;
+import forward.chuwa.hfjy.dao.WebFavDao;
 import forward.chuwa.hfjy.dao.WebTopicDao;
 import forward.chuwa.hfjy.dao.WebUserDao;
+import forward.chuwa.hfjy.model.WebArticle;
+import forward.chuwa.hfjy.model.WebFav;
 import forward.chuwa.hfjy.model.WebTopic;
 import forward.chuwa.hfjy.model.WebUser;
 import forward.chuwa.hfjy.service.UserService;
@@ -30,6 +35,12 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private WebTopicDao webTopicDao;
+	
+	@Autowired
+	private WebArticleDao webArticleDao;
+	
+	@Autowired
+	private WebFavDao webFavDao;
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public WebUser loadWebUser(Long id) {
@@ -87,7 +98,9 @@ public class UserServiceImpl implements UserService {
 		WebUser webUser = webUserDao.load(userid);
 		List<WebTopic> listWebTopics = webUser.getWebTopics();
 		WebTopic webTopic = webTopicDao.load(topicid);
-		listWebTopics.add(webTopic);
+		if(!listWebTopics.contains(webTopic)){
+			listWebTopics.add(webTopic);
+		}
 		webUser.setWebTopics(listWebTopics);
 		return webUserDao.update(webUser);
 	}
@@ -97,7 +110,9 @@ public class UserServiceImpl implements UserService {
 		WebUser webUser = webUserDao.load(userid);
 		List<WebTopic> listWebTopics = webUser.getWebTopics();
 		WebTopic webTopic = webTopicDao.load(topicid);
-		listWebTopics.remove(webTopic);
+		if(listWebTopics.contains(webTopic)){
+			listWebTopics.remove(webTopic);
+		}
 		webUser.setWebTopics(listWebTopics);
 		return webUserDao.update(webUser);
 	}
@@ -105,5 +120,68 @@ public class UserServiceImpl implements UserService {
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public Long countWebUsers(String condition){
 		return webUserDao.count(condition);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public WebFav addFavArticle(Long favid,Long articleid){
+		WebFav webFav = webFavDao.load(favid);
+		List<WebArticle> listWebArticles = webFav.getWebArticles();
+		WebArticle webArticle = webArticleDao.load(articleid);
+		if(!listWebArticles.contains(webArticle)){
+			listWebArticles.add(webArticle);
+		}
+		webFav.setWebArticles(listWebArticles);
+		return webFavDao.update(webFav);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public WebFav addFavArticle(Long userid,String name,Long articleid){
+		WebFav webFav;
+		List<WebArticle> listWebArticles;
+		if (webFavDao.count(" and t.name = '" + name + "' and t.userid ="
+				+ userid) > 0) {
+			webFav = webFavDao.find(" and t.name = '" + name + "' and t.userid ="
+				+ userid).get(0);
+			listWebArticles = webFav.getWebArticles();
+		}else{
+			webFav = new WebFav();
+			webFav.setUserid(userid);
+			webFav.setName(name);
+			webFavDao.save(webFav);
+			listWebArticles = new ArrayList<WebArticle>();
+		}
+		
+		WebArticle webArticle = webArticleDao.load(articleid);
+		if(!listWebArticles.contains(webArticle)){
+			listWebArticles.add(webArticle);
+		}
+		webFav.setWebArticles(listWebArticles);
+		return webFavDao.update(webFav);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void removeFavArticle(Long userid,Long articleid){
+		List<WebFav> listWebFavs = webFavDao.find(" and t.userid =" + userid
+				+ " and exists (from t.webArticles t1 where t1.id = "
+				+ articleid + " ) ");
+		WebArticle webArticle = webArticleDao.load(articleid);
+		for (WebFav webFav : listWebFavs) {
+			List<WebArticle> listWebArticles = webFav.getWebArticles();
+			if(listWebArticles.contains(webArticle)){
+				listWebArticles.remove(webArticle);
+			}
+			webFav.setWebArticles(listWebArticles);
+			webFavDao.update(webFav);
+		}
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<WebFav> findWebFavs(String condition){
+		return webFavDao.find(condition);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public Long countWebfavs(String condition){
+		return webFavDao.count(condition);
 	}
 }

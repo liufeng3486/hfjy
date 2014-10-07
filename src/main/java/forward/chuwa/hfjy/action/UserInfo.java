@@ -27,7 +27,7 @@ public class UserInfo extends BaseAction {
 	public String execute() {
 		focusTopicCount = topicService.countWebTopics(" and exists (from t.webUsers t1 where t1.id = "
 				+ getUserInfo().getUserId() + " )  ");
-		favarticleCount = articleService.countWebArticles(" and exists (from t.webUsers t1 where t1.id = "
+		favarticleCount = articleService.countWebArticles(" and exists (from t.webFavs t1 where t1.userid = "
 				+ getUserInfo().getUserId() + " )  ");
 		return INPUT;
 	}

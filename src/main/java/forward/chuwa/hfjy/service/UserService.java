@@ -3,6 +3,8 @@ package forward.chuwa.hfjy.service;
 import java.util.List;
 
 
+
+import forward.chuwa.hfjy.model.WebFav;
 import forward.chuwa.hfjy.model.WebUser;
 
 public interface UserService {
@@ -23,4 +25,14 @@ public interface UserService {
 	public WebUser removeFocusTopic(Long userid,Long topicid);
 	
 	public Long countWebUsers(String condition);
+	
+	public WebFav addFavArticle(Long favid,Long articleid);
+	
+	public WebFav addFavArticle(Long userid,String name,Long articleid);
+	
+	public void removeFavArticle(Long userid,Long articleid);
+	
+	public List<WebFav> findWebFavs(String condition);
+	
+	public Long countWebfavs(String condition);
 }

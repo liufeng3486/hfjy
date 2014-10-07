@@ -54,25 +54,31 @@
                 </a>
               </div>
               <div class="left">
-                <a href="javascript:void(0);" class="active">
-                  <em class="icon ifavorite"></em>
-                </a>
-                <div class="popup_favorite" style="display:none;">
+                <s:if test="ifFav==1">
+                  <a id="btn_removefav" href="javascript:void(0);" class="active"> <em class="icon ifavorite"></em>
+                  </a>
+                </s:if>
+                <s:else>
+                  <a id="btn_addfav" href="javascript:void(0);"> <em class="icon ifavorite"></em>
+                  </a>
+                </s:else>
+                
+                <div id="popup_favorite" class="popup_favorite" style="display:none;">
                   <em class="icon iarrow"></em>
                   <div class="padding">
                     <div>收藏到话题</div>
                     <hr />
                     <div class="tag">
-                      <a href="javascript:void(0);" class="btn btn_white">复旦大学</a>
-                      <a href="javascript:void(0);" class="btn btn_white">高考资讯</a>
-                      <a href="javascript:void(0);" class="btn btn_white">自主招生</a>
+                       <s:iterator value="listWebFavs" var="item" status="s">
+                          <a data-role="webFav" href="javascript:void(0);" class="btn btn_white">${item.name}</a>
+                      </s:iterator>
                     </div>
                     <div>收藏到新话题</div>
-                    <input type="text" placeholder="输入新话题名称" />
+                    <input id="favName" type="text" placeholder="输入新话题名称" />
 
                     <hr />
                     <div class="align_center">
-                      <a class="btn btn_red" href="javascript:void(0);">收藏</a>
+                      <a id="favoriteSubmit" class="btn btn_red" href="javascript:void(0);">收藏</a>
                     </div>
                   </div>
                 </div>
@@ -102,4 +108,32 @@
 
 <script type="text/javascript">
 $("#right").load("right");
+$("#btn_addfav").click(function(){
+  $("#popup_favorite").show();
+});
+
+$("#btn_removefav").click(function(){
+  $.post("ajaxRemoveFavArticle", {
+    id: '${id}'
+  }, function(data) {
+    if (data == "1") {
+      location.reload();
+    }
+  });
+});
+
+$("#favoriteSubmit").click(function(){
+  $.post("ajaxAddFavArticle",{
+    id:'${id}',
+    name:$("#favName").val()
+  },function(data){
+    if(data == "1"){
+      location.reload();
+    }
+  });
+});
+
+$("a[data-role=webFav]").click(function(){
+  $("#favName").val($(this).html()).focus();
+});
 </script>

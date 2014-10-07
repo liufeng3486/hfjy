@@ -261,6 +261,26 @@ public class Ajax extends BaseAction {
 		}
 		writeJson(result);
 	}
+	
+	@Action(value = "ajaxAddFavArticle")
+	public void addFavArticle() {
+		int result = 0;
+		if (getUserInfo() != null && id != null && id > 0) {
+			userService.addFavArticle(getUserInfo().getUserId(), name, id);
+			result = 1;
+		}
+		writeJson(result);
+	}
+	
+	@Action(value = "ajaxRemoveFavArticle")
+	public void removeFavArticle() {
+		int result = 0;
+		if (getUserInfo() != null && id != null && id > 0) {
+			userService.removeFavArticle(getUserInfo().getUserId(), id);
+			result = 1;
+		}
+		writeJson(result);
+	}
 
 	public Long getId() {
 		return id;

@@ -11,11 +11,11 @@
     <div class="avator">
       <div class="padding">
         <div class="right">
-          <a href="javascript:void(0);" class="count">
+          <a href="index?m=article/favArticle" class="count">
             <span class="red">${favarticleCount}</span>
             <span>收藏</span>
           </a>
-          <a href="javascript:void(0);" class="count">
+          <a href="index?m=topic/focusTopic" class="count">
             <span class="red">${focusTopicCount}</span>
             <span>订阅</span>
           </a>

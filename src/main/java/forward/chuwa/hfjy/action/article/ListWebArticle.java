@@ -20,6 +20,8 @@ public class ListWebArticle extends BaseAction {
 	private List<WebArticle> listWebArticles;
 	private Long topicid;
 	private String searchContent;
+	
+	private Long fav;
 
 	public String execute() {
 		listWebArticles = articleService.findWebArticles(getCondition()
@@ -38,6 +40,11 @@ public class ListWebArticle extends BaseAction {
 		}
 		if (!StringUtils.isEmpty(searchContent)) {
 			sb.append(" and t.title like '%" + searchContent + "%' ");
+		}
+		
+		if (fav != null && fav > 0) {
+			sb.append(" and exists (from t.webFavs t1 where t1.id = " + fav
+					+ " ) ");
 		}
 		return sb.toString();
 	}
@@ -64,6 +71,14 @@ public class ListWebArticle extends BaseAction {
 
 	public void setSearchContent(String searchContent) {
 		this.searchContent = searchContent;
+	}
+
+	public Long getFav() {
+		return fav;
+	}
+
+	public void setFav(Long fav) {
+		this.fav = fav;
 	}
 
 }
