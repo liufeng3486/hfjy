@@ -41,8 +41,14 @@ $(document).on("click", "[data-url]", function() {
 	pageLoad($(this).attr("data-url"), $(this).attr("data-target"));
 });
 
-function showShadow(){
+function showShadow(popupid){
 	$("#shadow").show();
+	if(popupid){
+		$("#shadow").one("click",function(){
+			hideShadow();
+			$("#"+popupid).hide();
+		});
+	}
 }
 
 function hideShadow(){

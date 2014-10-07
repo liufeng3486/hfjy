@@ -1,67 +1,67 @@
 package forward.chuwa.hfjy.utility;
 
-import java.util.Map;
-
 public class UserInfo {
 
 	private Long userId;
 
-	private Long orgId;
-
 	private String name;
 	
-	private Long positionId;
+	private String email;
+	private String provincename;
+	private String gradename;
+	private String userphoto;
+	private String focustopic;
+	private String favarticle;
 	
-	private Long departmentId;
-	
-	private Long companyId;
-	
-
 	public Long getUserId() {
 		return userId;
 	}
-
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-
-	public Long getOrgId() {
-		return orgId;
-	}
-
-	public void setOrgId(Long orgId) {
-		this.orgId = orgId;
-	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public Long getPositionId() {
-		return positionId;
+	public String getEmail() {
+		return email;
 	}
-
-	public void setPositionId(Long positionId) {
-		this.positionId = positionId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-
-	public Long getDepartmentId() {
-		return departmentId;
+	public String getProvincename() {
+		return provincename;
 	}
-
-	public void setDepartmentId(Long departmentId) {
-		this.departmentId = departmentId;
+	public void setProvincename(String provincename) {
+		this.provincename = provincename;
 	}
-
-	public Long getCompanyId() {
-		return companyId;
+	public String getGradename() {
+		return gradename;
 	}
-
-	public void setCompanyId(Long companyId) {
-		this.companyId = companyId;
+	public void setGradename(String gradename) {
+		this.gradename = gradename;
 	}
+	public String getUserphoto() {
+		return userphoto;
+	}
+	public void setUserphoto(String userphoto) {
+		this.userphoto = userphoto;
+	}
+	public String getFocustopic() {
+		return focustopic;
+	}
+	public void setFocustopic(String focustopic) {
+		this.focustopic = focustopic;
+	}
+	public String getFavarticle() {
+		return favarticle;
+	}
+	public void setFavarticle(String favarticle) {
+		this.favarticle = favarticle;
+	}
+	
+
+	
 }

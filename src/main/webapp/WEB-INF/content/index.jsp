@@ -164,6 +164,156 @@ $(function(){
     </div>
 </div>
 
+<div id="login" class="popup w_h_m" style="display:none;">
+  <form>
+    <div class="login">
+      <div class="padding">
+        <dl class="input">
+          <dt><em class="icon iuser"></em></dt>
+          <dd>
+            <div  class="padding">
+              <input id="loginname" type="text" placeholder="邮箱" />
+            </div>
+          </dd>
+        </dl>
+        <div class="clear">&nbsp;</div>
+        <dl  class="input">
+          <dt><em class="icon ipw active"></em></dt>
+          <dd>
+            <div class="padding"><em class="icon ieye"></em>
+              <input id="password" type="password" placeholder="密码" />
+              <p class="red" data-role="message" style="display:none;">密码输入错误！</p>
+            </div>
+          </dd>
+        </dl>
+        <div class="clear">&nbsp;</div>
+        <div class="align_center"><a id="loginSubmit" href="javascript:void(0);" class="btn btn_red">登录</a></div>
+        <div class="group">
+          <div class="link"><a href="javascript:void(0);">注册</a><a href="javascript:void(0);">忘记密码？</a></div>
+          <div class="rand"> <img src="images/rand.png" /> <span class="gray">微信登录</span> </div>
+          <div class="clear">&nbsp;</div>
+        </div>
+        <div class="clear">&nbsp;</div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div id="register" class="popup w_h_m3" style="display:none;">
+    <div class="login regsiter" >
+        <div class="padding">
+            <dl class="input">
+                <dt> <em class="icon semail"></em>
+                </dt>
+                <dd>
+                    <div class="padding">
+                        <input id="register_email" type="text" placeholder="邮箱" />
+                        <p class="red" data-role="message" style="display:none;">该邮箱已被注册！</p>
+                    </div>
+                </dd>
+            </dl>
+            <div class="clear">&nbsp;</div>
+            <dl class="input">
+                <dt> <em class="icon suser active"></em>
+                </dt>
+                <dd>
+                    <div class="padding">
+                        <input id="register_name" type="text" placeholder="昵称" />
+                    </div>
+                </dd>
+            </dl>
+            <div class="clear">&nbsp;</div>
+            <dl class="input">
+                <dt>
+                    <em class="icon spw active"></em>
+                </dt>
+                <dd>
+                    <div  class="padding" >
+                        <em class="icon seye"></em>
+                        <input id="register_password" type="password" placeholder="密码" />
+                        <p class="red" style="display:none;">密码输入错误！</p>
+                    </div>
+                </dd>
+            </dl>
+            <div class="clear">&nbsp;</div>
+            <dl class="input" style="display:none;">
+                <dt>
+                    <em class="icon slocation"></em>
+                </dt>
+                <dd>
+                    <div class="padding">
+                        <span class="fill"> <b>上海</b>
+                        </span>
+                        <a href="javascript:void(0);">
+                            <em class="icon sedit"></em>
+                        </a>
+                        <div class="popup_location" style="display:none;">
+                            <em class="icon iarrow"></em>
+                            <div class="padding">
+                                <div class="box">
+                                    <a href="javascript:void(0);">华东</a>
+                                    <a href="javascript:void(0);" class="active">华南</a>
+                                    <a href="javascript:void(0);">华北</a>
+                                    <a href="javascript:void(0);">西北</a>
+                                    <a href="javascript:void(0);">东北</a>
+                                    <a href="javascript:void(0);">港澳台</a>
+                                    <a href="javascript:void(0);">华北</a>
+                                    <a href="javascript:void(0);">西北</a>
+                                    <a href="javascript:void(0);">东北</a>
+                                    <a href="javascript:void(0);">港澳台</a>
+                                </div>
+                                <div class="align_center">
+                                    <a href="javascript:void(0);">
+                                        <em class="icon iarrow_down"></em>
+                                    </a>
+                                </div>
+                                <div class="box">
+                                    <a href="javascript:void(0);" class="active">上海</a>
+                                    <a href="javascript:void(0);">北京</a>
+                                    <a href="javascript:void(0);">杭州</a>
+                                    <a href="javascript:void(0);">天津</a>
+                                    <a href="javascript:void(0);">苏州</a>
+                                    <a href="javascript:void(0);">浙江</a>
+                                </div>
+                                <div class="align_center">
+                                    <a href="javascript:void(0);">
+                                        <em class="icon iarrow_down"></em>
+                                    </a>
+                                </div>
+                                <div class="box">
+                                    <a href="javascript:void(0);" class="active">上海</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </dd>
+            </dl>
+            <div class="clear">&nbsp;</div>
+            <dl class="input"  style="display:none;">
+                <dt>
+                    <em class="icon sdate"></em>
+                </dt>
+                <dd>
+                    <div class="padding">
+                        <span class="fill">
+                            高中毕业于 <b class="margin">2014</b>
+                            年
+                        </span>
+                        <a href="javascript:void(0);">
+                            <em class="icon sedit"></em>
+                        </a>
+                    </div>
+                </dd>
+            </dl>
+            <div class="clear">&nbsp;</div>
+            <div class="btn_group_login align_center">
+                <a href="javascript:void(0);" class="btn btn_red" id="registerSubmit">注册</a>
+                <a href="javascript:void(0);" >登录</a>
+            </div>
+            <p class="gray align_center">点击“注册”表示您同意《“录取啦”用户使用协议》</p>
+        </div>
+    </div>
+</div>
 </body>
 </html>
 

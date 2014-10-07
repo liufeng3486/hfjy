@@ -4,8 +4,15 @@
 <div class="header clearfix">
   <div class="contain">
     <div class="right">
-      <a href="javascript:void(0);" id="btn_login">登录</a>
-      <a href="javascript:void(0);">注册</a>
+      <s:if test="#request.userInfo==null">
+        <a href="javascript:void(0);" id="btn_login">登录</a>
+        <a href="javascript:void(0);" id="btn_register">注册</a>
+      </s:if>
+      <s:else>
+        <a class="name" href="javascript:void(0);">
+          <img src="images/icon/avator_small.png">${userInfo.name}</a>
+        <a href="javascript:void(0);" id="btn_logout">退出</a>
+      </s:else>
     </div>
 
     <div class="left">
@@ -58,7 +65,7 @@
             <div class="top" id="searchTopic" style="cursor:pointer;" >
               搜<span class="red"></span>相关话题
             </div>
-            <hr />            
+            <hr />
             <div class="content">
               <div id="searchArticle" style="cursor:pointer;" >
                 搜<span class="red"></span>相关文章
@@ -197,5 +204,53 @@ $("#searchArticle").click(function(){
 
 $("#searchTopic").click(function(){
   location.href = "index?m=topic/search?searchContent="+$("#searchInput").val();
+});
+
+$("#btn_login").click(function(){
+  showShadow("login");
+  $("#login").show();
+});
+
+$("#loginname,#password,#register_email,#register_name,#register_password").focus(function(){
+  $(".input").removeClass("blue_border");
+  $(this).parents(".input").eq(0).addClass("blue_border");
+});
+
+$("#loginSubmit").click(function(){
+  $.post("ajaxLogin",{
+    loginname:$("#loginname").val(),
+    password:$("#password").val()
+  },function(data){
+    if(data == "0"){
+      $("#login [data-role=message]").show();
+    }else{
+      location.reload();
+    }
+  });
+});
+
+$("#btn_logout").click(function(){
+  $.post("ajaxLogout",function(){
+    location.href = "index";
+  });
+});
+
+$("#btn_register").click(function(){
+  showShadow("register");
+  $("#register").show();
+});
+
+$("#registerSubmit").click(function() {
+  $.post("ajaxRegister", {
+    loginname: $("#register_email").val(),
+    password: $("#register_password").val(),
+    name: $("#register_name").val()
+  }, function(data) {
+    if (data == "0") {
+      $("#register [data-role=message]").show();
+    } else {
+      location.reload();
+    }
+  });
 });
 </script>

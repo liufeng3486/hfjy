@@ -15,10 +15,13 @@ import forward.chuwa.hfjy.model.SysTopictype;
 import forward.chuwa.hfjy.model.WebArticle;
 import forward.chuwa.hfjy.model.WebHot;
 import forward.chuwa.hfjy.model.WebTopic;
+import forward.chuwa.hfjy.model.WebUser;
 import forward.chuwa.hfjy.service.ArticleService;
 import forward.chuwa.hfjy.service.SystemService;
 import forward.chuwa.hfjy.service.TopicService;
+import forward.chuwa.hfjy.service.UserService;
 import forward.chuwa.hfjy.utility.DictionaryUtil;
+import forward.chuwa.hfjy.utility.UserInfo;
 
 
 public class Ajax extends BaseAction {
@@ -34,11 +37,20 @@ public class Ajax extends BaseAction {
 	@Autowired
 	private TopicService topicService;
 	
+	@Autowired
+	private UserService userService;
+	
 	private Long id;
 	
 	private String searchContent;
 	
 	private Long parentid;
+	
+	private String loginname;
+	
+	private String password;
+	
+	private String name;
 	
 	/**
 	 * 首页导航分类
@@ -193,6 +205,41 @@ public class Ajax extends BaseAction {
 		}
 		writeJson(list);
 	}
+	
+	@Action(value = "ajaxLogin")
+	public void login() {
+		WebUser webUser = userService.login(loginname, password);
+		if (webUser != null) {
+			UserInfo userInfo = new UserInfo();
+			userInfo.setUserId(webUser.getId());
+			userInfo.setName(webUser.getName());
+			userInfo.setEmail(webUser.getEmail());
+			userInfo.setUserphoto(webUser.getUserphoto());
+			userInfo.setGradename(webUser.getGradename());
+			userInfo.setProvincename(webUser.getProvincename());
+			getSession().setAttribute(KEY_USER_INFO, userInfo);
+			writeJson(1);
+		} else {
+			writeJson(0);
+		}
+		
+	}
+	
+	@Action(value = "ajaxLogout")
+	public void logout() {
+		getSession().setAttribute(KEY_USER_INFO, null);
+	}
+	
+	@Action(value = "ajaxRegister")
+	public void register() {
+		if (userService.findWebUsers(" and t.loginname ='" + loginname + "'")
+				.size() > 0) {
+			writeJson(0);
+		}else{
+			userService.createWebUser(loginname, password, name, loginname, null, null, null);
+			login();
+		}
+	}
 
 	public Long getId() {
 		return id;
@@ -216,6 +263,30 @@ public class Ajax extends BaseAction {
 
 	public void setParentid(Long parentid) {
 		this.parentid = parentid;
+	}
+
+	public String getLoginname() {
+		return loginname;
+	}
+
+	public void setLoginname(String loginname) {
+		this.loginname = loginname;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	
