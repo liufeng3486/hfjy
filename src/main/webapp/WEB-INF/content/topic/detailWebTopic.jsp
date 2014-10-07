@@ -23,21 +23,26 @@
           </div>
           <div class="left">
             <div class="logo align_center">
-              <img src="images/icon/orange_fudan_logo.png" />
+              <img width="85" src="download?c=${webTopic.topicphoto}" />
             </div>
             <span class="count">
-              <span class="red">123</span>
+              <span class="red">${articleCount}</span>
               <span>文章</span>
             </span>
             <span class="count">
-              <span class="red">6789</span>
+              <span class="red">${userCount}</span>
               <span>关注者</span>
             </span>
             <div class="align_center">
-              <a href="javascript:void(0);" class="btn btn_white">
-                <span class="red">&plus;</span>
-                关注
-              </a>
+              <s:if test="webTopic.protype==1">
+                <a href="javascript:void(0);" class="btn btn_white" data-role="focus" data-id="${webTopic.id}">已关注</a>
+              </s:if>
+              <s:else>
+                <a href="javascript:void(0);" class="btn btn_white" data-role="focus" data-id="${webTopic.id}">
+                  <span class="red">+</span>
+                  &nbsp;关注
+                </a>
+              </s:else>
             </div>
           </div>
           <div class="clear">&nbsp;</div>

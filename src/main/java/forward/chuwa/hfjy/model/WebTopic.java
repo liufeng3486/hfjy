@@ -53,6 +53,11 @@ public class WebTopic implements Serializable {
 		inverseJoinColumns = {@JoinColumn(name = "articleid", referencedColumnName ="id")})
 	private List<WebArticle> webArticles;
 	
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinTable(name = "web_user_topic",
+		joinColumns = {@JoinColumn(name = "topicid", referencedColumnName = "id")},
+		inverseJoinColumns = {@JoinColumn(name = "userid", referencedColumnName ="id")})
+	private List<WebUser> webUsers;
 	
 	@Formula("(select t.typename from sys_topictype t where t.id = topictypeid)")
 	private String topictypeName;
@@ -189,6 +194,12 @@ public class WebTopic implements Serializable {
 	}
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
+	}
+	public List<WebUser> getWebUsers() {
+		return webUsers;
+	}
+	public void setWebUsers(List<WebUser> webUsers) {
+		this.webUsers = webUsers;
 	}
 	
 	

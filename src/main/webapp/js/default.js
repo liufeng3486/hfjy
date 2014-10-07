@@ -41,6 +41,35 @@ $(document).on("click", "[data-url]", function() {
 	pageLoad($(this).attr("data-url"), $(this).attr("data-target"));
 });
 
+$(document).on("mouseenter","[data-role=focus]",function(){
+	if($(this).html() == "已关注"){
+		$(this).html("取消关注");
+	}
+});
+
+$(document).on("mouseout","[data-role=focus]",function(){
+	if($(this).html() == "取消关注"){
+		$(this).html("已关注");
+	}
+});
+
+$(document).on("click","[data-role=focus]",function(e){
+	var that = this;
+	if($(this).html() == "取消关注"){
+		$.post("ajaxRemoveFocusTopic",{id:$(this).attr("data-id")},function(data){
+			if(data == "1"){
+				$(that).html('<span class="red">+</span>&nbsp;关注');
+			}
+		});
+	}else{
+		$.post("ajaxAddFocusTopic",{id:$(this).attr("data-id")},function(data){
+			if(data == "1"){
+				$(that).html("取消关注");
+			}
+		});
+	}
+});
+
 function showShadow(popupid){
 	$("#shadow").show();
 	if(popupid){

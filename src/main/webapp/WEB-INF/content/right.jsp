@@ -18,17 +18,25 @@
 	</div>
 	<div id="listHotTopic" class="content">
 		<s:iterator value="listHotTopics" var="item" status="s">
-			<div class="layer" onclick="location.href='index?m=topic/detailWebTopic?id=${item.id}'">
+			<div class="layer">
 				<dl>
 					<dt>
-						<a href="javascript:void(0);" class="btn btn_white right">已关注</a>
-						<h2>${item.name}</h2>
+						<s:if test="#item.protype==1">
+							<a href="javascript:void(0);" class="btn btn_white right" data-role="focus" data-id="${item.id}">已关注</a>
+						</s:if>
+						<s:else>
+							<a href="javascript:void(0);" class="btn btn_white right" data-role="focus" data-id="${item.id}">
+								<span class="red">+</span>
+								&nbsp;关注
+							</a>
+						</s:else>
+						<h2 onclick="location.href='index?m=topic/detailWebTopic?id=${item.id}'">${item.name}</h2>
 					</dt>
 					<dd>
 						<p>${item.introduction}</p>
 					</dd>
 				</dl>
-				<a href="javascript:void(0);" class="left">
+				<a href="index?m=topic/detailWebTopic?id=${item.id}" class="left" >
 					<img width="60" src="download?c=${item.topicphoto}" alt="${item.name}" title="${item.name}" />
 				</a>
 				<div class="clear">&nbsp;</div>

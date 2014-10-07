@@ -9,7 +9,7 @@
         <a href="javascript:void(0);" id="btn_register">注册</a>
       </s:if>
       <s:else>
-        <a class="name" href="javascript:void(0);">
+        <a class="name" href="index?m=topic/focusTopic">
           <img src="images/icon/avator_small.png">${userInfo.name}</a>
         <a href="javascript:void(0);" id="btn_logout">退出</a>
       </s:else>
@@ -253,4 +253,5 @@ $("#registerSubmit").click(function() {
     }
   });
 });
+
 </script>

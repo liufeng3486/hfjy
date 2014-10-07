@@ -4,12 +4,12 @@
 
  <div class="university">
  <s:iterator value="listWebTopics" var="item" status="s">
-   <div class="layer" data-id="${item.id}" onclick="location.href='index?m=topic/detailWebTopic?id=${item.id}'">
+   <div class="layer" data-id="${item.id}">
      <div class="gray_title">
-       <h1 class="red2">${item.name}</h1>
+       <h1 class="red2" onclick="location.href='index?m=topic/detailWebTopic?id=${item.id}'">${item.name}</h1>
        <div class="describe">
          <p class="red2">
-           <a href="javascript:void(0);">${item.introduction}</a>
+           <a href="index?m=topic/detailWebTopic?id=${item.id}">${item.introduction}</a>
          </p>
        </div>
      </div>
@@ -30,7 +30,7 @@
          </div>
        </div>
        <div class="left">
-         <a href="javascript:void(0);">
+         <a href="index?m=topic/detailWebTopic?id=${item.id}">
            <img width="80" src="download?c=${item.topicphoto}" /> 
          </a>
        </div>
@@ -42,7 +42,7 @@
 
 
 <!--pavigation start-->
-  <div id="pager"></div>
+<div id="pager"></div>
 <!--pavigation end-->
 
  <script type="text/javascript">

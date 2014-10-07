@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -34,6 +35,19 @@ public class WebUser implements Serializable {
 	private Date createdate;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastlogindate;
+	
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinTable(name = "web_user_article",
+		joinColumns = {@JoinColumn(name = "userid", referencedColumnName = "id")},
+		inverseJoinColumns = {@JoinColumn(name = "articleid", referencedColumnName ="id")})
+	private List<WebArticle> webArticles;
+	
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinTable(name = "web_user_topic",
+		joinColumns = {@JoinColumn(name = "userid", referencedColumnName = "id")},
+		inverseJoinColumns = {@JoinColumn(name = "topicid", referencedColumnName ="id")})
+	private List<WebTopic> webTopics;
+	
 	public Long getId() {
 		return id;
 	}
@@ -105,6 +119,18 @@ public class WebUser implements Serializable {
 	}
 	public void setLastlogindate(Date lastlogindate) {
 		this.lastlogindate = lastlogindate;
+	}
+	public List<WebArticle> getWebArticles() {
+		return webArticles;
+	}
+	public void setWebArticles(List<WebArticle> webArticles) {
+		this.webArticles = webArticles;
+	}
+	public List<WebTopic> getWebTopics() {
+		return webTopics;
+	}
+	public void setWebTopics(List<WebTopic> webTopics) {
+		this.webTopics = webTopics;
 	}
 	
 	

@@ -51,6 +51,18 @@ public class WebArticle implements Serializable {
 		inverseJoinColumns = {@JoinColumn(name = "topicid", referencedColumnName ="id")})
 	private List<WebTopic> webTopics;
 	
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinTable(name = "web_user_article",
+		joinColumns = {@JoinColumn(name = "articleid", referencedColumnName = "id")},
+		inverseJoinColumns = {@JoinColumn(name = "userid", referencedColumnName ="id")})
+	private List<WebUser> webUsers;
+	
+	public List<WebUser> getWebUsers() {
+		return webUsers;
+	}
+	public void setWebUsers(List<WebUser> webUsers) {
+		this.webUsers = webUsers;
+	}
 	@Formula("(select group_concat(t.name) from sys_province t where CONCAT(',',IFNULL(provinceid,''),',') like CONCAT('%,',t.id,',%') )")
 	private String provinceName;
 	

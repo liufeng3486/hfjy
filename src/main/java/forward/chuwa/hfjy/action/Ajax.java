@@ -208,6 +208,7 @@ public class Ajax extends BaseAction {
 	
 	@Action(value = "ajaxLogin")
 	public void login() {
+		int result = 0;
 		WebUser webUser = userService.login(loginname, password);
 		if (webUser != null) {
 			UserInfo userInfo = new UserInfo();
@@ -218,11 +219,9 @@ public class Ajax extends BaseAction {
 			userInfo.setGradename(webUser.getGradename());
 			userInfo.setProvincename(webUser.getProvincename());
 			getSession().setAttribute(KEY_USER_INFO, userInfo);
-			writeJson(1);
-		} else {
-			writeJson(0);
+			result = 1;
 		}
-		
+		writeJson(result);
 	}
 	
 	@Action(value = "ajaxLogout")
@@ -232,13 +231,35 @@ public class Ajax extends BaseAction {
 	
 	@Action(value = "ajaxRegister")
 	public void register() {
+		int result = 0;
 		if (userService.findWebUsers(" and t.loginname ='" + loginname + "'")
 				.size() > 0) {
-			writeJson(0);
 		}else{
 			userService.createWebUser(loginname, password, name, loginname, null, null, null);
 			login();
+			result = 1;
 		}
+		writeJson(result);
+	}
+	
+	@Action(value = "ajaxAddFocusTopic")
+	public void addFocusTopic() {
+		int result = 0;
+		if (getUserInfo() != null && id != null && id > 0) {
+			userService.addFocusTopic(getUserInfo().getUserId(), id);
+			result = 1;
+		}
+		writeJson(result);
+	}
+
+	@Action(value = "ajaxRemoveFocusTopic")
+	public void removeFocusTopic() {
+		int result = 0;
+		if (getUserInfo() != null && id != null && id > 0) {
+			userService.removeFocusTopic(getUserInfo().getUserId(), id);
+			result = 1;
+		}
+		writeJson(result);
 	}
 
 	public Long getId() {

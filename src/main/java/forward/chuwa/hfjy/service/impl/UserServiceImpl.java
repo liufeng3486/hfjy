@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import forward.chuwa.hfjy.dao.SysGradeDao;
 import forward.chuwa.hfjy.dao.SysProvinceDao;
+import forward.chuwa.hfjy.dao.WebTopicDao;
 import forward.chuwa.hfjy.dao.WebUserDao;
+import forward.chuwa.hfjy.model.WebTopic;
 import forward.chuwa.hfjy.model.WebUser;
 import forward.chuwa.hfjy.service.UserService;
 
@@ -25,6 +27,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private SysGradeDao sysGradeDao;
+	
+	@Autowired
+	private WebTopicDao webTopicDao;
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public WebUser loadWebUser(Long id) {
@@ -75,5 +80,30 @@ public class UserServiceImpl implements UserService {
 		webUser.setCreatedate(now);
 		webUser.setLastlogindate(now);
 		return webUserDao.save(webUser);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public WebUser addFocusTopic(Long userid,Long topicid){
+		WebUser webUser = webUserDao.load(userid);
+		List<WebTopic> listWebTopics = webUser.getWebTopics();
+		WebTopic webTopic = webTopicDao.load(topicid);
+		listWebTopics.add(webTopic);
+		webUser.setWebTopics(listWebTopics);
+		return webUserDao.update(webUser);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public WebUser removeFocusTopic(Long userid,Long topicid){
+		WebUser webUser = webUserDao.load(userid);
+		List<WebTopic> listWebTopics = webUser.getWebTopics();
+		WebTopic webTopic = webTopicDao.load(topicid);
+		listWebTopics.remove(webTopic);
+		webUser.setWebTopics(listWebTopics);
+		return webUserDao.update(webUser);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public Long countWebUsers(String condition){
+		return webUserDao.count(condition);
 	}
 }

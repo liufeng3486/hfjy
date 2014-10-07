@@ -13,6 +13,9 @@ public class UserInfo {
 	private String focustopic;
 	private String favarticle;
 	
+	private Long focustopicCount;
+	private Long favarticleCount;
+	
 	public Long getUserId() {
 		return userId;
 	}
@@ -60,6 +63,18 @@ public class UserInfo {
 	}
 	public void setFavarticle(String favarticle) {
 		this.favarticle = favarticle;
+	}
+	public Long getFocustopicCount() {
+		return focustopicCount;
+	}
+	public void setFocustopicCount(Long focustopicCount) {
+		this.focustopicCount = focustopicCount;
+	}
+	public Long getFavarticleCount() {
+		return favarticleCount;
+	}
+	public void setFavarticleCount(Long favarticleCount) {
+		this.favarticleCount = favarticleCount;
 	}
 	
 

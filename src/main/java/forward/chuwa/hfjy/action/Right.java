@@ -41,6 +41,14 @@ public class Right extends BaseAction {
 				+ DictionaryUtil.HOT_TYPE2 + "' and t.relationtype = '"
 				+ DictionaryUtil.RELATION_TYPE1 + "' ", 0, 3)) {
 			WebTopic webTopic = topicService.loadWebTopic(webHot.getRelationid());
+			if (getUserInfo() != null) {
+				if (topicService.countWebTopics(" and t.id = "
+						+ webTopic.getId()
+						+ " and exists (from t.webUsers t1 where t1.id = "
+						+ getUserInfo().getUserId() + " )  ") > 0) {
+					webTopic.setProtype("1");
+				}
+			}
 			listHotTopics.add(webTopic);
 		}
 		return INPUT;
