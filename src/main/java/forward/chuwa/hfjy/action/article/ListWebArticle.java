@@ -30,6 +30,8 @@ public class ListWebArticle extends BaseAction {
 
 	public String getCondition() {
 		StringBuilder sb = new StringBuilder();
+		sb.append(getCookieCondition());
+		
 		if (topicid != null && topicid > 0) {
 			sb.append(" and exists (from t.webTopics t1 where t1.id = "
 					+ topicid + " )  ");

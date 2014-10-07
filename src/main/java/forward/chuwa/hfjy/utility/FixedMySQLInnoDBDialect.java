@@ -12,8 +12,10 @@ public class FixedMySQLInnoDBDialect extends MySQLInnoDBDialect {
 		registerColumnType(Types.CHAR, 255, "char($l)");
 		registerHibernateType(Types.CHAR, StandardBasicTypes.STRING.getName());
 		
-		registerFunction("getArticleRecord", new StandardSQLFunction("getArticleRecord",
-				StandardBasicTypes.LONG));
+		registerFunction("getArticleRecord", new StandardSQLFunction(
+				"getArticleRecord", StandardBasicTypes.LONG));
+
+
 	}
 
 	@Override
@@ -21,3 +23,4 @@ public class FixedMySQLInnoDBDialect extends MySQLInnoDBDialect {
 		return " ENGINE=InnoDB";
 	}
 }
+

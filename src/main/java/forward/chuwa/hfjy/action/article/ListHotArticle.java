@@ -19,8 +19,10 @@ public class ListHotArticle extends BaseAction {
 	private List<WebArticle> listWebArticles;
 	
 	public String execute() {
-		listWebArticles = articleService.findWebArticles(" order by getArticleRecord(t.id) desc ",getStartIndex(),PAGE_SIZE);
-		setCount(articleService.countWebArticles(""));
+		listWebArticles = articleService.findWebArticles(getCookieCondition()
+				+ " order by getArticleRecord(t.id) desc ", getStartIndex(),
+				PAGE_SIZE);
+		setCount(articleService.countWebArticles(getCookieCondition()));
 		return INPUT;
 	}
 

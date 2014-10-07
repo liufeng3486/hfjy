@@ -19,8 +19,9 @@ public class ListLastArticle extends BaseAction {
 	private List<WebArticle> listWebArticles;
 	
 	public String execute() {
-		listWebArticles = articleService.findWebArticles(" order by publishdate desc ",getStartIndex(),PAGE_SIZE);
-		setCount(articleService.countWebArticles(""));
+		listWebArticles = articleService.findWebArticles(getCookieCondition()
+				+ " order by publishdate desc ", getStartIndex(), PAGE_SIZE);
+		setCount(articleService.countWebArticles(getCookieCondition()));
 		return INPUT;
 	}
 
