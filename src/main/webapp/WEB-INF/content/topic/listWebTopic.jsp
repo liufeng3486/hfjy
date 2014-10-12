@@ -16,14 +16,14 @@
      <div class="padding">
        <div class="right">
          <div class="describe">
-           <h2>最新文章</h2>
+           <h2 data-role="lastH2">最新文章</h2>
            <p>
              <a href="javascript:void(0);" data-role="lastArticle"></a>
            </p>
          </div>
          <hr /> 
          <div class="describe">
-           <h2>重点资讯</h2>
+           <h2 data-role="hotH2">重点资讯</h2>
            <p>
              <a href="javascript:void(0);" data-role="hotArticle"></a>
            </p>
@@ -53,10 +53,18 @@ $("#listTopic .layer").each(function(index,element){
   $.get("ajaxTopicDetail?id="+$(element).attr("data-id"), function(data) {
     data = eval("(" + data + ")");
     if(data.last){
-      $(element).find("a[data-role=lastArticle]").html(data.last.title).attr("href","index?m=article/detailWebArticle?id="+data.last.id);
+      var url = "index?m=article/detailWebArticle?id="+data.last.id;
+      $(element).find("a[data-role=lastArticle]").html(data.last.title).attr("href",url);
+      $(element).find("h2[data-role=lastH2]").click(function(){
+          location.href = url
+      });
     }
     if(data.hot){
-      $(element).find("a[data-role=hotArticle]").html(data.hot.title).attr("href","index?m=article/detailWebArticle?id="+data.hot.id);
+      var url = "index?m=article/detailWebArticle?id="+data.hot.id
+      $(element).find("a[data-role=hotArticle]").html(data.hot.title).attr("href",url);
+      $(element).find("h2[data-role=hotH2]").click(function(){
+          location.href = url
+      });
     }
   });
 });

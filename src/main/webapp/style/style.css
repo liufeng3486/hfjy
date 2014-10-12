@@ -782,7 +782,7 @@ a.count:hover span.red{
 	margin:0px 3px;	
 }
 .title .dotted a.active,.title .dotted a:hover,.idotted{
-	background:#ff7f7f;	
+	background:#f94151;	
 }
 .rightsidebar .block .content{
 	background:#fff;
@@ -1041,7 +1041,7 @@ a.count:hover span.red{
 	width:100%;		
 }
 .popup .welcome .p_tab a.active{
-	color:#ff7f7f;
+	color:#f94151;
 }
 .popup .login{
 	width:482px;
