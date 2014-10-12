@@ -476,7 +476,8 @@
     box-shadow: 0px 2px 5px 0 #d6d6d6;
 	background:#fff;
 	height:auto;
-	overflow:auto;	
+	overflow:auto;
+	z-index: 1;
 }
 .subject .content{
 	position:relative;	

@@ -13,10 +13,11 @@
         </div>
 
         <div class="content">
-          <div class="right active" >
+          <div id="description" class="right" >
             <h1>${webTopic.name}</h1>
             <p>${webTopic.introduction}</p>
             <hr />
+            <p style="text-align:right;"><a id="showAll" style="display:none;" href="javascript:void(0)">显示全部</a></p>
             <div>
               ${webTopic.description}
             </div>
@@ -60,4 +61,10 @@
 $("#right").load("right");
 var url = "article/listWebArticle?topicid=${webTopic.id}";
 $("#listArticle").load(url).data("url",url);
+
+if ($("#description").innerHeight() < $("#description")[0].scrollHeight) {
+  $("#showAll").show().click(function(){
+    $("#description").toggleClass("active");
+  });
+}
 </script>
