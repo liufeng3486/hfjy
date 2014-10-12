@@ -55,6 +55,12 @@ $(document).on("mouseout","[data-role=focus]",function(){
 
 $(document).on("click","[data-role=focus]",function(e){
 	var that = this;
+
+	if($("#btn_logout").size() == 0){
+		$("#btn_login").click();
+		return false;
+	}
+
 	if($(this).html() == "取消关注"){
 		$.post("ajaxRemoveFocusTopic",{id:$(this).attr("data-id")},function(data){
 			if(data == "1"){

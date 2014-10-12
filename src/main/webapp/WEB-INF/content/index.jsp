@@ -189,7 +189,7 @@ $(function(){
         <div class="clear">&nbsp;</div>
         <div class="align_center"><a id="loginSubmit" href="javascript:void(0);" class="btn btn_red">登录</a></div>
         <div class="group">
-          <div class="link"><a href="javascript:void(0);">注册</a><a href="javascript:void(0);">忘记密码？</a></div>
+          <div class="link"><a href="javascript:void(0);" onclick="$('#shadow').click();$('#btn_register').click();">注册</a><a href="javascript:void(0);">忘记密码？</a></div>
           <div class="rand"> <img src="images/rand.png" /> <span class="gray">微信登录</span> </div>
           <div class="clear">&nbsp;</div>
         </div>
@@ -236,31 +236,27 @@ $(function(){
                 </dd>
             </dl>
             <div class="clear">&nbsp;</div>
-            <dl class="input" style="display:none;">
+            <dl class="input">
                 <dt>
                     <em class="icon slocation"></em>
                 </dt>
                 <dd>
                     <div class="padding">
-                        <span class="fill"> <b>上海</b>
+                        <span class="fill"> <b id="register_province"></b>
                         </span>
-                        <a href="javascript:void(0);">
+                        <a id="register_province_btn" href="javascript:void(0);">
                             <em class="icon sedit"></em>
                         </a>
-                        <div class="popup_location" style="display:none;">
+                        <div id="register_province_popup" class="popup_location" style="display:none;">
                             <em class="icon iarrow"></em>
                             <div class="padding">
                                 <div class="box">
-                                    <a href="javascript:void(0);">华东</a>
-                                    <a href="javascript:void(0);" class="active">华南</a>
-                                    <a href="javascript:void(0);">华北</a>
-                                    <a href="javascript:void(0);">西北</a>
-                                    <a href="javascript:void(0);">东北</a>
-                                    <a href="javascript:void(0);">港澳台</a>
-                                    <a href="javascript:void(0);">华北</a>
-                                    <a href="javascript:void(0);">西北</a>
-                                    <a href="javascript:void(0);">东北</a>
-                                    <a href="javascript:void(0);">港澳台</a>
+                                    <s:iterator value="listSysProvinces" var="item" status="s">
+                                        <s:if test="#item.parentid==0">
+                                            <a href="javascript:void(0);" data-id="${item.id}" data-parentid="${item.parentid}">${item.name}</a>
+                                        </s:if>
+                                    </s:iterator>
+   
                                 </div>
                                 <div class="align_center">
                                     <a href="javascript:void(0);">
@@ -268,20 +264,11 @@ $(function(){
                                     </a>
                                 </div>
                                 <div class="box">
-                                    <a href="javascript:void(0);" class="active">上海</a>
-                                    <a href="javascript:void(0);">北京</a>
-                                    <a href="javascript:void(0);">杭州</a>
-                                    <a href="javascript:void(0);">天津</a>
-                                    <a href="javascript:void(0);">苏州</a>
-                                    <a href="javascript:void(0);">浙江</a>
-                                </div>
-                                <div class="align_center">
-                                    <a href="javascript:void(0);">
-                                        <em class="icon iarrow_down"></em>
-                                    </a>
-                                </div>
-                                <div class="box">
-                                    <a href="javascript:void(0);" class="active">上海</a>
+                                    <s:iterator value="listSysProvinces" var="item" status="s">
+                                        <s:if test="#item.parentid!=0">
+                                            <a href="javascript:void(0);" data-id="${item.id}" data-parentid="${item.parentid}" style="display:none;">${item.name}</a>
+                                        </s:if>
+                                    </s:iterator>
                                 </div>
                             </div>
                         </div>
@@ -289,17 +276,17 @@ $(function(){
                 </dd>
             </dl>
             <div class="clear">&nbsp;</div>
-            <dl class="input"  style="display:none;">
+            <dl class="input">
                 <dt>
                     <em class="icon sdate"></em>
                 </dt>
                 <dd>
                     <div class="padding">
                         <span class="fill">
-                            高中毕业于 <b class="margin">2014</b>
+                            高中毕业于 <b id="register_grade" class="margin">2014</b>
                             年
                         </span>
-                        <a href="javascript:void(0);">
+                        <a href="javascript:void(0);" id="register_grade_btn">
                             <em class="icon sedit"></em>
                         </a>
                     </div>
@@ -308,9 +295,9 @@ $(function(){
             <div class="clear">&nbsp;</div>
             <div class="btn_group_login align_center">
                 <a href="javascript:void(0);" class="btn btn_red" id="registerSubmit">注册</a>
-                <a href="javascript:void(0);" >登录</a>
+                <a href="javascript:void(0);" onclick="$('#shadow').click();$('#btn_login').click();">登录</a>
             </div>
-            <p class="gray align_center">点击“注册”表示您同意《“录取啦”用户使用协议》</p>
+            <p class="gray align_center"><a target="_blank" href="index">点击“注册”表示您同意《“录取啦”用户使用协议》</a></p>
         </div>
     </div>
 </div>

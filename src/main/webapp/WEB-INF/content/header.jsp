@@ -254,4 +254,32 @@ $("#registerSubmit").click(function() {
   });
 });
 
+
+$("#register_province_btn").click(function(){
+    $("#register_province_popup").toggle();
+});
+
+$("#register_province_popup a").click(function(){
+  $(this).addClass("active").siblings().removeClass("active");
+  if($(this).attr("data-parentid") == 0){
+      $("#register_province_popup .box a[data-parentid!=0]").hide();
+      $("#register_province_popup .box a[data-parentid="+$(this).attr("data-id")+"]").show();
+  }else{
+      $("#register_province").html($(this).html()).data("province",$(this).attr("data-id"));
+      $("#register_province_popup").hide();
+  }
+});
+
+$("#register_grade_btn").click(function() {
+  var obj = $("#register_grade");
+  if (obj.find("input").size() > 0) {
+    obj.html(obj.find("input").val());
+  } else {
+    obj.html("<input type='text' value='" + obj.html() + "' style='width:110px' />");
+    obj.find("input").focus();
+    obj.find("input").blur(function(){
+      $("#register_grade_btn").click();
+    });
+  }
+});
 </script>

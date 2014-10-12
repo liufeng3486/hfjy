@@ -17,8 +17,32 @@
             <h1>${webArticle.title}</h1>
             <div class="tag">
               <div  class="right">
-                <a href="javascript:void(0);"> <em class="icon ifavorite"></em>
-                </a>
+                  <s:if test="ifFav==1">
+                    <a data-role="btn_removefav" href="javascript:void(0);" class="active"> <em class="icon ifavorite"></em>
+                    </a>
+                  </s:if>
+                  <s:else>
+                    <a data-role="btn_addfav" href="javascript:void(0);"> <em class="icon ifavorite"></em>
+                    </a>
+                  </s:else>
+                  <div class="popup_favorite" style="display:none;left: 466px;"> <em class="icon iarrow"></em>
+                    <div class="padding">
+                      <div>收藏到话题</div>
+                      <hr />                  
+                      <div class="tag">
+                        <s:iterator value="listWebFavs" var="item" status="s">
+                          <a data-role="webFav" href="javascript:void(0);" class="btn btn_white">${item.name}</a>
+                        </s:iterator>
+                      </div>
+                      <div>收藏到新话题</div>
+                      <input data-role="favName" type="text" placeholder="输入新话题名称" />                  
+
+                      <hr />                  
+                      <div class="align_center">
+                        <a data-role="favoriteSubmit" class="btn btn_red" href="javascript:void(0);">收藏</a>
+                      </div>
+                    </div>
+                  </div>
               </div>
               <div class="left">
                 <s:iterator value="webArticle.webTopics" var="item" status="s">
@@ -55,15 +79,15 @@
               </div>
               <div class="left">
                 <s:if test="ifFav==1">
-                  <a id="btn_removefav" href="javascript:void(0);" class="active"> <em class="icon ifavorite"></em>
+                  <a data-role="btn_removefav" href="javascript:void(0);" class="active"> <em class="icon ifavorite"></em>
                   </a>
                 </s:if>
                 <s:else>
-                  <a id="btn_addfav" href="javascript:void(0);"> <em class="icon ifavorite"></em>
+                  <a data-role="btn_addfav" href="javascript:void(0);"> <em class="icon ifavorite"></em>
                   </a>
                 </s:else>
                 
-                <div id="popup_favorite" class="popup_favorite" style="display:none;">
+                <div class="popup_favorite" style="display:none;">
                   <em class="icon iarrow"></em>
                   <div class="padding">
                     <div>收藏到话题</div>
@@ -74,11 +98,11 @@
                       </s:iterator>
                     </div>
                     <div>收藏到新话题</div>
-                    <input id="favName" type="text" placeholder="输入新话题名称" />
+                    <input data-role="favName" type="text" placeholder="输入新话题名称" />
 
                     <hr />
                     <div class="align_center">
-                      <a id="favoriteSubmit" class="btn btn_red" href="javascript:void(0);">收藏</a>
+                      <a data-role="favoriteSubmit" class="btn btn_red" href="javascript:void(0);">收藏</a>
                     </div>
                   </div>
                 </div>
@@ -91,7 +115,7 @@
         <div class="block show">
           <div class="padding">
             <s:iterator value="listWebArticles" var="item" status="s">
-              <a href="javascript:void(0);">
+              <a href="index?m=article/detailWebArticle?id=${item.id}">
                 <div>
                   <img width="180" src="download?c=${item.articlephoto}" />
                 </div>
@@ -108,11 +132,16 @@
 
 <script type="text/javascript">
 $("#right").load("right");
-$("#btn_addfav").click(function(){
-  $("#popup_favorite").show();
+$("a[data-role=btn_addfav]").click(function(){
+  if($("#btn_logout").size() == 0){
+    $("#btn_login").click();
+    return false;
+  }
+  $(this).next(".popup_favorite").toggle();
 });
 
-$("#btn_removefav").click(function(){
+
+$("a[data-role=btn_removefav").click(function(){
   $.post("ajaxRemoveFavArticle", {
     id: '${id}'
   }, function(data) {
@@ -122,10 +151,11 @@ $("#btn_removefav").click(function(){
   });
 });
 
-$("#favoriteSubmit").click(function(){
+$("a[data-role=favoriteSubmit]").click(function(){
+  var f = $(this).parents(".popup_favorite").find("[data-role=favName]").val();
   $.post("ajaxAddFavArticle",{
     id:'${id}',
-    name:$("#favName").val()
+    name:f
   },function(data){
     if(data == "1"){
       location.reload();
@@ -134,6 +164,6 @@ $("#favoriteSubmit").click(function(){
 });
 
 $("a[data-role=webFav]").click(function(){
-  $("#favName").val($(this).html()).focus();
+  $(this).parents(".popup_favorite").find("[data-role=favName]").val($(this).html()).focus();
 });
 </script>

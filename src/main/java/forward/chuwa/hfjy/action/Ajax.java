@@ -185,14 +185,19 @@ public class Ajax extends BaseAction {
 	@Action(value = "ajaxListTop")
 	public void listTop(){
 		List<WebArticle> listTop = new ArrayList<WebArticle>();
-		for (WebHot webHot : systemService.findWebHots(" and t.hottype = '"
-				+ DictionaryUtil.HOT_TYPE1 + "' and t.relationtype = '"
-				+ DictionaryUtil.RELATION_TYPE2 + "' ", 0, 4)) {
-			WebArticle webArticle = articleService.loadWebArticle(webHot
-					.getRelationid());
-			listTop.add(webArticle);
+		listTop = articleService.findWebArticles(" and exists (from WebHot t1 where t1.hottype = '"
+				+ DictionaryUtil.HOT_TYPE1 + "' and t1.relationtype = '"
+				+ DictionaryUtil.RELATION_TYPE2 + "' and t1.relationid = t.id ) ", 0, 4);
+		
+		List<Map<String,Object>> result = new ArrayList<>();
+		for(WebArticle webArticle:listTop){
+			Map<String,Object> item = new HashMap<String,Object>();
+			item.put("id", webArticle.getId());
+			item.put("articlephoto", webArticle.getArticlephoto());
+			item.put("description", webArticle.getDescription());
+			result.add(item);
 		}
-		writeJson(listTop);
+		writeJson(result);
 	}
 	
 	@Action(value = "ajaxSearchArticle")

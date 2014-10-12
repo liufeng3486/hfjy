@@ -20,7 +20,7 @@
 								<div class="padding">
 									<dl>
 										<dt>
-											<a class="btn btn_white fr" href="javascript:void(0);">已关注</a>
+											<a class="btn btn_white fr" href="javascript:void(0);" data-role="focus">已关注</a>
 											<h2 data-role="name"></h2>
 										</dt>
 										<dd>

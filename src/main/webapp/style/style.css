@@ -250,8 +250,9 @@
 	border-radius: 3px;	
 	color:#666666;
 	font-size:18px;
+	text-align: left;
 }
-.passage .share .popup_favorite .iarrow{
+.passage .popup_favorite .iarrow{
 	background:url(../images/icon/iarrow_top_icon.png) left top no-repeat;
     height: 20px;
     left: 30px;
@@ -270,7 +271,7 @@
 	margin-left:-12px;
 	margin-bottom:20px;	
 }
-.passage .share .left .popup_favorite .tag a{
+.passage .left .popup_favorite .tag a{
 	height:30px;
 	line-height:30px;
 	margin-left:12px;	
