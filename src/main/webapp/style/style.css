@@ -683,14 +683,6 @@ a.count:hover span.red{
 	margin-bottom:16px;	
 	cursor:pointer;
 }
-.tab_content .layer:hover,.block .layer:hover,.block .layer.last:hover,.university .layer:hover{
-	background:#f0f0f0;	
-	border:1px solid #b2b2b2;
-	-webkit-box-shadow: 0px 2px 5px 0 #d6d6d6;
-    -moz-box-shadow: 0px 2px 5px 0 #d6d6d6;
-    box-shadow: 0px 2px 5px 0 #d6d6d6;
-	cursor:pointer;
-}
 .university .layer:hover .gray_title{
 	background:#f0f0f0;		
 }
@@ -730,7 +722,7 @@ a.count:hover span.red{
 	text-indent:2em;
 }
 .tab_content .layer dd span.time{
-	color:#333333;
+	color:#999999;
 	font-size:16px;	
 }
 .tab_content .layer dd span.gray{
@@ -795,11 +787,22 @@ a.count:hover span.red{
 	border:1px solid #ffffff;
 	border-bottom:1px solid #f4f4f4;	
 }
+
 .tag .popup_tag a{
 	padding:0px;	
 }
 .block .layer.last,.block .newer.last{
-	border-bottom:0px;	
+	border-bottom:1px solid #fff;	
+}
+.tab_content .layer:hover,.block .layer:hover,.block .layer.last:hover,.university .layer:hover{
+	background:#f0f0f0;	
+	border:1px solid #b2b2b2;
+	-webkit-box-shadow: 0px 2px 5px 0 #d6d6d6;
+    -moz-box-shadow: 0px 2px 5px 0 #d6d6d6;
+    box-shadow: 0px 2px 5px 0 #d6d6d6;
+	cursor:pointer;
+	position: relative;
+	z-index: 1;
 }
  .block .layer h2,.popup_tag h2{
 	color:#777777;
@@ -902,10 +905,12 @@ a.count:hover span.red{
 }
 .rightsidebar .block .newer a{
 	padding:16px 12px;
+	border:1px solid #fff;	
 	border-bottom:1px solid #f4f4f4;
 	line-height:20px;
 	display:block;
-	color:#777777;		
+	color:#777777;	
+
 }
 .rightsidebar .block .newer a:hover{
 	border:1px solid #fa5a67;
@@ -937,6 +942,7 @@ a.count:hover span.red{
 	display:inline-block;
 	margin-left:30px;
 	margin-bottom:30px;
+	overflow: hidden;
 }
 
 
@@ -967,6 +973,12 @@ a.count:hover span.red{
 	width:740px;
 	height:880px;
 	margin-top:-440px;
+	margin-left:-429px;	
+}
+.w_h_m4{
+	width:740px;
+	height:480px;
+	margin-top:-240px;
 	margin-left:-429px;	
 }
 .popup .welcome{
@@ -1143,6 +1155,24 @@ a.count:hover span.red{
 }
 .login .btn_group_login a{
 	margin:0px 20px;	
+}
+.regsiter .random{
+	margin-bottom: 20px;
+}
+
+.regsiter .random .input{
+	float:left;
+    width:60%;
+}
+.regsiter .random .right{
+	width:30%;
+	text-align: right;
+	border:1px solid #b2b2b2;
+	margin:20px 0px;
+}
+.regsiter .random .right img{
+	width:100%;
+	height:60px;
 }
 .popup_location .align_center{
 	margin-top:0px;
@@ -1376,6 +1406,29 @@ a.count:hover span.red{
 	margin-left:0px;
 	margin:12px 0px;
 }
+
+/*找回密码*/
+.password_success .layer{
+	border-top:1px solid #e5e5e5;
+	background:#fff;
+	text-align:center;	
+
+}
+.password_success .layer .padding{
+	padding:22px;
+	height:400px;
+	line-height: 400px;
+}
+.password_success .layer img{
+	display:block;
+	margin:0 auto;
+	margin-top:200px;
+}
+.password_success p{
+	margin-top:20px;
+	font-size: 14px;
+}
+
 /*样式叠加
 ------------------------------------------------------------*/
 input[type=text]:focus, input[type=password]:focus {

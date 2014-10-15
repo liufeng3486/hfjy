@@ -13,14 +13,14 @@
 					<dd>
 						<div class="tag">
 							<s:iterator value="#item.webTopics" var="item1" status="s">
-								<a href="javascript:void(0);" class="btn btn_white" data-role="webTopic" data-introduction="${item1.introduction}" data-topicphoto="${item1.topicphoto}">${item1.name}</a>
+								<a href="javascript:void(0);" class="btn btn_white" data-role="webTopic" data-id="${item1.id}" data-introduction="${item1.introduction}" data-topicphoto="${item1.topicphoto}">${item1.name}</a>
 							</s:iterator>
-							
+
 							<div class="popup_tag" style="width: 310px;display:none"> <em class="icon iarrow"></em>
 								<div class="padding">
 									<dl>
 										<dt>
-											<a class="btn btn_white fr" href="javascript:void(0);">已关注</a>
+											<a data-role="focus" class="btn btn_white fr" href="javascript:void(0);"></a>
 											<h2 data-role="name"></h2>
 										</dt>
 										<dd>
@@ -76,7 +76,19 @@ $("a[data-role=webTopic]").click(function() {
 			"title":$(this).html(),
 			"alt":$(this).html()
 		});
-		obj.css("left", $(this).offset().left + $(this).width() / 2 - 805).show();
+
+		obj.find("[data-role=focus]").attr({
+			"data-id":$(this).attr("data-id")
+		});
+
+		if($.inArray($(this).attr("data-id"), focusTopic) > -1){
+			obj.find("[data-role=focus]").html("已关注");
+		}else{
+			obj.find("[data-role=focus]").html('<span class="red">+</span>&nbsp;关注');
+		}
+
+		obj.css("left", $(this).offset().left - $(this).parent().offset().left - 88 + $(this).width() / 2).show();
+
 	}
 });
 

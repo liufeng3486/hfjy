@@ -18,6 +18,7 @@
 var provinceArray = [];
 var gradeArray = [];
 var userInfo = {};
+var focusTopic = [];
 
 function setCookie(){
     if(userInfo.province && userInfo.grade){
@@ -35,7 +36,8 @@ $(function(){
         showShadow();
         $("#welcome").show();
     } else {
-        userInfo = eval("(" + $.cookie("userInfo") + ")")
+        userInfo = eval("(" + $.cookie("userInfo") + ")");
+        focusTopic = $("#focusTopic").val().split(",");
     }
 
     $("#provinceList a").each(function(){
@@ -122,6 +124,7 @@ $(function(){
 <!--footer start-->
 <div id="footer" class="footer"></div>
 <!--footer end--> 
+<input id="focusTopic" type="hidden" value="${focusTopic}" />
 
 <div id="shadow" style="width:100%;height:100%;position:absolute;z-index:999;background-color:#000;opacity:.3;top:0;left:0;display:none;">&nbsp;</div>
 
@@ -300,6 +303,40 @@ $(function(){
             <p class="gray align_center"><a target="_blank" href="index">点击“注册”表示您同意《“录取啦”用户使用协议》</a></p>
         </div>
     </div>
+</div>
+
+<div class="popup w_h_m4" style="display:none;">
+    <div class="login regsiter" >
+        <div class="padding">
+            <dl class="input">
+                <dt> <em class="icon semail"></em>
+                </dt>
+                <dd>
+                    <div class="padding">
+                        <input id="" type="text" placeholder="注册的邮箱" />
+                        <p class="red" data-role="" style="display:none;">邮箱输入的格式不正确！</p>
+                    </div>
+                </dd>
+            </dl>
+            <div class="clear">&nbsp;</div>
+            <div class="random">
+                <dl class="input">
+                    <dd>
+                        <div class="padding">
+                            <input id="" type="text" placeholder="验证码" />
+                        </div>
+                    </dd>
+                </dl>
+                 <div class="right"><a href="#"><img src="images/rand.png" alt="验证码" /></a></div>
+                <div class="clear">&nbsp;</div>
+             </div>
+            <div class="btn_group_login align_center">
+                <a href="javascript:void(0);" class="btn btn_red" id="registerSubmit">注册</a>
+                <a href="javascript:void(0);" onclick="$('#shadow').click();$('#btn_login').click();">登录</a>
+            </div>            
+        </div>    
+    </div>
+
 </div>
 </body>
 </html>

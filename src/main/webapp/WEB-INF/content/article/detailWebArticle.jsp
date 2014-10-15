@@ -46,8 +46,28 @@
               </div>
               <div class="left">
                 <s:iterator value="webArticle.webTopics" var="item" status="s">
-                  <a href="javascript:void(0);" class="btn btn_white" data-role="webTopic">${item.name}</a>
+                  <a href="javascript:void(0);" class="btn btn_white" data-role="webTopic" data-id="${item.id}" data-introduction="${item.introduction}" data-topicphoto="${item.topicphoto}">${item.name}</a>
                 </s:iterator>
+
+                <div class="popup_tag" style="width: 310px;top:50px;display:none">
+                  <em class="icon iarrow" style="width:14px;width: 40px;"></em>
+                  <div class="padding">
+                    <dl>
+                      <dt>
+                        <a data-role="focus" class="btn btn_white fr" href="javascript:void(0);"></a>
+                        <h2 data-role="name"></h2>
+                      </dt>
+                      <dd>
+                        <p data-role="introduction"></p>
+                      </dd>
+                    </dl>
+                    <a class="left" href="javascript:void(0);" style="width:auto;">
+                      <img width="60" data-role="topicphoto" />              
+                    </a>
+                    <div class="clear">&nbsp;</div>
+                  </div>
+                </div>
+
               </div>
               <div class="clear">&nbsp;</div>
             </div>
@@ -86,8 +106,11 @@
                   <a data-role="btn_addfav" href="javascript:void(0);"> <em class="icon ifavorite"></em>
                   </a>
                 </s:else>
-                
-                <div class="popup_favorite" style="display:none;">
+              </div>
+
+              <div class="clear">&nbsp;</div>
+
+              <div class="popup_favorite" style="display:none;">
                   <em class="icon iarrow"></em>
                   <div class="padding">
                     <div>收藏到话题</div>
@@ -105,10 +128,7 @@
                       <a data-role="favoriteSubmit" class="btn btn_red" href="javascript:void(0);">收藏</a>
                     </div>
                   </div>
-                </div>
               </div>
-
-              <div class="clear">&nbsp;</div>
             </div>
           </div>
         </div>
@@ -165,5 +185,37 @@ $("a[data-role=favoriteSubmit]").click(function(){
 
 $("a[data-role=webFav]").click(function(){
   $(this).parents(".popup_favorite").find("[data-role=favName]").val($(this).html()).focus();
+});
+
+$("a[data-role=webTopic]").click(function() {
+  if ($(this).hasClass("active")) {
+    $(this).removeClass("active");
+    $(this).siblings(".popup_tag").hide();
+  } else {
+    $("a[data-role=webTopic]").removeClass("active");
+    $(".popup_tag").hide();
+    $(this).addClass("active");
+    var obj = $(this).siblings(".popup_tag");
+    obj.find("[data-role=name]").html($(this).html());
+    obj.find("[data-role=introduction]").html($(this).attr("data-introduction"));
+    obj.find("[data-role=topicphoto]").attr({
+      "src":"download?c="+$(this).attr("data-topicphoto"),
+      "title":$(this).html(),
+      "alt":$(this).html()
+    });
+
+    obj.find("[data-role=focus]").attr({
+      "data-id":$(this).attr("data-id")
+    });
+
+    if($.inArray($(this).attr("data-id"), focusTopic) > -1){
+      obj.find("[data-role=focus]").html("已关注");
+    }else{
+      obj.find("[data-role=focus]").html('<span class="red">+</span>&nbsp;关注');
+    }
+
+    obj.css("left", $(this).offset().left - $(this).parent().offset().left - 88 ).show();
+
+  }
 });
 </script>

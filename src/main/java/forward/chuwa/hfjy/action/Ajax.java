@@ -1,5 +1,6 @@
 package forward.chuwa.hfjy.action;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +22,7 @@ import forward.chuwa.hfjy.service.SystemService;
 import forward.chuwa.hfjy.service.TopicService;
 import forward.chuwa.hfjy.service.UserService;
 import forward.chuwa.hfjy.utility.DictionaryUtil;
+import forward.chuwa.hfjy.utility.Mail;
 import forward.chuwa.hfjy.utility.UserInfo;
 
 
@@ -242,6 +244,12 @@ public class Ajax extends BaseAction {
 		}else{
 			userService.createWebUser(loginname, password, name, loginname, null, null, null);
 			login();
+//			try {
+//				Mail.send(loginname);
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			result = 1;
 		}
 		writeJson(result);

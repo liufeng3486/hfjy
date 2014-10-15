@@ -64,13 +64,15 @@ $(document).on("click","[data-role=focus]",function(e){
 	if($(this).html() == "取消关注"){
 		$.post("ajaxRemoveFocusTopic",{id:$(this).attr("data-id")},function(data){
 			if(data == "1"){
-				$(that).html('<span class="red">+</span>&nbsp;关注');
+				//$(that).html('<span class="red">+</span>&nbsp;关注');
+				location.reload();
 			}
 		});
 	}else{
 		$.post("ajaxAddFocusTopic",{id:$(this).attr("data-id")},function(data){
 			if(data == "1"){
-				$(that).html("取消关注");
+				location.reload();
+				//$(that).html("取消关注");
 			}
 		});
 	}
