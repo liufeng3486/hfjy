@@ -218,13 +218,7 @@ public class Ajax extends BaseAction {
 		int result = 0;
 		WebUser webUser = userService.login(loginname, password);
 		if (webUser != null) {
-			UserInfo userInfo = new UserInfo();
-			userInfo.setUserId(webUser.getId());
-			userInfo.setName(webUser.getName());
-			userInfo.setEmail(webUser.getEmail());
-			userInfo.setUserphoto(webUser.getUserphoto());
-			userInfo.setGradename(webUser.getGradename());
-			userInfo.setProvincename(webUser.getProvincename());
+			UserInfo userInfo = new UserInfo(webUser);
 			getSession().setAttribute(KEY_USER_INFO, userInfo);
 			result = 1;
 		}
@@ -242,14 +236,14 @@ public class Ajax extends BaseAction {
 		if (userService.findWebUsers(" and t.loginname ='" + loginname + "'")
 				.size() > 0) {
 		}else{
-			userService.createWebUser(loginname, password, name, loginname, null, null, null);
+			WebUser webUser = userService.createWebUser(loginname, password, name, loginname, null, null, null);
 			login();
-//			try {
-//				Mail.send(loginname);
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
+			try {
+				Mail.send(webUser.getId(),loginname,0);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			result = 1;
 		}
 		writeJson(result);
@@ -290,6 +284,48 @@ public class Ajax extends BaseAction {
 		int result = 0;
 		if (getUserInfo() != null && id != null && id > 0) {
 			userService.removeFavArticle(getUserInfo().getUserId(), id);
+			result = 1;
+		}
+		writeJson(result);
+	}
+	
+	// 发起重置密码
+	@Action(value = "ajaxResetPW")
+	public void resetPW() {
+		int result = 0;
+		String kaptchaExpected = (String) getSession().getAttribute(
+				com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+		if (StringUtils.equals(password, kaptchaExpected)) {
+			List<WebUser> listWebUsers = userService
+					.findWebUsers(" and t.loginname ='" + loginname + "'");
+			if (listWebUsers != null && listWebUsers.size() > 0) {
+				WebUser webUser = listWebUsers.get(0);
+				if(StringUtils.equals(webUser.getIsconfirm(), DictionaryUtil.DELETE_FLAG1)){
+					try {
+						Mail.send(webUser.getId(),loginname,1);
+						result = 1;
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}else{
+					result = -3;
+				}
+			} else {
+				result = -2;
+			}
+		} else {
+			result = -1;
+		}
+		writeJson(result);
+	}
+	
+	// 重置密码
+	@Action(value = "ajaxChangePW")
+	public void changePW() {
+		int result = 0;
+		if (id != null && id > 0) {
+			userService.changePassword(id, password);
 			result = 1;
 		}
 		writeJson(result);

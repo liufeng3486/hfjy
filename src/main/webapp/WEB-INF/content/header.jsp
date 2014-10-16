@@ -282,4 +282,30 @@ $("#register_grade_btn").click(function() {
     });
   }
 });
+
+$("#forgetpw").click(function(){
+  $("#shadow").click();
+  showShadow("reset");
+  $("#reset").show();
+});
+
+$("#resetSubmit").click(function(){
+  $("#reset .red[data-role=randomCode]").hide();
+  $("#reset .red[data-role=email]").hide();
+
+  $.post("ajaxResetPW",{
+    loginname:$("#resetemail").val(),
+    password:$("#resetrandom").val()
+  },function(data){
+    if(data == 1){
+      location.href = "index";
+    }else if(data == -1){
+      $("#reset .red[data-role=randomCode]").show();
+    }else if(data == -2){
+      $("#reset .red[data-role=email]").html("邮箱输入的格式不正确！").show();
+    }else if(data == -3){
+      $("#reset .red[data-role=email]").html("邮箱未验证！").show();
+    }
+  });
+});
 </script>

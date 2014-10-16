@@ -192,7 +192,7 @@ $(function(){
         <div class="clear">&nbsp;</div>
         <div class="align_center"><a id="loginSubmit" href="javascript:void(0);" class="btn btn_red">登录</a></div>
         <div class="group">
-          <div class="link"><a href="javascript:void(0);" onclick="$('#shadow').click();$('#btn_register').click();">注册</a><a href="javascript:void(0);">忘记密码？</a></div>
+          <div class="link"><a href="javascript:void(0);" onclick="$('#shadow').click();$('#btn_register').click();">注册</a><a id="forgetpw" href="javascript:void(0);">忘记密码？</a></div>
           <div class="rand"> <img src="images/rand.png" /> <span class="gray">微信登录</span> </div>
           <div class="clear">&nbsp;</div>
         </div>
@@ -305,7 +305,7 @@ $(function(){
     </div>
 </div>
 
-<div class="popup w_h_m4" style="display:none;">
+<div id="reset" class="popup w_h_m4" style="display:none;">
     <div class="login regsiter" >
         <div class="padding">
             <dl class="input">
@@ -313,8 +313,8 @@ $(function(){
                 </dt>
                 <dd>
                     <div class="padding">
-                        <input id="" type="text" placeholder="注册的邮箱" />
-                        <p class="red" data-role="" style="display:none;">邮箱输入的格式不正确！</p>
+                        <input id="resetemail" type="text" placeholder="注册的邮箱" />
+                        <p class="red" data-role="email" style="display:none;">邮箱输入的格式不正确！</p>
                     </div>
                 </dd>
             </dl>
@@ -323,21 +323,22 @@ $(function(){
                 <dl class="input">
                     <dd>
                         <div class="padding">
-                            <input id="" type="text" placeholder="验证码" />
+                            <input id="resetrandom" type="text" placeholder="验证码" />
+                            <p class="red" data-role="randomCode" style="display:none;">验证码错误！</p>
                         </div>
                     </dd>
                 </dl>
-                 <div class="right"><a href="#"><img src="images/rand.png" alt="验证码" /></a></div>
+                 <div class="right"><a href="javascript:void(0)" onclick="$('#kaptcha').attr('src', 'kaptcha.jpg?' + Math.floor(Math.random() * 100));"><img id="kaptcha" src="kaptcha.jpg" /></a></div>
                 <div class="clear">&nbsp;</div>
              </div>
             <div class="btn_group_login align_center">
-                <a href="javascript:void(0);" class="btn btn_red" id="registerSubmit">注册</a>
+                <a href="javascript:void(0);" class="btn btn_red" id="resetSubmit">发送重置邮件</a>
                 <a href="javascript:void(0);" onclick="$('#shadow').click();$('#btn_login').click();">登录</a>
             </div>            
         </div>    
     </div>
-
 </div>
+
 </body>
 </html>
 

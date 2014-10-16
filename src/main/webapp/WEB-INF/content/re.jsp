@@ -13,9 +13,23 @@
 					<div class="padding"><img src="images/pw_success_text.png" /></div>
 
 				</div>
-				<p class="red align_center">(*<span>x</span>秒后自动跳转到寿宴)</p>
+				<p class="red align_center">( <span id="count"></span> 秒后自动跳转到首页)</p>
 			</div>
 		</div>
 		<div class="clear">&nbsp;</div>
 	</div>
 </div>
+<script type="text/javascript">
+	var count = 5;
+	function renderCount(){
+		$("#count").html(count);
+	}
+	renderCount();
+	setInterval(function(){
+		count--;
+		if(count == 0){
+			location.href = "index";
+		}
+		renderCount();
+	},1000);
+</script>

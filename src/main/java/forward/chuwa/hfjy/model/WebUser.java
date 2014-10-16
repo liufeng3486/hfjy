@@ -36,6 +36,9 @@ public class WebUser implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastlogindate;
 	
+	private String isconfirm;
+	private String dytoken;
+	
 	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinTable(name = "web_user_topic",
 		joinColumns = {@JoinColumn(name = "userid", referencedColumnName = "id")},
@@ -121,7 +124,16 @@ public class WebUser implements Serializable {
 	public void setWebTopics(List<WebTopic> webTopics) {
 		this.webTopics = webTopics;
 	}
-	
-	
-	
+	public String getIsconfirm() {
+		return isconfirm;
+	}
+	public void setIsconfirm(String isconfirm) {
+		this.isconfirm = isconfirm;
+	}
+	public String getDytoken() {
+		return dytoken;
+	}
+	public void setDytoken(String dytoken) {
+		this.dytoken = dytoken;
+	}
 }

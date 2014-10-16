@@ -4,6 +4,7 @@ import java.util.List;
 
 
 
+
 import forward.chuwa.hfjy.model.WebFav;
 import forward.chuwa.hfjy.model.WebUser;
 
@@ -35,4 +36,10 @@ public interface UserService {
 	public List<WebFav> findWebFavs(String condition);
 	
 	public Long countWebfavs(String condition);
+	
+	public WebUser confirmWebUser(Long id);
+	
+	public WebUser changePassword(Long id,String password);
+	
+	public WebUser updateToken(Long id,String token);
 }

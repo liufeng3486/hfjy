@@ -20,6 +20,7 @@ import forward.chuwa.hfjy.model.WebFav;
 import forward.chuwa.hfjy.model.WebTopic;
 import forward.chuwa.hfjy.model.WebUser;
 import forward.chuwa.hfjy.service.UserService;
+import forward.chuwa.hfjy.utility.DictionaryUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -90,6 +91,29 @@ public class UserServiceImpl implements UserService {
 		webUser.setUserphoto(userphoto);
 		webUser.setCreatedate(now);
 		webUser.setLastlogindate(now);
+		return webUserDao.save(webUser);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public WebUser confirmWebUser(Long id) {
+		WebUser webUser = webUserDao.load(id);
+		webUser.setIsconfirm(DictionaryUtil.DELETE_FLAG1);
+		webUser.setDytoken(null);
+		return webUserDao.save(webUser);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public WebUser changePassword(Long id,String password){
+		WebUser webUser = webUserDao.load(id);
+		webUser.setPassword(password);
+		webUser.setDytoken(null);
+		return webUserDao.save(webUser);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public WebUser updateToken(Long id,String token){
+		WebUser webUser = webUserDao.load(id);
+		webUser.setDytoken(token);
 		return webUserDao.save(webUser);
 	}
 	

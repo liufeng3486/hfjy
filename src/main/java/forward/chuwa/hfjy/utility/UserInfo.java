@@ -1,5 +1,7 @@
 package forward.chuwa.hfjy.utility;
 
+import forward.chuwa.hfjy.model.WebUser;
+
 public class UserInfo {
 
 	private Long userId;
@@ -15,6 +17,15 @@ public class UserInfo {
 	
 	private Long focustopicCount;
 	private Long favarticleCount;
+	
+	public UserInfo(WebUser webUser){
+		this.setUserId(webUser.getId());
+		this.setName(webUser.getName());
+		this.setEmail(webUser.getEmail());
+		this.setUserphoto(webUser.getUserphoto());
+		this.setGradename(webUser.getGradename());
+		this.setProvincename(webUser.getProvincename());
+	}
 	
 	public Long getUserId() {
 		return userId;
