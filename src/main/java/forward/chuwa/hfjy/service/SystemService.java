@@ -6,6 +6,7 @@ import forward.chuwa.hfjy.model.SysDictionary;
 import forward.chuwa.hfjy.model.SysGrade;
 import forward.chuwa.hfjy.model.SysProvince;
 import forward.chuwa.hfjy.model.SysTopictype;
+import forward.chuwa.hfjy.model.SysUser;
 import forward.chuwa.hfjy.model.WebHot;
 
 public interface SystemService {
@@ -26,4 +27,6 @@ public interface SystemService {
 	
 	public List<WebHot> findWebHots(String condition, int start,
 			int length);
+	
+	public List<SysUser> findSysUsers(String condition);
 }

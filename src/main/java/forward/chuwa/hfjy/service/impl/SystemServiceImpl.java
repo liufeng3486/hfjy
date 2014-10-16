@@ -12,11 +12,13 @@ import forward.chuwa.hfjy.dao.SysDictionaryDao;
 import forward.chuwa.hfjy.dao.SysGradeDao;
 import forward.chuwa.hfjy.dao.SysProvinceDao;
 import forward.chuwa.hfjy.dao.SysTopictypeDao;
+import forward.chuwa.hfjy.dao.SysUserDao;
 import forward.chuwa.hfjy.dao.WebHotDao;
 import forward.chuwa.hfjy.model.SysDictionary;
 import forward.chuwa.hfjy.model.SysGrade;
 import forward.chuwa.hfjy.model.SysProvince;
 import forward.chuwa.hfjy.model.SysTopictype;
+import forward.chuwa.hfjy.model.SysUser;
 import forward.chuwa.hfjy.model.WebHot;
 import forward.chuwa.hfjy.service.SystemService;
 
@@ -33,6 +35,8 @@ public class SystemServiceImpl implements SystemService {
 	private SysDictionaryDao sysDictionaryDao;
 	@Autowired
 	private WebHotDao webHotDao;
+	@Autowired
+	private SysUserDao sysUserDao;
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<SysTopictype> findSysTopictypes(String condition) {
@@ -89,5 +93,10 @@ public class SystemServiceImpl implements SystemService {
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<WebHot> findWebHots(String condition, int start, int length) {
 		return webHotDao.find(condition, start, length);
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<SysUser> findSysUsers(String condition){
+		return sysUserDao.find(condition);
 	}
 }

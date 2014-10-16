@@ -7,6 +7,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>录取啦</title>
 
+<link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="css/flick/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
@@ -46,17 +47,40 @@
 		$(document).on("click", "a[data-role=upload]", function() {
 			uploadFile($(this));
 		});
+
+		$("#login").click(function(){
+			$.post("admin/ajaxLogin",{
+				"loginname":$("#loginname").val(),
+				"password":$("#password").val()
+			},function(data){
+				if(data>0){
+					$("#nav").show().find("a:eq(0)").click();
+				}
+			});
+		});
 	});
 </script>
 </head>
 <body>
-<div id="nav">
-	<a href="javascript:void(0)"  data-url="">用户管理</a>
+<div id="nav" style="display:none;">
+<!-- 	<a href="javascript:void(0)"  data-url="">用户管理</a> -->
 	<a href="javascript:void(0)"  data-url="listWebTopic">话题管理</a>
 	<a href="javascript:void(0)"  data-url="listWebArticle">文章管理</a>
 </div>
 <div id="content">
-
+	<div class="form">
+		<div>
+			<label class="width-normal">用户名</label>
+			<input id="loginname" type="text" />
+		</div>
+		<div>
+			<label class="width-normal">密码</label>
+			<input id="password" type="password" />
+		</div>
+		<div>
+			<input type="button"  value="登录" id="login" />
+		</div>
+	</div>
 </div>
 </body>
 </html>
