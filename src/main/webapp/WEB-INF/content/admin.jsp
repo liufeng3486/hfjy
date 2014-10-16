@@ -40,6 +40,19 @@
 		file.click();
 	}
 
+	$.fn.extend({
+		limitLength: function(length) {
+			$(this).each(function() {
+				var content = $(this).attr("data-content") || "";
+				var result = content.substr(0, length)
+				if (content.length > length) {
+					result += "...";
+				}
+				$(this).attr("title", content).html(result);
+			});
+		}
+	});
+
 	$(function(){
 		baseUrl = "admin";
 		content  = $("#content");

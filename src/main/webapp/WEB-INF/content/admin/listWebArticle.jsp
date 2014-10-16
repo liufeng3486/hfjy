@@ -36,14 +36,14 @@
 		<td>
 			${item.title }
 		</td>
-		<td>
-			${item.description }
+		<td data-content="${item.description }">
+			
 		</td>
-		<td>
-			${item.gradeName }
+		<td data-content="${item.gradeName }">
+			
 		</td>
-		<td>
-			${item.provinceName }
+		<td data-content="${item.provinceName }">
+			
 		</td>
 		<td>
 			<s:date name="#item.publishdate" format="yyyy-MM-dd"/>
@@ -86,4 +86,6 @@ function removeTop(_id) {
 		}
 	});
 }
+
+$("[data-content]").limitLength(20);
 </script>

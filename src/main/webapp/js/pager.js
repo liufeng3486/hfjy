@@ -62,6 +62,24 @@ $.fn.extend({
 							"data-target": target
 						});
 					}
+					pageGroup.append(firstLink).append(prevLink)
+
+
+					for (var i = 0; i < 10; i++) {
+						var step = i - 4;
+						if(parseInt(currentPage + step) > 0 && parseInt(currentPage + step) <= pageCount){
+							var link = $("<a href='javascript:void(0);' style='display:inline-block;width:auto;padding:5px;'>"+parseInt(currentPage + step)+"</a>");
+							if(step == 0){
+								link.css("color","#ccc");
+							}else{
+								link.attr({
+									"data-url": url + parseInt(startIndex + pageSize*step),
+									"data-target": target
+								});
+							}
+							pageGroup.append(link);
+						}
+					}
 
 					if (currentPage == pageCount) {
 						nextLink.css("color","#ccc");
@@ -76,10 +94,9 @@ $.fn.extend({
 							"data-target": target
 						});
 					}
+					pageGroup.append(nextLink).append(lastLink);
 
-					pageGroup.append(firstLink).append(prevLink)
-							.append(nextLink).append(lastLink)
-							.append('<div class="clear">&nbsp;</div>');
+					pageGroup.append('<div class="clear">&nbsp;</div>');
 				}
 			}
 
